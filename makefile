@@ -1,14 +1,15 @@
 db = dist/bricks.db
 sqldump = dist/bricks.sql
 
-all: $(sqldump)
+all: $(db)
 
 $(sqldump): $(db)
 	sqlite3 $(db) .dump > $(sqldump)
 
-$(db): tables/themes.csv tables/colors.csv tables/part_categories.csv tables/parts.csv tables/inventories.csv tables/sets.csv tables/inventory_parts.csv tables/inventory_sets.csv src/rb_import/schema.sql src/rb_import/import.sql
+$(db): tables/themes.csv tables/colors.csv tables/part_categories.csv tables/parts.csv tables/inventories.csv tables/sets.csv tables/inventory_parts.csv tables/inventory_sets.csv src/rb_import/schema.sql src/rb_import/import.sql src/schema.sql
 	sqlite3 $(db) < src/rb_import/schema.sql
 	sqlite3 $(db) < src/rb_import/import.sql
+	sqlite3 $(db) < src/schema.sql
 
 tables/%.csv:
 	curl --silent https://m.rebrickable.com/media/downloads/$(subst tables/,,$@) | tail -n +2 > $@
