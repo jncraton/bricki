@@ -1,0 +1,6 @@
+language: generic
+script:
+  - make -j
+  - make test
+  - make indices
+  - make test
