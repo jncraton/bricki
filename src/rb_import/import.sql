@@ -1,8 +1,6 @@
 .timer on
 .mode csv
 
-pragma foreign_keys = 1;
-
 delete from inventory_sets;
 delete from inventory_parts;
 delete from inventories;
