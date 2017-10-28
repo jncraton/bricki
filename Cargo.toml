@@ -1,0 +1,9 @@
+[package]
+name = "bricki"
+version = "0.1.0"
+authors = ["jon@joncraton.com"]
+
+[dependencies]
+sqlite = "0.23.9"
+
+

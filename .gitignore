@@ -1,2 +1,4 @@
 tables/*
 dist/*
+target/*
+Cargo.lock
