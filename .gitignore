@@ -1,4 +1,5 @@
 tables/*
 dist/*
 target/*
+dumps/*
 Cargo.lock
