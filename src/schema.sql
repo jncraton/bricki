@@ -1,5 +1,16 @@
 .timer on
 
+create table if not exists part_details (
+  part_num varchar(16) primary key,
+  part_url varchar(128),
+  part_img_url varchar(128),
+  bricklink_id varchar(16),
+  brickowl_id varchar(16),
+  ldraw_id varchar(16),
+  lego_id varchar(16),
+  foreign key (part_num) references sets(part_num)
+);
+
 create table if not exists set_transactions (
   id integer primary key,
   date timestamp default current_timestamp,
@@ -43,4 +54,5 @@ select part_num, color_id, sum(quantity) as quantity from (
   union all
   select part_num, color_id, quantity
   from my_set_parts
-);
+)
+group by part_num, color_id;
