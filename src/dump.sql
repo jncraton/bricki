@@ -56,3 +56,9 @@ left outer join sets on
   sets.set_num = set_transactions.set_num
 group by sets.set_num
 order by year, sets.name;
+
+.output dumps/set_transactions.csv
+select * from set_transactions;
+
+.output dumps/part_transactions.csv
+select * from part_transactions;
