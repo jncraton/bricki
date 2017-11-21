@@ -13,6 +13,19 @@ left outer join canonical_parts on
 group by canonical_part_num, colors.id
 order by colors.name, parts.name;
 
+.output dumps/nonsetparts.csv
+select colors.name, parts.name, sum(quantity), part_transactions.part_num, color_id, canonical_part_num
+from part_transactions
+left outer join parts on
+  parts.part_num = part_transactions.part_num
+left outer join colors on
+  colors.id = part_transactions.color_id
+left outer join canonical_parts on
+  canonical_parts.part_num = part_transactions.part_num
+where from_set_num is null
+group by canonical_part_num, colors.id
+order by colors.name, parts.name;
+
 .output dumps/parts.csv
 select colors.name, parts.name, sum(quantity), my_parts.part_num, color_id, canonical_part_num
 from my_parts
@@ -23,6 +36,17 @@ left outer join colors on
 left outer join canonical_parts on
   canonical_parts.part_num = my_parts.part_num
 group by canonical_part_num, colors.id
+order by colors.name, parts.name;
+
+.output dumps/partsources.csv
+select colors.name, parts.name, quantity, part_transactions.part_num, color_id, canonical_part_num, from_set_num, notes
+from part_transactions
+left outer join parts on
+  parts.part_num = part_transactions.part_num
+left outer join colors on
+  colors.id = part_transactions.color_id
+left outer join canonical_parts on
+  canonical_parts.part_num = part_transactions.part_num
 order by colors.name, parts.name;
 
 .output dumps/sets.csv
