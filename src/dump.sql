@@ -26,6 +26,19 @@ group by canonical_part_num, colors.id
 having sum(quantity) > 0
 order by colors.name, parts.name;
 
+.output dumps/uploadablemissingparts.csv
+select colors.name, parts.name, -sum(quantity), part_transactions.part_num, color_id, canonical_part_num
+from part_transactions
+left outer join parts on
+  parts.part_num = part_transactions.part_num
+left outer join colors on
+  colors.id = part_transactions.color_id
+left outer join canonical_parts on
+  canonical_parts.part_num = part_transactions.part_num
+group by canonical_part_num, colors.id
+having sum(quantity) < 0
+order by colors.name, parts.name;
+
 .output dumps/nonsetparts.csv
 select colors.name, parts.name, sum(quantity), part_transactions.part_num, color_id, canonical_part_num
 from part_transactions
