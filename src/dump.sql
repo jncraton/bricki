@@ -77,6 +77,23 @@ left outer join colors on
   colors.id = part_transactions.color_id
 left outer join canonical_parts on
   canonical_parts.part_num = part_transactions.part_num
+
+union all
+
+select 
+  colors.name, parts.name, 
+  sum(set_parts.quantity * set_transactions.quantity) as quantity,
+  parts.part_num, colors.id, canonical_part_num, 'owned sets', ''
+from set_transactions
+left outer join set_parts on
+  set_parts.set_num = set_transactions.set_num
+left outer join parts on
+  parts.part_num = set_parts.part_num
+left outer join colors on
+  colors.id = set_parts.color_id
+left outer join canonical_parts on
+  canonical_parts.part_num = set_parts.part_num
+group by set_parts.part_num, set_parts.color_id
 order by colors.name, parts.name;
 
 .output dumps/sets.csv
