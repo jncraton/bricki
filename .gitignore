@@ -3,3 +3,4 @@ dist/*
 target/*
 dumps/*
 Cargo.lock
+*/__pycache__
