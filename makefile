@@ -25,3 +25,5 @@ clean:
 	rm -f $(sqldump)
 	rm -f tables/*
 	rm -f dumps/*
+	rm -rf bricki/__pycache__
+	rm -rf src/__pycache__
