@@ -20,9 +20,11 @@ def search(needle, printed=False):
   filter = ''
 
   if not printed:
-    filter += " and name not like '%%print%%'"
+    filter += " and name not like '%%print%%' and part_num not like '%%pr%%'"
 
-  parts = query("select part_num, name from parts where (name like ? or part_num like ?)%s order by length(name) asc" % filter, (needle, needle))
+  parts = query("select part_num, name from parts where (name like ? or part_num like ?) %s order by length(name) asc" % filter, (needle, needle))
+
+  parts.sort(key = lambda p: len(p[1]))
 
   for part in parts:
     print("%s (%s)" % (part[1], part[0]))  
