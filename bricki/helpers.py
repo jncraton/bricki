@@ -1,6 +1,12 @@
 import csv
 import sqlite3
 import code
+import re
+
+def norm_name(s):
+  s = s.lower()
+  s = re.sub('(\d+)x', '\\1 x ', s)
+  return s
 
 def query(*args, **kwargs):
   conn = sqlite3.connect("dist/bricks.db")
@@ -15,7 +21,7 @@ def query(*args, **kwargs):
   return ret
 
 def search(needle, printed=False):
-  needle = '%%%s%%' % needle
+  needle = '%%%s%%' % norm_name(needle)
 
   filter = ''
 
