@@ -21,6 +21,9 @@ indices: $(db)
 dumps:
 	sqlite3 $(db) < src/dump.sql
 
+test:
+	python3 -m doctest bricki/helpers.py
+
 clean:
 	rm -f $(sqldump)
 	rm -f tables/*

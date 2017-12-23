@@ -4,11 +4,23 @@ import code
 import re
 
 def norm_name(s):
-  s = s.lower()
-  s = re.sub('(\d+)x', '\\1 x ', s)
+  """
+  >>> norm_name('BrIck 1x4')
+  'Brick 1 x 4'
+  >>> norm_name('Brick 1 x 4')
+  'Brick 1 x 4'
+  >>> norm_name('Brick 1x2x2')
+  'Brick 1 x 2 x 2'
+  """
+  s = s.title()
+  s = re.sub('(\d+) *x *', '\\1 x ', s, flags=re.I)
   return s
 
 def query(*args, **kwargs):
+  """
+  >>> query("select id from colors limit 3")
+  [(-1,), (0,), (1,)]
+  """
   conn = sqlite3.connect("dist/bricks.db")
   cursor = conn.cursor()
 
@@ -21,28 +33,25 @@ def query(*args, **kwargs):
   return ret
 
 def search(needle, printed=False):
-  needle = '%%%s%%' % norm_name(needle)
+  """
+  >>> search("3010")
+  [('3010', 'Brick 1 x 4')]
+  """
+  needle = norm_name(needle)
+  needle_like = '%%%s%%' % needle
 
   filter = ''
 
   if not printed:
     filter += " and name not like '%%print%%' and part_num not like '%%pr%%'"
 
-  parts = query("select part_num, name from parts where (name like ? or part_num like ?) %s order by length(name) asc" % filter, (needle, needle))
+  parts = query("select part_num, name from parts where (name like ? or part_num = ?) %s order by length(name) asc" % filter, (needle_like, needle))
 
-  for part in parts:
-    print("%s (%s)" % (part[1], part[0]))  
-
-  return None if len(parts) != 1 else parts[0][0]
-
-def part(num):
-  part = query("select part_num, name from parts where part_num = ?", (num,))[0]
-
-  print("%s (%s)" % (part[1], part[0]))  
+  return parts
 
 def add_part(part, color, quantity):
   """ TODO """
-  query("insert into part_transactions (part_num, color_id, quantity) values (?, ?, ?)", (part, color, quantity)) 
+  query("insert into part_transactions (part_num, color_id, quantity) values (?, ?, ?)", (part, color, quantity))
 
 def add_set(set_num, quantity=1):
   query("insert into set_transactions (set_num, quantity) values (?, ?)",
