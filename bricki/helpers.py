@@ -81,8 +81,10 @@ def search_color(needle):
   """
   >>> search_color("Dark Blue")[0]
   (272, 'Dark Blue')
+  >>> search_color("dkblue")[0]
+  (272, 'Dark Blue')
   """
-  needle = norm_part(needle)
+  needle = norm_color(needle)
   needle_like = '%%%s%%' % needle
 
   return query("select id, name from colors where (name like ? or id = ?) order by length(name) asc", (needle_like, needle))
