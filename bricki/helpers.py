@@ -28,8 +28,21 @@ def norm_color(s):
   'Trans-Red'
   >>> norm_color('trdkblue')
   'Trans-Dark Blue'
+  >>> norm_color('bley')
+  'Light Bluish Grey'
   """
   s = s.lower()
+
+  shortcuts = [
+    ('bley', 'light bluish grey'),
+    ('dbley', 'dark bluish grey'),
+    ('dkbley', 'dark bluish grey'),
+  ]
+
+  for original, new in shortcuts:
+    if s == original:
+      return new.title()
+  
   ret = ''
 
   if s[0:2] == 'tr':
