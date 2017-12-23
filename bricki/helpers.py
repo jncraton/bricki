@@ -30,8 +30,6 @@ def search(needle, printed=False):
 
   parts = query("select part_num, name from parts where (name like ? or part_num like ?) %s order by length(name) asc" % filter, (needle, needle))
 
-  parts.sort(key = lambda p: len(p[1]))
-
   for part in parts:
     print("%s (%s)" % (part[1], part[0]))  
 
