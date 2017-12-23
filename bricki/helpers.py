@@ -3,13 +3,13 @@ import sqlite3
 import code
 import re
 
-def norm_name(s):
+def norm_part(s):
   """
-  >>> norm_name('BrIck 1x4')
+  >>> norm_part('BrIck 1x4')
   'Brick 1 x 4'
-  >>> norm_name('Brick 1 x 4')
+  >>> norm_part('Brick 1 x 4')
   'Brick 1 x 4'
-  >>> norm_name('Brick 1x2x2')
+  >>> norm_part('Brick 1x2x2')
   'Brick 1 x 2 x 2'
   """
   s = s.title()
@@ -65,7 +65,7 @@ def search_part(needle, printed=False):
   >>> search_part("3010")
   [('3010', 'Brick 1 x 4')]
   """
-  needle = norm_name(needle)
+  needle = norm_part(needle)
   needle_like = '%%%s%%' % needle
 
   filter = ''
@@ -82,7 +82,7 @@ def search_color(needle):
   >>> search_color("Dark Blue")[0]
   (272, 'Dark Blue')
   """
-  needle = norm_name(needle)
+  needle = norm_part(needle)
   needle_like = '%%%s%%' % needle
 
   return query("select id, name from colors where (name like ? or id = ?) order by length(name) asc", (needle_like, needle))
