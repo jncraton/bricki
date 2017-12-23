@@ -29,14 +29,16 @@ def norm_color(s):
   >>> norm_color('trdkblue')
   'Trans-Dark Blue'
   >>> norm_color('bley')
-  'Light Bluish Grey'
+  'Light Bluish Gray'
+  >>> norm_color('light grey')
+  'Light Gray'
   """
   s = s.lower()
 
   shortcuts = [
-    ('bley', 'light bluish grey'),
-    ('dbley', 'dark bluish grey'),
-    ('dkbley', 'dark bluish grey'),
+    ('bley', 'light bluish gray'),
+    ('dbley', 'dark bluish gray'),
+    ('dkbley', 'dark bluish gray'),
   ]
 
   for original, new in shortcuts:
@@ -53,6 +55,7 @@ def norm_color(s):
     ret += 'dark '
     s = s[2:]
 
+  s = s.replace('grey', 'gray')
   ret += s
   ret = ret.title()
   return ret
@@ -96,6 +99,8 @@ def search_color(needle):
   (272, 'Dark Blue')
   >>> search_color("dkblue")[0]
   (272, 'Dark Blue')
+  >>> search_color("bley")[0]
+  (71, 'Light Bluish Gray')
   """
   needle = norm_color(needle)
   needle_like = '%%%s%%' % needle
