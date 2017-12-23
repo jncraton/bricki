@@ -49,6 +49,16 @@ def search(needle, printed=False):
 
   return parts
 
+def search_color(needle):
+  """
+  >>> search_color("Dark Blue")[0]
+  (272, 'Dark Blue')
+  """
+  needle = norm_name(needle)
+  needle_like = '%%%s%%' % needle
+
+  return query("select id, name from colors where (name like ? or id = ?) order by length(name) asc", (needle_like, needle))
+
 def add_part(part, color, quantity=1, notes=''):
   """ Adds part by inserting a new transation into the part_transactions table """
   parts = search(part)[0][0]
