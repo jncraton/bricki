@@ -16,6 +16,34 @@ def norm_name(s):
   s = re.sub('(\d+) *x *', '\\1 x ', s, flags=re.I)
   return s
 
+def norm_color(s):
+  """
+  >>> norm_color('red')
+  'Red'
+  >>> norm_color('Dark red')
+  'Dark Red'
+  >>> norm_color('dkred')
+  'Dark Red'
+  >>> norm_color('trred')
+  'Trans-Red'
+  >>> norm_color('trdkblue')
+  'Trans-Dark Blue'
+  """
+  s = s.lower()
+  ret = ''
+
+  if s[0:2] == 'tr':
+    ret += 'trans-'
+    s = s[2:]
+
+  if s[0:2] == 'dk':
+    ret += 'dark '
+    s = s[2:]
+
+  ret += s
+  ret = ret.title()
+  return ret
+
 def query(*args, **kwargs):
   """
   >>> query("select id from colors limit 3")
