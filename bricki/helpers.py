@@ -9,10 +9,12 @@ def norm_part(s):
   'Brick 1 x 4'
   >>> norm_part('Brick 1 x 4')
   'Brick 1 x 4'
+  >>> norm_part(' Brick 1 x 4')
+  'Brick 1 x 4'
   >>> norm_part('Brick 1x2x2')
   'Brick 1 x 2 x 2'
   """
-  s = s.title()
+  s = s.strip().title()
   s = re.sub('(\d+) *x *', '\\1 x ', s, flags=re.I)
   return s
 
@@ -28,12 +30,14 @@ def norm_color(s):
   'Trans-Red'
   >>> norm_color('trdkblue')
   'Trans-Dark Blue'
+  >>> norm_color(' trdkblue')
+  'Trans-Dark Blue'
   >>> norm_color('bley')
   'Light Bluish Gray'
   >>> norm_color('light grey')
   'Light Gray'
   """
-  s = s.lower()
+  s = s.lower().strip()
 
   shortcuts = [
     ('bley', 'light bluish gray'),
@@ -91,7 +95,7 @@ def search_part(needle, printed=False):
 
   parts = query("select part_num, name from parts where (name like ? or part_num = ?) %s order by length(name) asc" % filter, (needle_like, needle))
 
-  return parts
+  return list(parts)
 
 def search_color(needle):
   """
@@ -105,7 +109,9 @@ def search_color(needle):
   needle = norm_color(needle)
   needle_like = '%%%s%%' % needle
 
-  return query("select id, name from colors where (name like ? or id = ?) order by length(name) asc", (needle_like, needle))
+  colors = query("select id, name from colors where (name like ? or id = ?) order by length(name) asc", (needle_like, needle))
+
+  return list(colors)
 
 def add_part(part, color, quantity=1, notes=''):
   """ Adds part by inserting a new transation into the part_transactions table """
