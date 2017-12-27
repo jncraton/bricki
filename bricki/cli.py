@@ -63,7 +63,7 @@ if __name__ == '__main__':
         pass
       
       for part in results:
-        print("%s - %s" % (part[0], part[1]))
+        print("{:<10} {}".format(part[0], part[1]))
 
     if command.type == CommandType.SET_TRANSACTION:
       print("Adding set %d %s" % (command.quantity, command.set))
