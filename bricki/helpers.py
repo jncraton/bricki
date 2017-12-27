@@ -153,6 +153,26 @@ def search_color(needle):
 
   return list(colors)
 
+def search_set(needle):
+  """
+  >>> search_set("10193-1")[0]
+  ('10193-1', 'Medieval Market Village')
+  >>> search_set("medieval market village")[0]
+  ('10193-1', 'Medieval Market Village')
+  >>> search_set("31067")[0]
+  ('31067-1', 'Modular Poolside Holiday')
+  >>> search_set("8042")[0]
+  ('8042-1', 'Universal Pneumatic Set')
+  """
+  needle_like = '%%%s%%' % needle
+
+  if re.match('^\d+$', needle):
+    needle += '-1'
+
+  sets = query("select set_num, name from sets where (name like ? or set_num = ?) order by length(name) asc", (needle_like, needle))
+
+  return list(sets)
+
 def add_part(part, color, quantity=1, notes=''):
   """ Adds part by inserting a new transation into the part_transactions table """
   part = search_part(part)[0][0]
