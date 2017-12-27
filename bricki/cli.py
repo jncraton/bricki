@@ -1,28 +1,55 @@
+from enum import Enum
+
 import helpers
 
-if __name__ == '__main__':
-  last_part = None
-  last_color = None
+class CommandType(Enum):
+  SET_TRANSACTION = 1
+  PART_TRANSACTION = 2
 
-  while(True):
-    command = input('Enter as quantity, color, part:')
-    if command[0:4] == 'exit':
+class Command:
+  def __init__(self, text):
+    if text[0:4] == 'exit':
       exit(0)
 
+    self.type = None
+    self.set = None
+    self.color = None
+    self.part = None
+    self.quantity = 0
+
     try:
-      (quantity, color, part) = command.split(',')
+      (self.quantity, self.color, self.part) = text.split(',')
+      self.type = CommandType.PART_TRANSACTION
     except ValueError:
-      print('Needs all three parameters')
+      try:
+        (self.quantity, self.set) = text.split(',')
+        self.type = CommandType.SET_TRANSACTION
+      except ValueError:
+        print('Needs two or three parameters')
+        raise ParseError
+
+    self.quantity = int(self.quantity)
+
+if __name__ == '__main__':
+  last_part_name = None
+  last_color_name = None
+
+  while(True):
+    print('\nCurrent part/color: %s %s' % (last_color_name, last_part_name))
+    command = Command(input('> '))
+
+    if command.set:
+      print("Adding set %d %s" % (command.quantity, command.set))
       continue
 
-    if not part:
-      part = last_part_name
+    if not command.part:
+      command.part = last_part_name
 
-    if not color:
-      color = last_color_name
+    if not command.color:
+      command.color = last_color_name
 
-    color, last_color_name = helpers.search_color(color)[0]
+    color_id, last_color_name = helpers.search_color(command.color)[0]
 
-    part, last_part_name = helpers.search_part(part)[0]
+    part_num, last_part_name = helpers.search_part(command.part)[0]
 
-    print(quantity, color, part)
+    print("Adding %d %s %s" % (command.quantity, command.color, command.part))
