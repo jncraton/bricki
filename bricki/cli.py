@@ -18,9 +18,9 @@ class Command:
     self.note = None
     self.set = None
     self.set_num = None
-    self.color = None
+    self.color = default_color
     self.color_id = None
-    self.part = None
+    self.part = default_part
     self.part_num = None
     self.quantity = default_quantity
 
@@ -38,9 +38,17 @@ class Command:
       self.type = CommandType.PART_TRANSACTION
     except ValueError:
       try:
-        (self.quantity, self.set) = text.split(',')
-        self.set_num, self.set = helpers.search_set(self.set)[0]
-        self.type = CommandType.SET_TRANSACTION
+        (self.quantity, self.color) = text.split(',')
+        if not self.color:
+          self.color = default_color
+        try:
+          self.color_id, self.color = helpers.search_color(self.color)[0]
+          self.part_num, self.part = helpers.search_part(self.part)[0]
+
+          self.type = CommandType.PART_TRANSACTION
+        except IndexError:
+          self.set_num, self.set = helpers.search_set(self.color)[0]
+          self.type = CommandType.SET_TRANSACTION
       except ValueError:
         if text[0:5] == 'note ':
           self.note = text[5:]
@@ -64,7 +72,7 @@ if __name__ == '__main__':
       print('Current part/color: %s %s' % (last_color, last_part))
     if note:
       print('Current Note: %s' % note)
-    command = Command(input('> '))
+    command = Command(input('> '), default_part=last_part, default_color=last_color)
 
     if command.type == CommandType.NOTE:
       note = command.note

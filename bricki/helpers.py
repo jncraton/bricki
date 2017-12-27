@@ -14,7 +14,7 @@ def norm_part(s):
   >>> norm_part('Brick 1x2x2')
   'Brick 1 x 2 x 2'
   """
-  s = s.strip().title()
+  s = str(s).strip().title()
   s = re.sub('(\d+) *x *', '\\1 x ', s, flags=re.I)
   return s
 
@@ -37,7 +37,7 @@ def norm_color(s):
   >>> norm_color('light grey')
   'Light Gray'
   """
-  s = s.lower().strip()
+  s = str(s).lower().strip()
 
   shortcuts = [
     ('bley', 'light bluish gray'),
@@ -166,7 +166,7 @@ def search_set(needle):
   """
   needle_like = '%%%s%%' % needle
 
-  if re.match('^\d+$', needle):
+  if re.match('^\d+$', str(needle)):
     needle += '-1'
 
   sets = query("select set_num, name from sets where (name like ? or set_num = ?) order by length(name) asc", (needle_like, needle))
