@@ -21,7 +21,7 @@ indices: $(db)
 dumps:
 	sqlite3 $(db) < src/dump.sql
 
-reset_transactions:
+rollback:
 	sqlite3 $(db) < src/reset_transactions.sql
 
 test:
