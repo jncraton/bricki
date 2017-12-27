@@ -8,6 +8,7 @@ class CommandType(Enum):
   SEARCH = 3
   NOTE = 4
   RECENT = 5
+  UNDO = 6
 
 class Command:
   def __init__(self, text, default_part=None, default_color=None, default_quantity=1):
@@ -52,6 +53,8 @@ class Command:
           exit(0)
         elif text == 'recent':
           self.type = CommandType.RECENT
+        elif text == 'undo':
+          self.type = CommandType.UNDO
         elif text[0:5] == 'note ':
           self.note = text[5:]
           self.type = CommandType.NOTE
@@ -79,6 +82,10 @@ if __name__ == '__main__':
 
     if command.type == CommandType.NOTE:
       note = command.note
+
+    if command.type == CommandType.UNDO:
+      helpers.query("delete from part_transactions where rowid = (select max(rowid) from part_transactions)")
+      command.type = CommandType.RECENT
     
     if command.type == CommandType.RECENT:
       note = command.note
