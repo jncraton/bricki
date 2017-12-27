@@ -119,6 +119,8 @@ def search_part(needle, printed=False):
   '54200'
   >>> search_part("plate jumper")[0][0]
   '3794b'
+  >>> search_part("3794b")[0][0]
+  '3794b'
   """
   needle = norm_part(needle)
 
@@ -133,7 +135,7 @@ def search_part(needle, printed=False):
 
   kw_clause = ('name like ? and ' * len(kws))[:-5]
 
-  parts = query("select part_num, name from parts where %s (part_num = :needle or (%s)) order by length(name) asc" % (filter, kw_clause), values)
+  parts = query("select part_num, name from parts where %s (part_num like :needle or (%s)) order by length(name) asc" % (filter, kw_clause), values)
 
   return list(parts)
 
