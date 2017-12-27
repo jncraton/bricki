@@ -113,16 +113,27 @@ def search_part(needle, printed=False):
   """
   >>> search_part("3010")
   [('3010', 'Brick 1 x 4')]
+  >>> search_part("Brick 1x4")[0]
+  ('3010', 'Brick 1 x 4')
+  >>> search_part("cheese slope")[0][0]
+  '54200'
+  >>> search_part("plate jumper")[0][0]
+  '3794b'
   """
   needle = norm_part(needle)
-  needle_like = '%%%s%%' % needle
 
   filter = ''
 
   if not printed:
-    filter += " and name not like '%%print%%' and part_num not like '%%pr%%'"
+    filter += "name not like '%%print%%' and part_num not like '%%pr%%' and "
 
-  parts = query("select part_num, name from parts where (name like ? or part_num = ?) %s order by length(name) asc" % filter, (needle_like, needle))
+  kws = ['%%%s%%' % kw for kw in part_keywords(needle)]
+
+  values = tuple([needle] + kws)
+
+  kw_clause = ('name like ? and ' * len(kws))[:-5]
+
+  parts = query("select part_num, name from parts where %s (part_num = :needle or (%s)) order by length(name) asc" % (filter, kw_clause), values)
 
   return list(parts)
 
