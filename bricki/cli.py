@@ -7,18 +7,29 @@ class CommandType(Enum):
   PART_TRANSACTION = 2
 
 class Command:
-  def __init__(self, text):
+  def __init__(self, text, default_part=None, default_color=None, default_quantity=1):
     if text[0:4] == 'exit':
       exit(0)
 
     self.type = None
     self.set = None
     self.color = None
+    self.color_id = None
     self.part = None
-    self.quantity = 0
+    self.part_num = None
+    self.quantity = default_quantity
 
     try:
       (self.quantity, self.color, self.part) = text.split(',')
+
+      if not self.color:
+        self.color = default_color
+      if not self.part:
+        self.part = default_part
+
+      self.color_id, self.color = helpers.search_color(command.color)[0]
+      self.part_num, self.part = helpers.search_part(command.part)[0]
+                        
       self.type = CommandType.PART_TRANSACTION
     except ValueError:
       try:
@@ -28,28 +39,26 @@ class Command:
         print('Needs two or three parameters')
         raise ParseError
 
-    self.quantity = int(self.quantity)
+    try:
+      self.quantity = int(self.quantity)
+    except ValueError:
+      self.quantity = default_quantity
 
 if __name__ == '__main__':
-  last_part_name = None
-  last_color_name = None
+  last_part = None
+  last_color = None
 
   while(True):
     print('\nCurrent part/color: %s %s' % (last_color_name, last_part_name))
     command = Command(input('> '))
 
-    if command.set:
+    if command.type = CommandType.SET_TRANSACTION:
       print("Adding set %d %s" % (command.quantity, command.set))
       continue
 
-    if not command.part:
-      command.part = last_part_name
-
-    if not command.color:
-      command.color = last_color_name
-
-    color_id, last_color_name = helpers.search_color(command.color)[0]
-
-    part_num, last_part_name = helpers.search_part(command.part)[0]
-
-    print("Adding %d %s %s" % (command.quantity, command.color, command.part))
+    if command.type = CommandType.PART_TRANSACTION:
+      last_part = command.part
+      last_color = command.color
+    
+      print("Adding %d %s (%d) %s (%s)" % (command.quantity, command.color, command.color_id, command.part, command.part_num))
+      
