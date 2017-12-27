@@ -13,17 +13,16 @@ if __name__ == '__main__':
       (quantity, color, part) = command.split(',')
     except ValueError:
       print('Needs all three parameters')
-      quantity = None
+      continue
 
-    if quantity:
-      if not part:
-        part = last_part_name
-  
-      if not color:
-        color = last_color_name
-  
-      color, last_color_name = helpers.search_color(color)[0]
-  
-      part, last_part_name = helpers.search_part(part)[0]
-  
-      print(quantity, color, part)
+    if not part:
+      part = last_part_name
+
+    if not color:
+      color = last_color_name
+
+    color, last_color_name = helpers.search_color(color)[0]
+
+    part, last_part_name = helpers.search_part(part)[0]
+
+    print(quantity, color, part)
