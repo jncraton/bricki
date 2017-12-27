@@ -15,6 +15,7 @@ class Command:
     self.type = None
     self.text = text
     self.set = None
+    self.set_num = None
     self.color = None
     self.color_id = None
     self.part = None
@@ -36,6 +37,7 @@ class Command:
     except ValueError:
       try:
         (self.quantity, self.set) = text.split(',')
+        self.set_num, self.set = helpers.search_set(self.set)[0]
         self.type = CommandType.SET_TRANSACTION
       except ValueError:
         self.type = CommandType.SEARCH
@@ -66,7 +68,7 @@ if __name__ == '__main__':
         print("{:<10} {}".format(part[0], part[1]))
 
     if command.type == CommandType.SET_TRANSACTION:
-      print("Adding set %d %s" % (command.quantity, command.set))
+      print("Adding %d %s (%s)" % (command.quantity, command.set, command.set_num))
 
     if command.type == CommandType.PART_TRANSACTION:
       last_part = command.part
