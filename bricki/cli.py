@@ -6,6 +6,7 @@ class CommandType(Enum):
   SET_TRANSACTION = 1
   PART_TRANSACTION = 2
   SEARCH = 3
+  NOTE = 4
 
 class Command:
   def __init__(self, text, default_part=None, default_color=None, default_quantity=1):
@@ -14,6 +15,7 @@ class Command:
 
     self.type = None
     self.text = text
+    self.note = None
     self.set = None
     self.set_num = None
     self.color = None
@@ -40,7 +42,11 @@ class Command:
         self.set_num, self.set = helpers.search_set(self.set)[0]
         self.type = CommandType.SET_TRANSACTION
       except ValueError:
-        self.type = CommandType.SEARCH
+        if text[0:5] == 'note ':
+          self.note = text[5:]
+          self.type = CommandType.NOTE
+        else:
+          self.type = CommandType.SEARCH
 
     try:
       self.quantity = int(self.quantity)
@@ -50,11 +56,19 @@ class Command:
 if __name__ == '__main__':
   last_part = None
   last_color = None
+  note = None
 
   while(True):
-    print('\nCurrent part/color: %s %s' % (last_color, last_part))
+    print('')
+    if last_part or last_color:
+      print('Current part/color: %s %s' % (last_color, last_part))
+    if note:
+      print('Current Note: %s' % note)
     command = Command(input('> '))
 
+    if command.type == CommandType.NOTE:
+      note = command.note
+    
     if command.type == CommandType.SEARCH:
       print('Search results:')
       results = helpers.search_part(command.text)[:40]
@@ -69,10 +83,12 @@ if __name__ == '__main__':
 
     if command.type == CommandType.SET_TRANSACTION:
       print("Adding %d %s (%s)" % (command.quantity, command.set, command.set_num))
+      helpers.add_set(command.set_num, command.quantity, note)
 
     if command.type == CommandType.PART_TRANSACTION:
       last_part = command.part
       last_color = command.color
     
       print("Adding %d %s (%d) %s (%s)" % (command.quantity, command.color, command.color_id, command.part, command.part_num))
+      helpers.add_part(command.part_num, command.color_id, command.quantity, note)
       

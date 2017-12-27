@@ -173,16 +173,18 @@ def search_set(needle):
 
   return list(sets)
 
-def add_part(part, color, quantity=1, notes=''):
+def add_part(part, color, quantity=1, notes=None):
   """ Adds part by inserting a new transation into the part_transactions table """
   part = search_part(part)[0][0]
   color = search_color(color)[0][0]
   
   query("insert into part_transactions (part_num, color_id, quantity, notes) values (?, ?, ?, ?)", (part, color, quantity, notes))
 
-def add_set(set_num, quantity=1):
-  query("insert into set_transactions (set_num, quantity) values (?, ?)",
-    (str(set_num).strip(), int(quantity)))
+def add_set(set, quantity=1, notes=None):
+  set_num = search_set(set)[0][0]
+
+  query("insert into set_transactions (set_num, quantity, notes) values (?, ?, ?)",
+    (str(set_num).strip(), int(quantity), notes))
 
 def add_set_parts(set_num, quantity=1):
   query("""
