@@ -7,12 +7,10 @@ class CommandType(Enum):
   PART_TRANSACTION = 2
   SEARCH = 3
   NOTE = 4
+  RECENT = 5
 
 class Command:
   def __init__(self, text, default_part=None, default_color=None, default_quantity=1):
-    if text[0:4] == 'exit':
-      exit(0)
-
     self.type = None
     self.text = text
     self.note = None
@@ -50,7 +48,11 @@ class Command:
           self.set_num, self.set = helpers.search_set(self.color)[0]
           self.type = CommandType.SET_TRANSACTION
       except ValueError:
-        if text[0:5] == 'note ':
+        if text == 'exit':
+          exit(0)
+        elif text == 'recent':
+          self.type = CommandType.RECENT
+        elif text[0:5] == 'note ':
           self.note = text[5:]
           self.type = CommandType.NOTE
         else:
@@ -72,11 +74,19 @@ if __name__ == '__main__':
       print('Current part/color: %s %s' % (last_color, last_part))
     if note:
       print('Current Note: %s' % note)
+
     command = Command(input('> '), default_part=last_part, default_color=last_color)
 
     if command.type == CommandType.NOTE:
       note = command.note
     
+    if command.type == CommandType.RECENT:
+      note = command.note
+      recent = helpers.query("select quantity, colors.name, parts.name, notes from part_transactions join colors on colors.id = part_transactions.color_id join parts on parts.part_num = part_transactions.part_num order by date desc limit 40")
+      for t in recent:
+        print('%d,%s,%s %s' % (t[0],t[1],t[2],t[3]))
+      
+        
     if command.type == CommandType.SEARCH:
       print('Search results:')
       results = helpers.search_part(command.text)[:40]
