@@ -27,8 +27,8 @@ class Command:
       if not self.part:
         self.part = default_part
 
-      self.color_id, self.color = helpers.search_color(command.color)[0]
-      self.part_num, self.part = helpers.search_part(command.part)[0]
+      self.color_id, self.color = helpers.search_color(self.color)[0]
+      self.part_num, self.part = helpers.search_part(self.part)[0]
                         
       self.type = CommandType.PART_TRANSACTION
     except ValueError:
@@ -49,14 +49,14 @@ if __name__ == '__main__':
   last_color = None
 
   while(True):
-    print('\nCurrent part/color: %s %s' % (last_color_name, last_part_name))
+    print('\nCurrent part/color: %s %s' % (last_color, last_part))
     command = Command(input('> '))
 
-    if command.type = CommandType.SET_TRANSACTION:
+    if command.type == CommandType.SET_TRANSACTION:
       print("Adding set %d %s" % (command.quantity, command.set))
       continue
 
-    if command.type = CommandType.PART_TRANSACTION:
+    if command.type == CommandType.PART_TRANSACTION:
       last_part = command.part
       last_color = command.color
     

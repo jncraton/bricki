@@ -80,6 +80,35 @@ def query(*args, **kwargs):
 
   return ret
 
+def part_keywords(part):
+  """
+  >>> part_keywords('brick 1x4')
+  ['Brick', '1 x 4']
+  >>> part_keywords('slope curved 3x1')
+  ['Slope', 'Curved', '3 x 1']
+  >>> part_keywords('slope 1x1x2/3')
+  ['Slope', '1 x 1 x 2/3']
+  """
+  part = norm_part(part)
+
+  kws = []
+  accumulator = []
+
+  for kw in part.split(' '):
+    if kw == 'x' or re.match('\d', kw[0]):
+      accumulator.append(kw)
+    else:
+      if accumulator:
+        kws.append(' '.join(accumulator))
+        accumulator = []
+      kws.append(kw)
+
+  if accumulator:
+    kws.append(' '.join(accumulator))
+    accumulator = []
+
+  return kws  
+
 def search_part(needle, printed=False):
   """
   >>> search_part("3010")
