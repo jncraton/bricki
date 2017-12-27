@@ -21,6 +21,9 @@ indices: $(db)
 dumps:
 	sqlite3 $(db) < src/dump.sql
 
+reset_transactions:
+	sqlite3 $(db) < src/reset_transactions.sql
+
 test:
 	python3 -m doctest bricki/helpers.py
 
