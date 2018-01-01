@@ -69,7 +69,7 @@ def query(*args, **kwargs):
   >>> query("select id from colors limit 3")
   [(-1,), (0,), (1,)]
   """
-  conn = sqlite3.connect("dist/bricks.db")
+  conn = sqlite3.connect("bricks.db")
   cursor = conn.cursor()
 
   cursor.execute(*args, **kwargs)

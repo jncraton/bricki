@@ -1,6 +1,5 @@
-tables/*
-dist/*
 target/*
 dumps/*
+bricks.db
 Cargo.lock
 */__pycache__
