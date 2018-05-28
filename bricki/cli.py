@@ -31,9 +31,19 @@ class Command:
       if not self.part:
         self.part = default_part
 
-      self.color_id, self.color = helpers.search_color(self.color)[0]
-      self.part_num, self.part = helpers.search_part(self.part)[0]
-                        
+      try:
+        self.color_id, self.color = helpers.search_color(self.color)[0]
+      except IndexError:
+        print("Color not found: %s" % self.color)
+        self.type = None
+        return
+      try:
+        self.part_num, self.part = helpers.search_part(self.part)[0]
+      except IndexError:
+        print("Part not found: %s" % self.part)
+        self.type = None
+        return
+                              
       self.type = CommandType.PART_TRANSACTION
     except ValueError:
       try:
