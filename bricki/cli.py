@@ -72,7 +72,16 @@ if __name__ == '__main__':
   note = None
 
   while(True):
-    print('')
+    print("""
+Commands:
+  {quantity},{color},{part} - inserts a part transaction
+  {quantity},{color} - inserts a part transaction using the most recent part
+  {quantity},{set} - insterts a set transaction
+  note {str} - sets the note to use for future transactions
+  recent - lists recent transactions
+  undo - remvoes last transaction
+  exit
+    """)
     if last_part or last_color:
       print('Current part/color: %s %s' % (last_color, last_part))
     if note:
