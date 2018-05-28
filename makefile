@@ -7,8 +7,8 @@ all: $(db)
 $(sqldump): $(db)
 	sqlite3 $(db) .dump > $(sqldump)
 
-$(db):
-	cd rebrickable-import-dumps && make DB=../$(db)
+$(db): .PHONY
+	cd rebrickable-import-dumps && make clean && make DB=../$(db)
 
 dumps:
 	sqlite3 $(db) < scripts/dump.sql
