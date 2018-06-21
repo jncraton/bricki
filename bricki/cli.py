@@ -91,6 +91,7 @@ Commands:
   recent - lists recent transactions
   undo - remvoes last transaction
   exit
+  {anything else} search
     """)
     if last_part or last_color:
       print('Current part/color: %s %s' % (last_color, last_part))
