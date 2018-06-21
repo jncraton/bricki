@@ -17,7 +17,7 @@ rollback:
 	@echo Resetting transactions to last committed dump
 	git checkout dumps/part_transactions.csv
 	git checkout dumps/set_transactions.csv
-	sqlite3 $(db) < src/reset_transactions.sql
+	sqlite3 $(db) < scripts/reset_transactions.sql
 
 test:
 	python3 -m doctest bricki/helpers.py
