@@ -107,7 +107,6 @@ Commands:
       command.type = CommandType.RECENT
     
     if command.type == CommandType.RECENT:
-      note = command.note
       recent = helpers.query("select quantity, colors.name, parts.name, notes from part_transactions join colors on colors.id = part_transactions.color_id join parts on parts.part_num = part_transactions.part_num order by date desc limit 20")
       for t in recent:
         print('%d,%s,%s %s' % (t[0],t[1],t[2],t[3]))
