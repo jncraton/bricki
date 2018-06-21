@@ -3,13 +3,15 @@ sqldump = dist/bricks.sql
 
 all: $(db)
 
-.PHONY: $(db) clean dumps
+.PHONY: $(db) clean dumps rollback
 
 $(sqldump): $(db)
 	sqlite3 $(db) .dump > $(sqldump)
 
 $(db):
 	cd rebrickable-import-dumps && make clean && make DB=../$(db)
+	sqlite3 $(db) < scripts/schema.sql
+	sqlite3 $(db) < scripts/reset_transactions.sql
 
 dumps:
 	sqlite3 $(db) < scripts/dump.sql
@@ -25,6 +27,7 @@ test:
 	python3 -m doctest bricki/helpers.py
 
 clean:
+	rm -f bricks.db
 	rm -f $(sqldump)
 	rm -f dumps/looseparts.csv
 	rm -f dumps/nonsetparts.csv
