@@ -109,12 +109,18 @@ def part_keywords(part):
 
   return kws  
 
-def search_part(needle, printed=False):
+def search_part(needle, printed=False, duplo=False):
   """
   >>> search_part("3010")
   [('3010', 'Brick 1 x 4')]
   >>> search_part("Brick 1x4")[0]
   ('3010', 'Brick 1 x 4')
+  >>> search_part("Tile 2x2")[0]
+  ('3068b', 'Tile 2 x 2 with Groove')
+  >>> search_part("Tile 1x3")[0]
+  ('63864', 'Tile 1 x 3')
+  >>> search_part("Tile 2x4")[0]
+  ('87079', 'Tile 2 x 4 with Groove')
   >>> search_part("cheese slope")[0][0]
   '54200'
   >>> search_part("plate jumper")[0][0]
@@ -124,10 +130,18 @@ def search_part(needle, printed=False):
   """
   needle = norm_part(needle)
 
+  # Handle common tiles correctly
+  if needle in ['Tile 1 x 3']:
+    pass
+  elif re.match('Tile \d+[ ]*x[ ]*\d+', needle):
+    needle += ' with Groove'
+
   filter = ''
 
   if not printed:
     filter += "name not like '%%print%%' and part_num not like '%%pr%%' and "
+  if not duplo:
+    filter += "name not like '%%duplo%%' and "
 
   kws = ['%%%s%%' % kw for kw in part_keywords(needle)]
 
