@@ -143,7 +143,7 @@ def search_part(needle, printed=False, duplo=False):
   if not printed:
     filter += "name not like '%%print%%' and part_num not like '%%pr%%' and "
   if not duplo:
-    filter += "name not like '%%duplo%%' and "
+    filter += "part_cat_id != 4 and " # For is the ID for Dulpo parts
 
   kws = ['%%%s%%' % kw for kw in part_keywords(needle)]
 
