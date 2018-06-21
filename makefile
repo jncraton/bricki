@@ -26,6 +26,13 @@ test:
 
 clean:
 	rm -f $(sqldump)
-	rm -f dumps/*
+	rm -f dumps/looseparts.csv
+	rm -f dumps/nonsetparts.csv
+	rm -f dumps/parts.csv
+	rm -f dumps/partsources.csv
+	rm -f dumps/recentparts.csv
+	rm -f dumps/sets.csv
+	rm -f dumps/uploadablelooseparts.csv
+	rm -f dumps/uploadablemissingparts.csv
 	rm -rf bricki/__pycache__
 	rm -rf src/__pycache__
