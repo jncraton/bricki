@@ -2,12 +2,13 @@ db = bricks.db
 sqldump = dist/bricks.sql
 
 all: $(db)
-.PHONY: clean dumps
+
+.PHONY: $(db) clean dumps
 
 $(sqldump): $(db)
 	sqlite3 $(db) .dump > $(sqldump)
 
-$(db): .PHONY
+$(db):
 	cd rebrickable-import-dumps && make clean && make DB=../$(db)
 
 dumps:
