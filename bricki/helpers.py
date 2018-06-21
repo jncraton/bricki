@@ -42,6 +42,8 @@ def norm_color(s):
   shortcuts = [
     ('bley', 'light bluish gray'),
     ('dbley', 'dark bluish gray'),
+    ('bg', 'light bluish gray'),
+    ('dbg', 'dark bluish gray'),
     ('dkbley', 'dark bluish gray'),
   ]
 
