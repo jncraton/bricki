@@ -39,3 +39,4 @@ clean:
 	rm -f dumps/uploadablemissingparts.csv
 	rm -rf bricki/__pycache__
 	rm -rf src/__pycache__
+	cd rebrickable-import-dumps && make clean
