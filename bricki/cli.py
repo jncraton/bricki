@@ -97,7 +97,7 @@ Commands:
     if note:
       print('Current Note: %s' % note)
 
-    command = Command(input('> '), default_part=last_part, default_color=last_color)
+    command = Command(input('%s> ' % note), default_part=last_part, default_color=last_color)
 
     if command.type == CommandType.NOTE:
       note = command.note
