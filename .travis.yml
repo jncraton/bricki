@@ -1,4 +1,9 @@
-language: generic
+language: python
+python:
+    - 3.5
+    - 3.6
+os:
+    - linux
 script:
   - make -j
   - make test
