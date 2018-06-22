@@ -12,7 +12,6 @@ create table if not exists part_details (
 );
 
 create table if not exists set_transactions (
-  id integer primary key,
   date timestamp default current_timestamp,
   set_num varchar(16),
   quantity smallint,
@@ -21,7 +20,6 @@ create table if not exists set_transactions (
 );
 
 create table if not exists part_transactions (
-  id integer primary key,
   date timestamp default current_timestamp,
   part_num varchar(16),
   color_id smallint,
