@@ -135,9 +135,16 @@ def search_part(needle, printed=False, duplo=False):
   '2300'
   >>> search_part("3046")[0][0]
   '3046a'
+  >>> search_part("erling")[0][0]
+  '4070a'
   """
+  shortcuts = {'erling':'4070a'}
 
   needle = needle.lower()
+
+  if needle in shortcuts.keys():
+    needle = shortcuts[needle]
+  
   base_part_num = needle.rstrip('abcdef')
 
   for part_num in [needle,base_part_num,base_part_num+'a',base_part_num+'b']:
