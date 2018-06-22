@@ -56,8 +56,13 @@ class Command:
 
           self.type = CommandType.PART_TRANSACTION
         except IndexError:
-          self.set_num, self.set = helpers.search_set(self.color)[0]
-          self.type = CommandType.SET_TRANSACTION
+          try:
+            self.set_num, self.set = helpers.search_set(self.color)[0]
+            self.type = CommandType.SET_TRANSACTION
+          except IndexError:
+            print("Color not found: %s" % self.color)
+            self.type = None
+            return
       except ValueError:
         if text == 'exit':
           exit(0)
