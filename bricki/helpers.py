@@ -133,7 +133,19 @@ def search_part(needle, printed=False, duplo=False):
   '2456'
   >>> search_part("Brick 2x6",duplo=True)[0][0]
   '2300'
+  >>> search_part("3046")[0][0]
+  '3046a'
   """
+
+  needle = needle.lower()
+  base_part_num = needle.rstrip('abcdef')
+
+  for part_num in [needle,base_part_num,base_part_num+'a',base_part_num+'b']:
+    exact_id_part = query("select part_num, name from parts where part_num=:part_num", (part_num,))
+  
+    if exact_id_part:
+      return [exact_id_part[0]]
+  
   needle = norm_part(needle)
 
   # Handle common tiles correctly
