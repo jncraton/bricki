@@ -64,14 +64,14 @@ class Command:
             self.type = None
             return
       except ValueError:
-        if text == 'exit':
+        if text == ".exit":
           exit(0)
-        elif text == 'recent':
+        elif text == ".recent":
           self.type = CommandType.RECENT
-        elif text == 'undo':
+        elif text == '.undo':
           self.type = CommandType.UNDO
-        elif text[0:5] == 'note ':
-          self.note = text[5:]
+        elif text[0:6] == '.note ':
+          self.note = text[6:]
           self.type = CommandType.NOTE
         else:
           self.type = CommandType.SEARCH
@@ -92,11 +92,11 @@ Commands:
   {quantity},{color},{part} - inserts a part transaction
   {quantity},{color} - inserts a part transaction using the most recent part
   {quantity},{set} - insterts a set transaction
-  note {str} - sets the note to use for future transactions
-  recent - lists recent transactions
-  undo - remvoes last transaction
-  exit
-  {anything else} search
+  .note {str} - sets the note to use for future transactions
+  .recent - lists recent transactions
+  .undo - remvoes last transaction
+  .exit - exits the program
+  {anything else} - search
     """)
     if last_part or last_color:
       print('Current part/color: %s %s' % (last_color, last_part))
