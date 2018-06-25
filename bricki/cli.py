@@ -2,6 +2,19 @@ from enum import Enum
 
 import helpers
 
+help = """
+Commands:
+  {quantity},{color},{part} - inserts a part transaction
+  {quantity},{color} - inserts a part transaction using the most recent part
+  {quantity},{set} - insterts a set transaction
+  .note {str} - sets the note to use for future transactions
+  .recent - lists recent transactions
+  .undo - remvoes last transaction
+  .help - show this message
+  .exit - exits the program
+  {anything else} - search
+"""
+
 class CommandType(Enum):
   SET_TRANSACTION = 1
   PART_TRANSACTION = 2
@@ -73,6 +86,8 @@ class Command:
         elif text[0:6] == '.note ':
           self.note = text[6:]
           self.type = CommandType.NOTE
+        elif text == '.help' or text == 'help':
+          self.type = None
         else:
           self.type = CommandType.SEARCH
 
@@ -87,23 +102,17 @@ if __name__ == '__main__':
   note = None
 
   while(True):
-    print("""
-Commands:
-  {quantity},{color},{part} - inserts a part transaction
-  {quantity},{color} - inserts a part transaction using the most recent part
-  {quantity},{set} - insterts a set transaction
-  .note {str} - sets the note to use for future transactions
-  .recent - lists recent transactions
-  .undo - remvoes last transaction
-  .exit - exits the program
-  {anything else} - search
-    """)
     if last_part or last_color:
       print('Current part/color: %s %s' % (last_color, last_part))
+    else:
+      print(help)
     if note:
       print('Current Note: %s' % note)
 
     command = Command(input('> '), default_part=last_part, default_color=last_color)
+
+    if not command.type:
+      print(help)
 
     if command.type == CommandType.NOTE:
       note = command.note
