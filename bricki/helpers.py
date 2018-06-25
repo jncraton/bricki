@@ -131,7 +131,7 @@ def search_part(needle, printed=False, duplo=False):
   '3794b'
   >>> search_part("Brick 2x6")[0][0]
   '2456'
-  >>> search_part("Brick 2x6",duplo=True)[0][0]
+  >>> search_part("Duplo Brick 2x6",duplo=True)[0][0]
   '2300'
   >>> search_part("3046")[0][0]
   '3046a'
