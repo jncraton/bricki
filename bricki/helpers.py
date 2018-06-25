@@ -137,7 +137,11 @@ def search_part(needle, printed=False, duplo=False):
   '3046a'
   >>> search_part("erling")[0][0]
   '4070a'
+  >>> search_part("")
+  []
   """
+  if not needle: return []
+  
   shortcuts = {'erling':'4070a'}
 
   needle = needle.lower()
