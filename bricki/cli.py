@@ -24,6 +24,26 @@ class CommandType(Enum):
   UNDO = 6
 
 class Command:
+  """ 
+  Parses a single command 
+
+  >>> Command('.note my_note').type.name
+  'NOTE'
+  >>> Command('.note my_note').note
+  'my_note'
+  >>> Command('.recent').type.name
+  'RECENT'
+  >>> Command('Brick 1x4').type.name
+  'SEARCH'
+  >>> Command('61,red,Brick 1x4').type.name
+  'PART_TRANSACTION'
+  >>> Command('61,red,Brick 1x4').part
+  'Brick 1 x 4'
+  >>> Command('6,red,Brick 1x4').color
+  'Red'
+  >>> Command('6,red,Brick 1x4').quantity
+  6
+  """
   def __init__(self, text, default_part=None, default_color=None, default_quantity=1):
     self.type = None
     self.text = text

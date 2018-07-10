@@ -25,6 +25,7 @@ rollback:
 
 test:
 	python3 -m doctest bricki/helpers.py
+	python3 -m doctest bricki/cli.py
 
 clean:
 	rm -f bricks.db
