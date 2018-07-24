@@ -169,6 +169,5 @@ if __name__ == '__main__':
     
       print("Adding %d %s (%d) %s (%s)" % (command.quantity, command.color, command.color_id, command.part, command.part_num))
       helpers.add_part(command.part_num, command.color_id, command.quantity, note)
-      print("New total: %d " % helpers.get_part_total(command.part, command.color))
     
       
