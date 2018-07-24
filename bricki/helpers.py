@@ -36,6 +36,8 @@ def norm_color(s):
   'Light Bluish Gray'
   >>> norm_color('light grey')
   'Light Gray'
+  >>> norm_color('Trans-Black')
+  'Trans-Black'
   """
   s = str(s).lower().strip()
 
@@ -53,7 +55,7 @@ def norm_color(s):
   
   ret = ''
 
-  if s[0:2] == 'tr':
+  if s[0:2] == 'tr' and s[0:5] != 'trans':
     ret += 'trans-'
     s = s[2:]
 
@@ -190,6 +192,8 @@ def search_color(needle):
   (272, 'Dark Blue')
   >>> search_color("bley")[0]
   (71, 'Light Bluish Gray')
+  >>> search_color("trans-black")[0]
+  (40, 'Trans-Black')
   """
   needle = norm_color(needle)
   needle_like = '%%%s%%' % needle
