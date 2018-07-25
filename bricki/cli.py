@@ -121,6 +121,11 @@ if __name__ == '__main__':
   last_color = None
   note = None
 
+  last_note = helpers.query("select notes from part_transactions order by rowid desc limit 1")
+
+  if last_note and last_note[0] and last_note[0][0]:
+    note = last_note[0][0]
+
   while(True):
     if last_part or last_color:
       print('Current part/color: %s %s' % (last_color, last_part))
