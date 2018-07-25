@@ -139,14 +139,19 @@ def search_part(needle, printed=False, duplo=False):
   '3046a'
   >>> search_part("erling")[0][0]
   '4070a'
+  >>> search_part("slope 2x1")[0][0]
+  '3040b'
   >>> search_part("")
   []
   """
   if not needle: return []
   
-  shortcuts = {'erling':'4070a'}
+  needle = norm_part(needle)
 
-  needle = needle.lower()
+  shortcuts = {
+    'Erling':'4070a',
+    'Slope 2 x 1': 'Slope 2 x 1 with Bottom Pin',
+  }
 
   if needle in shortcuts.keys():
     needle = shortcuts[needle]
@@ -159,8 +164,6 @@ def search_part(needle, printed=False, duplo=False):
     if exact_id_part:
       return [exact_id_part[0]]
   
-  needle = norm_part(needle)
-
   # Handle common tiles correctly
   if needle in ['Tile 1 x 3']:
     pass
