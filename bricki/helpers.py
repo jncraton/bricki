@@ -30,6 +30,8 @@ def norm_color(s):
   'Trans-Red'
   >>> norm_color('trdkblue')
   'Trans-Dark Blue'
+  >>> norm_color('rb')
+  'Reddish Brown'
   >>> norm_color(' trdkblue')
   'Trans-Dark Blue'
   >>> norm_color('bley')
@@ -47,6 +49,7 @@ def norm_color(s):
     ('bg', 'light bluish gray'),
     ('dbg', 'dark bluish gray'),
     ('dkbley', 'dark bluish gray'),
+    ('rb', 'reddish brown'),
   ]
 
   for original, new in shortcuts:
