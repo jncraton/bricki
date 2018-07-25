@@ -141,6 +141,8 @@ def search_part(needle, printed=False, duplo=False):
   '4070a'
   >>> search_part("slope 2x1")[0][0]
   '3040b'
+  >>> search_part("tile 1x1 clip")[0][0]
+  '12825'
   >>> search_part("")
   []
   """
@@ -167,7 +169,7 @@ def search_part(needle, printed=False, duplo=False):
   # Handle common tiles correctly
   if needle in ['Tile 1 x 3']:
     pass
-  elif re.match('Tile \d+[ ]*x[ ]*\d+', needle):
+  elif re.match('Tile \d+[ ]*x[ ]*\d+$', needle):
     needle += ' with Groove'
 
   filter = ''
