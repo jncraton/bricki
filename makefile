@@ -3,7 +3,7 @@ sqldump = dist/bricks.sql
 
 all: $(db)
 
-.PHONY: $(db) clean dumps rollback
+.PHONY: clean dumps rollback
 
 $(sqldump): $(db)
 	sqlite3 $(db) .dump > $(sqldump)
