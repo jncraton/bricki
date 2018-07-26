@@ -1,4 +1,5 @@
 from enum import Enum
+import subprocess
 
 import helpers
 
@@ -10,6 +11,7 @@ Commands:
   .note {str} - sets the note to use for future transactions
   .recent - lists recent transactions
   .undo - remvoes last transaction
+  .rb - show current part on Rebrickable
   .help - show this message
   .exit - exits the program
   {anything else} - search
@@ -22,6 +24,7 @@ class CommandType(Enum):
   NOTE = 4
   RECENT = 5
   UNDO = 6
+  SHOW_REBRICKABLE = 7
 
 class Command:
   """ 
@@ -103,6 +106,8 @@ class Command:
           self.type = CommandType.RECENT
         elif text == '.undo':
           self.type = CommandType.UNDO
+        elif text == '.rb':
+          self.type = CommandType.SHOW_REBRICKABLE
         elif text[0:6] == '.note ':
           self.note = text[6:]
           self.type = CommandType.NOTE
@@ -145,6 +150,9 @@ if __name__ == '__main__':
     if command.type == CommandType.UNDO:
       helpers.query("delete from part_transactions where rowid = (select max(rowid) from part_transactions)")
       command.type = CommandType.RECENT
+    
+    if command.type == CommandType.SHOW_REBRICKABLE:
+      subprocess.run(["firefox","https://rebrickable.com/parts/" + helpers.search_part(last_part)[0][0]])
     
     if command.type == CommandType.RECENT:
       recent = helpers.query("select quantity, colors.name, parts.name, notes from part_transactions join colors on colors.id = part_transactions.color_id join parts on parts.part_num = part_transactions.part_num order by date desc limit 20")
