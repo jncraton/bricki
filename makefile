@@ -15,6 +15,7 @@ $(db):
 
 dumps:
 	sqlite3 $(db) < scripts/dump.sql
+	sqlite3 $(db) < scripts/dumpbynotes.sql
 	sqlite3 $(db) < scripts/dumprecentparts.sql
 
 rollback:
