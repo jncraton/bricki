@@ -39,6 +39,7 @@ clean:
 	rm -f dumps/sets.csv
 	rm -f dumps/uploadablelooseparts.csv
 	rm -f dumps/uploadablemissingparts.csv
+	rm -f dumps/bynotes.csv
 	rm -rf bricki/__pycache__
 	rm -rf src/__pycache__
 	cd rebrickable-import-dumps && make clean
