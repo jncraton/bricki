@@ -2,9 +2,8 @@
 .mode csv
 
 .output dumps/bynotes.csv
-select 'Part','Color','Quantity'
-union
-select part_transactions.part_num, color_id, sum(quantity)
+.header on
+select part_transactions.part_num as Part, color_id as Color, sum(quantity) as Quantity
 from part_transactions
 left outer join parts on
   parts.part_num = part_transactions.part_num
