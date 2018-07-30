@@ -3,7 +3,7 @@ sqldump = dist/bricks.sql
 
 all: $(db)
 
-.PHONY: clean dumps rollback www
+.PHONY: clean dumps export rollback www
 
 $(sqldump): $(db)
 	sqlite3 $(db) .dump > $(sqldump)
@@ -13,6 +13,9 @@ $(db):
 	sqlite3 $(db) < scripts/schema.sql
 	sqlite3 $(db) < scripts/reset_transactions.sql
 
+export:
+	sqlite3 $(db) < scripts/export.sql
+
 dumps:
 	sqlite3 $(db) < scripts/dump.sql
 	sqlite3 $(db) < scripts/dumpbynotes.sql
@@ -20,8 +23,8 @@ dumps:
 
 rollback:
 	@echo Resetting transactions to last committed dump
-	git checkout dumps/part_transactions.csv
-	git checkout dumps/set_transactions.csv
+	git checkout transactions/part_transactions.csv
+	git checkout transactions/set_transactions.csv
 	sqlite3 $(db) < scripts/reset_transactions.sql
 
 test:
@@ -34,16 +37,8 @@ www: $(db)
 clean:
 	rm -f bricks.db
 	rm -f $(sqldump)
-	rm -f dumps/looseparts.csv
-	rm -f dumps/nonsetparts.csv
-	rm -f dumps/parts.csv
-	rm -f dumps/partsources.csv
-	rm -f dumps/recentparts.csv
-	rm -f dumps/sets.csv
-	rm -f dumps/uploadablelooseparts.csv
-	rm -f dumps/uploadablemissingparts.csv
-	rm -f dumps/bynotes.csv
+	rm -f dumps/*
 	rm -rf bricki/__pycache__
-	rm -f www/clean.html
 	rm -rf src/__pycache__
+	rm -f www/clean.html
 	cd rebrickable-import-dumps && make clean
