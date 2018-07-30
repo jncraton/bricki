@@ -3,7 +3,7 @@ sqldump = dist/bricks.sql
 
 all: $(db)
 
-.PHONY: clean dumps rollback
+.PHONY: clean dumps rollback www
 
 $(sqldump): $(db)
 	sqlite3 $(db) .dump > $(sqldump)
@@ -28,6 +28,9 @@ test:
 	python3 -m doctest bricki/helpers.py
 	python3 -m doctest bricki/cli.py
 
+www: $(db)
+	python3 bricki/gen_html.py www
+
 clean:
 	rm -f bricks.db
 	rm -f $(sqldump)
@@ -41,5 +44,6 @@ clean:
 	rm -f dumps/uploadablemissingparts.csv
 	rm -f dumps/bynotes.csv
 	rm -rf bricki/__pycache__
+	rm -f www/*.html
 	rm -rf src/__pycache__
 	cd rebrickable-import-dumps && make clean
