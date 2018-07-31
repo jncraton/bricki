@@ -13,6 +13,8 @@ def norm_part(s):
   'Brick 1 x 4'
   >>> norm_part('Brick 1x2x2')
   'Brick 1 x 2 x 2'
+  >>> norm_part('4444pr0003')
+  '4444Pr0003'
   """
   s = str(s).strip().title()
   s = re.sub('(\d+) *x *', '\\1 x ', s, flags=re.I)
@@ -146,6 +148,8 @@ def search_part(needle, printed=False, duplo=False):
   '3040b'
   >>> search_part("tile 1x1 clip")[0][0]
   '12825'
+  >>> search_part("4444pr0003")[0][0]
+  '4444pr0003'
   >>> search_part("")
   []
   """
@@ -164,7 +168,7 @@ def search_part(needle, printed=False, duplo=False):
   base_part_num = needle.rstrip('abcdef')
 
   for part_num in [needle,base_part_num,base_part_num+'a',base_part_num+'b']:
-    exact_id_part = query("select part_num, name from parts where part_num=:part_num", (part_num,))
+    exact_id_part = query("select part_num, name from parts where part_num like :part_num", (part_num,))
   
     if exact_id_part:
       return [exact_id_part[0]]
