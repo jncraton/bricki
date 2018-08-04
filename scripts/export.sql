@@ -6,6 +6,3 @@ select * from set_transactions;
 
 .output transactions/part_transactions.csv
 select * from part_transactions;
-
-.output transactions/locations.csv
-select * from locations;

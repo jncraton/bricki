@@ -31,15 +31,6 @@ create table if not exists part_transactions (
   foreign key (from_set_num) references sets(set_num)
 );
 
-create table if not exists locations (
-  part_num varchar(16),
-  color_id smallint,
-  'primary' varchar(128),
-  secondary varchar(128),
-  foreign key (part_num) references parts(part_num),
-  foreign key (color_id) references parts(color_id)
-);
-
 drop view if exists my_set_parts;
 create view if not exists my_set_parts
 as
