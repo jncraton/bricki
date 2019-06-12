@@ -34,6 +34,9 @@ test:
 www: $(db)
 	python3 bricki/gen_html.py www
 
+run:
+	python3 bricki/cli.py
+
 clean:
 	rm -f bricks.db
 	rm -f $(sqldump)
