@@ -4,3 +4,4 @@ bricks.db
 Cargo.lock
 */__pycache__
 *.tar.xz
+*.tar.lz
