@@ -17,6 +17,10 @@ def norm_part(s):
   'Brick 1 x 2 x 2'
   >>> norm_part('t 1x1')
   'Tile 1 x 1'
+  >>> norm_part('s 2x1')
+  'Slope 2 x 1'
+  >>> norm_part('si 2x1')
+  'Slope Inverted 2 x 1'
   >>> norm_part('4444pr0003')
   '4444Pr0003'
   """
@@ -29,6 +33,8 @@ def norm_part(s):
     'B': 'Brick',
     'P': 'Plate',
     'T': 'Tile',
+    'S': 'Slope',
+    'Si': 'Slope Inverted',
   }
 
   if first_word in shortcuts.keys():
