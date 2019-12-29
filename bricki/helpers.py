@@ -13,11 +13,27 @@ def norm_part(s):
   'Brick 1 x 4'
   >>> norm_part('Brick 1x2x2')
   'Brick 1 x 2 x 2'
+  >>> norm_part('b 1x2x2')
+  'Brick 1 x 2 x 2'
+  >>> norm_part('t 1x1')
+  'Tile 1 x 1'
   >>> norm_part('4444pr0003')
   '4444Pr0003'
   """
   s = str(s).strip().title()
   s = re.sub('(\d+) *x *', '\\1 x ', s, flags=re.I)
+
+  first_word = s.split(' ')[0]
+
+  shortcuts = {
+    'B': 'Brick',
+    'P': 'Plate',
+    'T': 'Tile',
+  }
+
+  if first_word in shortcuts.keys():
+    s = ' '.join([shortcuts[first_word]] + s.split(' ')[1:])
+  
   return s
 
 def norm_color(s):
