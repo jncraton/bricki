@@ -263,6 +263,8 @@ def add_part(part, color, quantity=1, notes=None):
   
   query("insert into part_transactions (part_num, color_id, quantity, notes) values (?, ?, ?, ?)", (part, color, quantity, notes))
 
+  return query("select sum(quantity) from my_parts where part_num=? and color_id=?", (part, color))[0][0]
+
 def get_part_total(part, color):
   """ Gets total element count in inventory """
   part = search_part(part)[0][0]

@@ -8,6 +8,7 @@ Commands:
   {quantity},{color},{part} - inserts a part transaction
   {quantity},{color} - inserts a part transaction using the most recent part
   {quantity},{set} - insterts a set transaction
+  0,{color},{part} - gets current part count
   .note {str} - sets the note to use for future transactions
   .recent - lists recent transactions
   .undo - remvoes last transaction
@@ -179,8 +180,12 @@ if __name__ == '__main__':
     if command.type == CommandType.PART_TRANSACTION:
       last_part = command.part
       last_color = command.color
-    
-      print("Adding %d %s (%d) %s (%s)" % (command.quantity, command.color, command.color_id, command.part, command.part_num))
-      helpers.add_part(command.part_num, command.color_id, command.quantity, note)
+
+      if command.quantity != 0:
+          print("Adding %d %s (%d) %s (%s)" % (command.quantity, command.color, command.color_id, command.part, command.part_num))
+          helpers.add_part(command.part_num, command.color_id, command.quantity, note)
+      else:
+          print("Nothing to add. Querying current part information...")
+          print("Current quantity: %d" % (helpers.get_part_total(command.part_num, command.color_id)))
     
       
