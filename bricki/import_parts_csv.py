@@ -8,7 +8,7 @@ import helpers
 file = sys.argv[1]
 notes = sys.argv[2]
 
-conn = sqlite3.connect("dist/bricks.db")
+conn = sqlite3.connect("bricks.db")
 cursor = conn.cursor()
 
 for row in csv.DictReader(open(file)):
