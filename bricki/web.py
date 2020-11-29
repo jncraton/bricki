@@ -1,6 +1,6 @@
 import json
 
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 
 import helpers
 
@@ -21,6 +21,10 @@ def recent():
     join parts on parts.part_num = part_transactions.part_num 
     order by date desc limit 20""", as_dict=True)
     return jsonify([dict(r) for r in recent])
+
+@app.route('/search_part')
+def search_part():
+    return jsonify([{'part_num':p[0], 'part_name':p[1]} for p in helpers.search_part(request.args.get('q'))[:10]])
 
 @app.route('/')
 def static_file():
