@@ -2,6 +2,10 @@
 <head></head>
 <body>
 <section>
+<input name=part_search placeholder="Part name..."></input>
+  <table><tbody id=part_results></tbody></table>
+</section>
+<section>
   <h2>Recent</h2>
   <table><tbody id=recent></tbody></table>
 </section>
@@ -11,15 +15,26 @@ function getImg(part_num, color_id) {
 }
 
 async function update() {
-  let response = await fetch('/recent')
-  let transactions = await response.json()
+  let recent_response = await fetch('/recent')
+  let transactions = await recent_response.json()
 
   document.querySelector('#recent').innerHTML = ''
   transactions.forEach(tx => {
-    console.log(tx)
     document.querySelector('#recent').innerHTML += `<tr><td><img src="${getImg(tx.part_num, tx.color_id)}"/><td>${tx.quantity}<td>${tx.color}<td>${tx.part}<td>${tx.part_num}</tr>`
   })
+
+  let parts_response = await fetch('/search_part?q=' + document.querySelector("input[name=part_search]").value)
+  let parts = await parts_response.json()
+  document.querySelector('#part_results').innerHTML = ''
+  parts.forEach(part => {
+    document.querySelector('#part_results').innerHTML += `<tr><td><img src="${getImg(part.part_num, 71)}"/><td>${part.part_name}</tr>`
+  })
 }
+
+document.querySelector("input[name=part_search]").addEventListener('input', (e) => {
+  console.log(e.target.value)
+  update()
+})
 
 update()
 </script>
