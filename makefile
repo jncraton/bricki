@@ -37,6 +37,9 @@ www: $(db)
 run:
 	python3 bricki/cli.py
 
+web:
+	FLASK_APP=bricki/web.py python3 -m flask run
+
 clean:
 	rm -f bricks.db
 	rm -f $(sqldump)
