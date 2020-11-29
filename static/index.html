@@ -27,8 +27,6 @@ input, button {
 <input type=number value=1 />
 <input list="colors" name="color" />
 <datalist id="colors">
-  <option value="Dark Red">
-  <option value="Red">
 </datalist>
 <input name=part_search placeholder="Part name..."></input>
 <button>Add</button>
@@ -65,7 +63,19 @@ document.querySelector("input[name=part_search]").addEventListener('input', asyn
   })
 })
 
-update_recent()
+async function init() {
+  let colors_response = await fetch('/colors')
+  let colors = await colors_response.json()
+
+  document.querySelector('#colors').innerHTML = ''
+  colors.forEach(color => {
+    document.querySelector('#colors').innerHTML += `<option value="${color}">`
+  })
+
+  update_recent()
+}
+
+init()
 </script>
 </body>
 </html>
