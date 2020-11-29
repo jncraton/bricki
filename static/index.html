@@ -24,7 +24,7 @@ input, button {
 </head>
 <body>
 <section>
-<input type=number value=1 />
+<input type=number name="quantity" value=1 />
 <input list="colors" name="color" />
 <datalist id="colors">
 </datalist>
@@ -78,7 +78,9 @@ async function init() {
   })
 
   document.querySelector("button#add").addEventListener('click', () => {
-    console.log(selected_part)
+    let quantity = document.querySelector("input[name=quantity]").value
+    let color = document.querySelector("input[name=color]").value
+    console.log(quantity, color, selected_part)
   })
 }
 
