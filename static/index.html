@@ -54,15 +54,6 @@ async function update_recent() {
   })
 }
 
-document.querySelector("input[name=part_search]").addEventListener('input', async (e) => {
-  let parts_response = await fetch('/search_part?q=' + document.querySelector("input[name=part_search]").value)
-  let parts = await parts_response.json()
-  document.querySelector('#part_results').innerHTML = ''
-  parts.forEach(part => {
-    document.querySelector('#part_results').innerHTML += `<tr><td><img src="${getImg(part.part_num, 71)}"/><td>${part.part_name}</tr>`
-  })
-})
-
 async function init() {
   let colors_response = await fetch('/colors')
   let colors = await colors_response.json()
@@ -73,6 +64,15 @@ async function init() {
   })
 
   update_recent()
+
+  document.querySelector("input[name=part_search]").addEventListener('input', async (e) => {
+    let parts_response = await fetch('/search_part?q=' + document.querySelector("input[name=part_search]").value)
+    let parts = await parts_response.json()
+    document.querySelector('#part_results').innerHTML = ''
+    parts.forEach(part => {
+      document.querySelector('#part_results').innerHTML += `<tr><td><img src="${getImg(part.part_num, 71)}"/><td>${part.part_name}</tr>`
+    })
+  })
 }
 
 init()
