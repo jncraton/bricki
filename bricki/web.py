@@ -26,6 +26,11 @@ def recent():
 def search_part():
     return jsonify([{'part_num':p[0], 'part_name':p[1]} for p in helpers.search_part(request.args.get('q'))[:10]])
 
+@app.route('/colors')
+def colors():
+    colors = helpers.query("select colors.id, colors.name from colors")
+    return jsonify([c[0] for c in colors])
+
 @app.route('/')
 def static_file():
     return open("static/index.html").read()
