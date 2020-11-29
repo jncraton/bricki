@@ -77,16 +77,18 @@ async function init() {
     })
   })
 
-  document.querySelector("button#add").addEventListener('click', () => {
+  document.querySelector("button#add").addEventListener('click', async () => {
     const data = new URLSearchParams()
     data.append("quantity", document.querySelector("input[name=quantity]").value)
     data.append("color", document.querySelector("input[name=color]").value)
     data.append("part", selected_part)
     
-    fetch("/add_part", {
+    await fetch("/add_part", {
         method: 'post',
         body: data,
     })
+
+    update_recent()
   })
 }
 
