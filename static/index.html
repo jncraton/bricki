@@ -20,9 +20,24 @@ img {
 </style>
 </head>
 <body>
-<section id=part_search>
+<section>
+<input type=number value=1 />
+</section>
+<section>
+<input list="colors" name="color" />
+<datalist id="colors">
+  <option value="Dark Red">
+  <option value="Red">
+</datalist>
+<section>
 <input name=part_search placeholder="Part name..."></input>
-  <table><tbody id=part_results></tbody></table>
+</section>
+<section>
+<button>Add</button>
+<section>
+</section>
+<section id=part_search>
+<table><tbody id=part_results></tbody></table>
 </section>
 <section>
   <h2>Recent</h2>
