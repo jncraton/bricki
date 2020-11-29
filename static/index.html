@@ -50,7 +50,7 @@ async function update_recent() {
 
   document.querySelector('#recent').innerHTML = ''
   transactions.forEach(tx => {
-    document.querySelector('#recent').innerHTML += `<tr><td><img src="${getImg(tx.part_num, tx.color_id)}"/><td>${tx.quantity}<td>${tx.color}<td>${tx.part}<td>${tx.part_num}</tr>`
+    document.querySelector('#recent').innerHTML += `<tr><td><img src="${getImg(tx.part_num, tx.color_id)}" alt=""/><td>${tx.quantity}<td>${tx.color}<td>${tx.part}<td>${tx.part_num}</tr>`
   })
 }
 
@@ -73,7 +73,7 @@ async function init() {
     document.querySelector('#part_results').innerHTML = ''
     parts.forEach((part, i) => {
       if (i == 0) { selected_part = part.part_num }
-      document.querySelector('#part_results').innerHTML += `<tr><td><img src="${getImg(part.part_num, 71)}"/><td>${part.part_name}</tr>`
+      document.querySelector('#part_results').innerHTML += `<tr><td><img src="${getImg(part.part_num, 71)}" alt=""/><td>${part.part_name}</tr>`
     })
   })
 
