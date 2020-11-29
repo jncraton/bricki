@@ -31,6 +31,11 @@ def colors():
     colors = helpers.query("select colors.name from colors")
     return jsonify([c[0] for c in colors])
 
+@app.route('/add_part', methods=['POST'])
+def add_part():
+    helpers.add_part(request.form["part"], request.form["color"], request.form["quantity"], notes=None)
+    return ""
+
 @app.route('/')
 def static_file():
     return open("static/index.html").read()
