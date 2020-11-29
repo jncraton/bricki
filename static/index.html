@@ -1,7 +1,10 @@
 <html>
 <head></head>
 <body>
-<section><table><tbody id=results></tbody></table></section>
+<section>
+  <h2>Recent</h2>
+  <table><tbody id=recent></tbody></table>
+</section>
 <script>
 $ = document.querySelector
 
@@ -9,18 +12,18 @@ function getImg(part_num, color_id) {
   return `https://cdn.rebrickable.com/media/thumbs/parts/ldraw/${color_id}/${part_num}.png/85x85p.png`
 }
 
-async function main() {
+async function update() {
   let response = await fetch('/recent')
   let transactions = await response.json()
 
-  document.querySelector('#results').innerHTML = ''
+  document.querySelector('#recent').innerHTML = ''
   transactions.forEach(tx => {
     console.log(tx)
-    document.querySelector('#results').innerHTML += `<tr><td><img src="${getImg(tx.part_num, tx.color_id)}"/><td>${tx.quantity}<td>${tx.color}<td>${tx.part}<td>${tx.part_num}</tr>`
+    document.querySelector('#recent').innerHTML += `<tr><td><img src="${getImg(tx.part_num, tx.color_id)}"/><td>${tx.quantity}<td>${tx.color}<td>${tx.part}<td>${tx.part_num}</tr>`
   })
 }
 
-main()
+update()
 </script>
 </body>
 </html>
