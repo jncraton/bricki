@@ -33,7 +33,7 @@ function getImg(part_num, color_id) {
   return `https://cdn.rebrickable.com/media/thumbs/parts/ldraw/${color_id}/${part_num}.png/85x85p.png`
 }
 
-async function update() {
+async function update_recent() {
   let recent_response = await fetch('/recent')
   let transactions = await recent_response.json()
 
@@ -41,21 +41,18 @@ async function update() {
   transactions.forEach(tx => {
     document.querySelector('#recent').innerHTML += `<tr><td><img src="${getImg(tx.part_num, tx.color_id)}"/><td>${tx.quantity}<td>${tx.color}<td>${tx.part}<td>${tx.part_num}</tr>`
   })
+}
 
+document.querySelector("input[name=part_search]").addEventListener('input', async (e) => {
   let parts_response = await fetch('/search_part?q=' + document.querySelector("input[name=part_search]").value)
   let parts = await parts_response.json()
   document.querySelector('#part_results').innerHTML = ''
   parts.forEach(part => {
     document.querySelector('#part_results').innerHTML += `<tr><td><img src="${getImg(part.part_num, 71)}"/><td>${part.part_name}</tr>`
   })
-}
-
-document.querySelector("input[name=part_search]").addEventListener('input', (e) => {
-  console.log(e.target.value)
-  update()
 })
 
-update()
+update_recent()
 </script>
 </body>
 </html>
