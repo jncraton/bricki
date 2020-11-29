@@ -28,7 +28,7 @@ def search_part():
 
 @app.route('/colors')
 def colors():
-    colors = helpers.query("select colors.id, colors.name from colors")
+    colors = helpers.query("select colors.name from colors")
     return jsonify([c[0] for c in colors])
 
 @app.route('/')
