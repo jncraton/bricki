@@ -1,7 +1,22 @@
 <html>
-<head></head>
+<head>
+<style>
+* {
+  font-size:24px;
+  font-family:sans;
+}
+body {
+  margin: 0 auto;
+  padding: 5em;
+  width: 800px;
+}
+section#part_search tr:not(:first-child) {
+  opacity:.5;
+}
+</style>
+</head>
 <body>
-<section>
+<section id=part_search>
 <input name=part_search placeholder="Part name..."></input>
   <table><tbody id=part_results></tbody></table>
 </section>
