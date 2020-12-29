@@ -1,8 +1,9 @@
 import helpers
 
-print('<table>')
+print("<table>")
 
-for part in helpers.query("""
+for part in helpers.query(
+    """
 select 
   colors.name as color_name,
   parts.name as part_name,
@@ -20,7 +21,11 @@ group by parts.part_num, colors.id
 having year_to=2017
 order by num_sets desc 
 limit 300
-"""):
-  print('<tr><td><img src="%s">%s %s (x%d)<td></tr>' % (part[2],part[0],part[1],part[4]))
+"""
+):
+    print(
+        '<tr><td><img src="%s">%s %s (x%d)<td></tr>'
+        % (part[2], part[0], part[1], part[4])
+    )
 
-print('</table>')
+print("</table>")

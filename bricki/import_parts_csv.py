@@ -12,7 +12,10 @@ conn = sqlite3.connect("bricks.db")
 cursor = conn.cursor()
 
 for row in csv.DictReader(open(file)):
-  print(row)
-  cursor.execute("insert into part_transactions (part_num, color_id, quantity, notes) values (?, ?, ?, ?)", (row['Part'], row['Color'], row['Quantity'], notes))
+    print(row)
+    cursor.execute(
+        "insert into part_transactions (part_num, color_id, quantity, notes) values (?, ?, ?, ?)",
+        (row["Part"], row["Color"], row["Quantity"], notes),
+    )
 conn.commit()
 conn.close()

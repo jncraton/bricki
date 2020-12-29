@@ -1,7 +1,7 @@
 import helpers
 import json
 
-path = 'www/'
+path = "www/"
 
 search = """
 <!doctype html>
@@ -53,8 +53,9 @@ document.querySelector('input[name=q]').addEventListener('input', function(e) {
 </html>
 """
 
-with open(path + 'search.html', 'w') as out:
-  my_parts = helpers.query("""
+with open(path + "search.html", "w") as out:
+    my_parts = helpers.query(
+        """
   select 
     colors.name,
     parts.name,
@@ -66,9 +67,9 @@ with open(path + 'search.html', 'w') as out:
   join colors on colors.id=my_parts.color_id
   group by parts.part_num, colors.id
   order by quantity desc
-  """)
+  """
+    )
 
-  search = search.replace('{{ my_parts }}', json.dumps(my_parts))
+    search = search.replace("{{ my_parts }}", json.dumps(my_parts))
 
-  out.write(search)
-  
+    out.write(search)
