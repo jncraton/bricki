@@ -1,7 +1,7 @@
 Inventory manager for LEGO bricks
 =================================
 
-[![Build Status](https://travis-ci.org/jncraton/bricki.svg?branch=master)](https://travis-ci.org/jncraton/bricki)
+![build status](https://github.com/jncraton/bricki/workflows/CI/badge.svg)
 
 This project is both my personal LEGO inventory and the software that powers it. It is very much a work in progress, but if you are looking for a simple LEGO inventory manager with a CLI interface, this might be a good starting point.
 
