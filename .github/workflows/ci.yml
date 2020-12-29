@@ -15,5 +15,5 @@ jobs:
       # Runs a single command using the runners shell
       - name: Import and test
         run: |
-          make -j
+          make -j bricks.db
           make test
