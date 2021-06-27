@@ -69,6 +69,19 @@ left outer join canonical_parts on
 group by canonical_part_num, colors.id
 order by colors.name, parts.name;
 
+.output dumps/common-parts.csv
+select colors.name, parts.name, sum(quantity), my_parts.part_num, color_id, canonical_part_num
+from my_parts
+left outer join parts on
+  parts.part_num = my_parts.part_num
+left outer join colors on
+  colors.id = my_parts.color_id
+left outer join canonical_parts on
+  canonical_parts.part_num = my_parts.part_num
+group by canonical_part_num, colors.id
+having sum(quantity) > 20
+order by colors.name, sum(quantity) desc;
+
 .output dumps/partsources.csv
 select colors.name, parts.name, quantity, part_transactions.part_num, color_id, canonical_part_num, from_set_num, notes
 from part_transactions
