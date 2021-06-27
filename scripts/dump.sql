@@ -1,4 +1,5 @@
 .timer on
+.headers on
 .mode csv
 
 .output dumps/looseparts.csv
