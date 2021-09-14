@@ -51,6 +51,8 @@ function update() {
   })
 }
 
+update()
+
 </script>
 </body>
 </html>
