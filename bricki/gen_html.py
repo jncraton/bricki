@@ -10,11 +10,8 @@ search = """
 <head>
   <meta charset="utf-8">
   <style>
-  #results > * {
-    height: 60px
-  }
   img {
-    height: 100%;
+    height: 128px;
   }
   </style>
 <head>
@@ -23,7 +20,7 @@ search = """
 
 <input name=q />
 <input name=color />
-<div id=results></div>
+<table id=results></table>
 
 <script>
 var my_parts = {{ my_parts }}
@@ -50,7 +47,7 @@ function update() {
 
   results.forEach((r) => {
     let img_url = 'https://m.rebrickable.com/media/parts/ldraw/' + r[3] + '/' + r[4] + '.png'
-    el.innerHTML += '<div><img src="' + img_url + '">' + r + '</div>'
+    el.innerHTML += `<tr><td><img src="${img_url}"></td><td>${r[2]}</td><td>${r[0]}</td><td>${r[1]}</td></tr>`
   })
 }
 
