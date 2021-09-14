@@ -31,7 +31,7 @@ function search_part(q, color) {
 
   results = my_parts.filter((p) => (!color || p[0] == color) && re.test(p))
 
-  return results.slice(0,10)
+  return results.slice(0,100)
 }
 
 document.querySelector('input[name=q]').addEventListener('input', update)
