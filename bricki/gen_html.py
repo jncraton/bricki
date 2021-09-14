@@ -11,7 +11,7 @@ search = """
   <meta charset="utf-8">
   <style>
   img {
-    height: 128px;
+    height: 64px;
   }
   </style>
 <head>
