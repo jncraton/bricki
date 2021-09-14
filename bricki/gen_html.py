@@ -29,7 +29,7 @@ function search_part(q, color) {
   re = new RegExp(q.toLowerCase(),'ui')
   console.log(q,re)
 
-  results = my_parts.filter((p) => p[0] == color && re.test(p))
+  results = my_parts.filter((p) => (!color || p[0] == color) && re.test(p))
 
   return results.slice(0,10)
 }
