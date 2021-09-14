@@ -22,22 +22,28 @@ search = """
 <body>
 
 <input name=q />
+<input name=color />
 <div id=results></div>
 
 <script>
 var my_parts = {{ my_parts }}
 
-function search_part(q) {
+function search_part(q, color) {
   re = new RegExp(q.toLowerCase(),'ui')
   console.log(q,re)
 
-  results = my_parts.filter((p) => re.test(p))
+  results = my_parts.filter((p) => p[0] == color && re.test(p))
 
   return results.slice(0,10)
 }
 
-document.querySelector('input[name=q]').addEventListener('input', function(e) {
-  results = search_part(e.target.value)
+document.querySelector('input[name=q]').addEventListener('input', update)
+document.querySelector('input[name=color]').addEventListener('input', update)
+
+function update() {
+  let q = document.querySelector('input[name=q]').value
+  let color = document.querySelector('input[name=color]').value
+  results = search_part(q,color)
 
   el = document.querySelector('#results')
   el.innerHTML = ''
@@ -46,7 +52,7 @@ document.querySelector('input[name=q]').addEventListener('input', function(e) {
     let img_url = 'https://m.rebrickable.com/media/parts/ldraw/' + r[3] + '/' + r[4] + '.png'
     el.innerHTML += '<div><img src="' + img_url + '">' + r + '</div>'
   })
-})
+}
 
 </script>
 </body>
