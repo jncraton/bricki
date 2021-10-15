@@ -290,11 +290,6 @@ def add_part(part, color, quantity=1, notes=None):
         (part, color, quantity, notes),
     )
 
-    return query(
-        "select sum(quantity) from my_parts where part_num=? and color_id=?",
-        (part, color),
-    )[0][0]
-
 
 def get_part_total(part, color):
     """ Gets total element count in inventory """
