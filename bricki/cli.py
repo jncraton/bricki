@@ -140,7 +140,7 @@ if __name__ == "__main__":
 
     while True:
         if last_part or last_color:
-            print("Current part/color: %s %s" % (last_color, last_part))
+            print("Current part/color: %s %s" % (last_color, last_part.encode('ascii','ignore').decode()))
         else:
             print(help)
         if note:
@@ -174,7 +174,7 @@ if __name__ == "__main__":
                 "select quantity, colors.name, parts.name, notes from part_transactions join colors on colors.id = part_transactions.color_id join parts on parts.part_num = part_transactions.part_num order by date desc limit 20"
             )
             for t in recent:
-                print("%d,%s,%s %s" % (t[0], t[1], t[2], t[3]))
+                print("%d,%s,%s %s" % (t[0], t[1], t[2].encode('ascii','ignore').decode(), t[3]))
 
         if command.type == CommandType.SEARCH:
             print("Search results:")
@@ -186,7 +186,7 @@ if __name__ == "__main__":
                 pass
 
             for part in results:
-                print("{:<10} {}".format(part[0], part[1]))
+                print(f"{part[0]:<10} {part[1].encode('ascii','ignore').decode()}")
 
         if command.type == CommandType.SET_TRANSACTION:
             print(
@@ -205,7 +205,7 @@ if __name__ == "__main__":
                         command.quantity,
                         command.color,
                         command.color_id,
-                        command.part,
+                        command.part.encode('ascii','ignore').decode(),
                         command.part_num,
                     )
                 )
