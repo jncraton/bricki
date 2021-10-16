@@ -27,9 +27,8 @@ var my_parts = {{ my_parts }}
 
 function search_part(q, color) {
   re = new RegExp(q.toLowerCase(),'ui')
-  console.log(q,re)
 
-  results = my_parts.filter((p) => (!color || p[0] == color) && re.test(p))
+  results = my_parts.filter((p) => (!color || p[0] == color) && (!q || re.test(p)))
 
   return results.slice(0,100)
 }
@@ -42,13 +41,14 @@ function update() {
   let color = document.querySelector('input[name=color]').value
   results = search_part(q,color)
 
-  el = document.querySelector('#results')
-  el.innerHTML = ''
+  let content = ''
 
   results.forEach((r) => {
     let img_url = 'https://m.rebrickable.com/media/parts/ldraw/' + r[3] + '/' + r[4] + '.png'
-    el.innerHTML += `<tr><td><img src="${img_url}"></td><td>${r[2]}</td><td>${r[0]}</td><td>${r[1]}</td></tr>`
+    content += `<tr><td><img src="${img_url}"></td><td>${r[2]}</td><td>${r[0]}</td><td>${r[1]}</td></tr>`
   })
+
+  document.querySelector('#results').innerHTML = content
 }
 
 update()
