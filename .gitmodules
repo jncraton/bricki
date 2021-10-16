@@ -1,3 +1,6 @@
 [submodule "rebrickable-import-dumps"]
 	path = rebrickable-import-dumps
 	url = https://github.com/jncraton/rebrickable-import-dumps
+[submodule "rebrickable-sqlite"]
+	path = rebrickable-sqlite
+	url = https://github.com/jncraton/rebrickable-sqlite
