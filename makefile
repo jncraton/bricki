@@ -9,7 +9,7 @@ $(sqldump): $(db)
 	sqlite3 $(db) .dump > $(sqldump)
 
 $(db):
-	cd rebrickable-import-dumps && make clean && make DB=../$(db)
+	cd rebrickable-sqlite && make clean && make DB=../$(db)
 	sqlite3 $(db) < scripts/schema.sql
 	sqlite3 $(db) < scripts/reset_transactions.sql
 
@@ -47,4 +47,4 @@ clean:
 	rm -rf bricki/__pycache__
 	rm -rf src/__pycache__
 	rm -f www/clean.html
-	cd rebrickable-import-dumps && make clean
+	cd rebrickable-sqlite && make clean
