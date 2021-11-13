@@ -31,6 +31,13 @@ create table if not exists part_transactions (
   foreign key (from_set_num) references sets(set_num)
 );
 
+create table if not exists part_bins (
+  part_num varchar(16) primary key,
+  bin_id varchar(64),
+  size smallint,
+  foreign key (part_num) references parts(part_num)
+);
+
 drop view if exists my_set_parts;
 create view if not exists my_set_parts
 as
