@@ -45,7 +45,7 @@ function update() {
 
   results.forEach((r) => {
     let img_url = 'https://m.rebrickable.com/media/parts/ldraw/' + r[3] + '/' + r[4] + '.png'
-    content += `<tr><td><img src="${img_url}"></td><td>${r[2]}</td><td>${r[0]}</td><td>${r[1]}</td></tr>`
+    content += `<tr><td><img src="${img_url}"></td><td>${r[4]}</td><td>${r[2]}</td><td>${r[0]}</td><td>${r[1]}</td></tr>`
   })
 
   document.querySelector('#results').innerHTML = content
