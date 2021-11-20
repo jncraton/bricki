@@ -23,8 +23,8 @@ dumps:
 
 rollback:
 	@echo Resetting transactions to last committed dump
-	git checkout transactions/part_transactions.csv
-	git checkout transactions/set_transactions.csv
+	git checkout data/part_transactions.csv
+	git checkout data/set_transactions.csv
 	sqlite3 $(db) < scripts/reset_transactions.sql
 
 test:

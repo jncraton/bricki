@@ -1,8 +1,8 @@
 .timer on
 .mode csv
 
-.output transactions/set_transactions.csv
+.output data/set_transactions.csv
 select * from set_transactions;
 
-.output transactions/part_transactions.csv
+.output data/part_transactions.csv
 select * from part_transactions;
