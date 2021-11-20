@@ -45,7 +45,7 @@ function update() {
 
   results.forEach((r) => {
     let img_url = 'https://m.rebrickable.com/media/parts/ldraw/' + r[3] + '/' + r[4] + '.png'
-    content += `<tr><td><img src="${img_url}"></td><td>${r[4]}</td><td>${r[2]}</td><td>${r[0]}</td><td>${r[1]}</td></tr>`
+    content += `<tr><td><img src="${img_url}"></td><td>${r[4]}</td><td>${r[2]}</td><td>${r[0]}</td><td>${r[1]}</td><td>${r[5] || ''} ${r[6] ? '(Also sorted by element)' : ''}</td></tr>`
   })
 
   document.querySelector('#results').innerHTML = content
@@ -66,10 +66,13 @@ with open(path + "search.html", "w") as out:
     parts.name,
     sum(quantity),
     colors.id,
-    parts.part_num
+    parts.part_num,
+    part_bins.bin_id,
+    part_bins.size
   from my_parts
   join parts on parts.part_num=my_parts.part_num 
   join colors on colors.id=my_parts.color_id
+  left join part_bins on parts.part_num=part_bins.part_num
   group by parts.part_num, colors.id
   order by quantity desc
   """

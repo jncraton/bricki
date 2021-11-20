@@ -12,3 +12,6 @@ delete from set_transactions;
 update part_transactions set from_set_num = null where from_set_num = '';
 update part_transactions set notes = null where notes = '';
 update set_transactions set notes = null where notes = '';
+
+delete from part_bins;
+.import bins/part_bins.csv part_bins
