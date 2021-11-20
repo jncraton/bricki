@@ -73,8 +73,8 @@ with open(path + "search.html", "w") as out:
   join parts on parts.part_num=my_parts.part_num 
   join colors on colors.id=my_parts.color_id
   left join part_bins on parts.part_num=part_bins.part_num
-  group by parts.part_num, colors.id
-  order by quantity desc
+  group by parts.part_num
+  order by sum(quantity) desc
   """
     )
 
