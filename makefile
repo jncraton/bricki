@@ -31,6 +31,9 @@ test:
 	python3 -m doctest bricki/helpers.py
 	python3 -m doctest bricki/cli.py
 
+bins:
+	python3 bricki/update_bins_from_common_parts.py
+
 www: $(db)
 	python3 bricki/gen_html.py www
 
