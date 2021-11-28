@@ -83,12 +83,14 @@ having sum(quantity) > 10
 order by colors.name, sum(quantity) desc;
 
 .output dumps/common-parts.csv
-select sum(quantity) as quantity, parts.name, canonical_part_num
+select sum(quantity) as quantity, parts.name, canonical_part_num, bin_id
 from my_parts
 left outer join parts on
   parts.part_num = my_parts.part_num
 left outer join canonical_parts on
   canonical_parts.part_num = my_parts.part_num
+left outer join part_bins on
+  canonical_parts.part_num = part_bins.part_num
 group by canonical_part_num
 having sum(quantity) > 10
 order by sum(quantity) desc;
