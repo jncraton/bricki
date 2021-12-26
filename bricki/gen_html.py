@@ -79,6 +79,7 @@ with open(path + "search.html", "w") as out:
   join colors on colors.id=my_parts.color_id
   left join part_bins on parts.part_num=part_bins.part_num
   group by parts.part_num, colors.id
+  having sum(quantity) > 0
   order by sum(quantity) desc
   """
     )
