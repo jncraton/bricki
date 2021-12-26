@@ -63,7 +63,17 @@ update()
 </html>
 """
 
-with open(path + "search.html", "w") as out:
+colors = helpers.query(
+"""
+select 
+colors.name
+from colors
+"""
+)
+
+color_options = [f'<option value="{c[0]}">' for c in colors]
+
+with open(path + "elements.html", "w") as out:
     my_parts = helpers.query(
         """
   select 
@@ -84,17 +94,33 @@ with open(path + "search.html", "w") as out:
   """
     )
 
-    colors = helpers.query(
+    s = search.replace("{{ my_parts }}", json.dumps(my_parts))
+    s = s.replace("{{ color_options }}", '\n'.join(color_options))
+
+    out.write(s)
+
+with open(path + "parts.html", "w") as out:
+    my_parts = helpers.query(
         """
   select 
-    colors.name
-  from colors
+    colors.name,
+    parts.name,
+    sum(quantity),
+    colors.id,
+    parts.part_num,
+    part_bins.bin_id,
+    part_bins.size
+  from my_parts
+  join parts on parts.part_num=my_parts.part_num 
+  join colors on colors.id=my_parts.color_id
+  left join part_bins on parts.part_num=part_bins.part_num
+  group by parts.part_num
+  having sum(quantity) > 0
+  order by sum(quantity) desc
   """
     )
 
-    color_options = [f'<option value="{c[0]}">' for c in colors]
+    s = search.replace("{{ my_parts }}", json.dumps(my_parts))
+    s = s.replace("{{ color_options }}", '\n'.join(color_options))
 
-    search = search.replace("{{ my_parts }}", json.dumps(my_parts))
-    search = search.replace("{{ color_options }}", '\n'.join(color_options))
-
-    out.write(search)
+    out.write(s)
