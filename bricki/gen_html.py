@@ -19,7 +19,12 @@ search = """
 <body>
 
 <input name=q />
-<input name=color />
+<input name=color list=colors />
+
+<datalist id=colors>    
+{{ color_options }}
+</datalist>
+
 <table id=results></table>
 
 <script>
@@ -78,6 +83,17 @@ with open(path + "search.html", "w") as out:
   """
     )
 
+    colors = helpers.query(
+        """
+  select 
+    colors.name
+  from colors
+  """
+    )
+
+    color_options = [f'<option value="{c[0]}">' for c in colors]
+
     search = search.replace("{{ my_parts }}", json.dumps(my_parts))
+    search = search.replace("{{ color_options }}", '\n'.join(color_options))
 
     out.write(search)
