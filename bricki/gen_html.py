@@ -65,7 +65,7 @@ function search_part(q, color, part, min_qty) {
         let group = el[4]
         if (!storage[group]) {
           storage[group] = [...el]
-          storage[group][0] = 1
+          storage[group][0] = 0
         } else {
           storage[group][2] += el[2]
         }
