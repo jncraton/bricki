@@ -28,7 +28,7 @@ search = """
 <label>Search <input name=q /></label>
 <label>Part <input name=part /></label>
 <label>Color <input name=color list=colors /></label>
-<label>Min Quantity <input name=minqty value=99999 /></label>
+<label>Min Quantity <input name=minqty value=0 /></label>
 <label>Group by Part <input name=groupcolors type=checkbox /></label>
 
 <datalist id=colors>    
