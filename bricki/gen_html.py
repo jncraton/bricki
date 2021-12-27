@@ -21,7 +21,7 @@ search = """
     border:1px solid #ddd;
   }
   </style>
-<head>
+</head>
 
 <body>
 
