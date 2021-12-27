@@ -125,7 +125,10 @@ colors = helpers.query(
 """
 select 
 colors.name
-from colors
+from my_parts
+join colors on colors.id=my_parts.color_id
+group by colors.name
+order by colors.name
 """
 )
 
