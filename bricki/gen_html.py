@@ -25,7 +25,7 @@ search = """
 {{ color_options }}
 </datalist>
 
-<section><p>Total quantity: <span id=count></span></p></section>
+<section><p>Unique: <span id=unique></span> Total quantity: <span id=count></span></p></section>
 
 <table id=results></table>
 
@@ -50,6 +50,9 @@ function update() {
 
   let count = results.reduce((p, c) => {return c[2] + p}, 0)
   document.getElementById('count').textContent = count
+
+  let unique = results.reduce((p, c) => {return 1 + p}, 0)
+  document.getElementById('unique').textContent = unique
 
   let content = ''
 
