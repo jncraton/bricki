@@ -18,8 +18,9 @@ search = """
 
 <body>
 
-<input name=q />
-<input name=color list=colors />
+<label>Search <input name=q /></label>
+<label>Color <input name=color list=colors /></label>
+<label>Group by Part <input name=groupcolors type=checkbox /></label>
 
 <datalist id=colors>    
 {{ color_options }}
@@ -37,11 +38,30 @@ function search_part(q, color) {
 
   results = my_parts.filter((p) => (!color || p[0] == color) && (!q || re.test(p)))
 
+  if (!color && document.querySelector('[name=groupcolors]').checked) {
+      let parts = results.reduce((storage, el) => {
+        let group = el[4]
+        if (!storage[group]) {
+          storage[group] = [...el]
+        } else {
+          storage[group][2] += el[2]
+        }
+        storage[group][0] = 'All Colors'
+        storage[group][3] = 71
+        return storage
+      }, {})
+
+      results = Object.values(parts).reduce((p, c) => {p.push(c); return p}, [])
+  }
+
+  results = results.sort((a,b) => {return a[2] < b[2]})
+
   return results
 }
 
 document.querySelector('input[name=q]').addEventListener('input', update)
 document.querySelector('input[name=color]').addEventListener('input', update)
+document.querySelector('input[name=groupcolors]').addEventListener('input', update)
 
 function update() {
   let q = document.querySelector('input[name=q]').value
