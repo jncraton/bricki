@@ -19,6 +19,7 @@ search = """
 <body>
 
 <label>Search <input name=q /></label>
+<label>Part <input name=part /></label>
 <label>Color <input name=color list=colors /></label>
 <label>Group by Part <input name=groupcolors type=checkbox /></label>
 
@@ -33,10 +34,10 @@ search = """
 <script>
 var my_parts = {{ my_parts }}
 
-function search_part(q, color) {
+function search_part(q, color, part) {
   re = new RegExp(q.toLowerCase(),'ui')
 
-  results = my_parts.filter((p) => (!color || p[0] == color) && (!q || re.test(p)))
+  results = my_parts.filter((p) => (!part || p[4] == part) && (!color || p[0] == color) && (!q || re.test(p)))
 
   if (!color && document.querySelector('[name=groupcolors]').checked) {
       let parts = results.reduce((storage, el) => {
@@ -60,13 +61,15 @@ function search_part(q, color) {
 }
 
 document.querySelector('input[name=q]').addEventListener('input', update)
+document.querySelector('input[name=part]').addEventListener('input', update)
 document.querySelector('input[name=color]').addEventListener('input', update)
 document.querySelector('input[name=groupcolors]').addEventListener('input', update)
 
 function update() {
   let q = document.querySelector('input[name=q]').value
   let color = document.querySelector('input[name=color]').value
-  results = search_part(q,color)
+  let part = document.querySelector('input[name=part]').value
+  results = search_part(q,color,part)
 
   let count = results.reduce((p, c) => {return c[2] + p}, 0)
   document.getElementById('count').textContent = count
