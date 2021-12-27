@@ -13,6 +13,13 @@ search = """
   img {
     height: 64px;
   }
+  table {
+    border-collapse: collapse;
+  }
+  td {
+    padding: 0px 18px;
+    border:1px solid #ddd;
+  }
   </style>
 <head>
 
@@ -29,7 +36,20 @@ search = """
 
 <section><p>Unique: <span id=unique></span> Total quantity: <span id=count></span></p></section>
 
-<table id=results></table>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Part</th>
+<th>Quantity</th>
+<th>Color</th>
+<th>Name</th>
+<th>Locations</th>
+</tr>
+</thead>
+<tbody id=results>
+</tbody>
+</table>
 
 <script>
 var my_parts = {{ my_parts }}
