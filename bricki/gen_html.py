@@ -58,7 +58,7 @@ var my_parts = {{ my_parts }}
 function search_part(q, color, part, min_qty) {
   re = new RegExp(q.toLowerCase(),'ui')
 
-  results = my_parts.filter((p) => (!part || p[4] == part) && (!color || p[0] == color) && (!q || re.test(p)))
+  results = my_parts.filter((p) => (!part || p[4] == part) && (!color || p[0] == color) && (!q || re.test(p[1])))
 
   if (!color && document.querySelector('[name=groupcolors]').checked) {
       let parts = results.reduce((storage, el) => {
