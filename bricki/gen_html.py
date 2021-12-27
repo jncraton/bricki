@@ -25,6 +25,8 @@ search = """
 {{ color_options }}
 </datalist>
 
+<section><p>Total quantity: <span id=count></span></p></section>
+
 <table id=results></table>
 
 <script>
@@ -35,7 +37,7 @@ function search_part(q, color) {
 
   results = my_parts.filter((p) => (!color || p[0] == color) && (!q || re.test(p)))
 
-  return results.slice(0,100)
+  return results
 }
 
 document.querySelector('input[name=q]').addEventListener('input', update)
@@ -46,9 +48,12 @@ function update() {
   let color = document.querySelector('input[name=color]').value
   results = search_part(q,color)
 
+  let count = results.reduce((p, c) => {return c[2] + p}, 0)
+  document.getElementById('count').textContent = count
+
   let content = ''
 
-  results.forEach((r) => {
+  results.slice(0,100).forEach((r) => {
     let img_url = 'https://m.rebrickable.com/media/parts/ldraw/' + r[3] + '/' + r[4] + '.png'
     content += `<tr><td><img src="${img_url}"></td><td>${r[4]}</td><td>${r[2]}</td><td>${r[0]}</td><td>${r[1]}</td><td>${r[5] || ''} ${r[6] ? '(Also sorted by element)' : ''}</td></tr>`
   })
