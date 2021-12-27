@@ -79,7 +79,7 @@ left outer join colors on
 left outer join canonical_parts on
   canonical_parts.part_num = my_parts.part_num
 group by canonical_part_num, colors.id
-having sum(quantity) > 10
+having sum(quantity) > 0
 order by colors.name, sum(quantity) desc;
 
 .output dumps/common-parts.csv
@@ -90,7 +90,7 @@ left outer join parts on
 left outer join part_bins on
   parts.part_num = part_bins.part_num
 group by parts.part_num
-having sum(quantity) > 10
+having sum(quantity) > 0
 order by sum(quantity) desc;
 
 .output dumps/partsources.csv
