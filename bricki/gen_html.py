@@ -28,6 +28,7 @@ search = """
 <label>Search <input name=q /></label>
 <label>Part <input name=part /></label>
 <label>Color <input name=color list=colors /></label>
+<label>Min Quantity <input name=minqty value=99999 /></label>
 <label>Group by Part <input name=groupcolors type=checkbox /></label>
 
 <datalist id=colors>    
@@ -54,7 +55,7 @@ search = """
 <script>
 var my_parts = {{ my_parts }}
 
-function search_part(q, color, part) {
+function search_part(q, color, part, min_qty) {
   re = new RegExp(q.toLowerCase(),'ui')
 
   results = my_parts.filter((p) => (!part || p[4] == part) && (!color || p[0] == color) && (!q || re.test(p)))
@@ -75,6 +76,8 @@ function search_part(q, color, part) {
       results = Object.values(parts).reduce((p, c) => {p.push(c); return p}, [])
   }
 
+  results = results.filter((p) => (!min_qty || p[2] >= min_qty))
+
   results = results.sort((a,b) => {return a[2] < b[2]})
 
   return results
@@ -83,13 +86,15 @@ function search_part(q, color, part) {
 document.querySelector('input[name=q]').addEventListener('input', update)
 document.querySelector('input[name=part]').addEventListener('input', update)
 document.querySelector('input[name=color]').addEventListener('input', update)
+document.querySelector('input[name=minqty]').addEventListener('input', update)
 document.querySelector('input[name=groupcolors]').addEventListener('input', update)
 
 function update() {
   let q = document.querySelector('input[name=q]').value
   let color = document.querySelector('input[name=color]').value
   let part = document.querySelector('input[name=part]').value
-  results = search_part(q,color,part)
+  let min_qty = document.querySelector('input[name=minqty]').value
+  results = search_part(q,color,part,min_qty)
 
   let count = results.reduce((p, c) => {return c[2] + p}, 0)
   document.getElementById('count').textContent = count
