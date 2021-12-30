@@ -45,7 +45,8 @@ search = """
 <th>Quantity</th>
 <th>Color</th>
 <th>Name</th>
-<th>Locations</th>
+<th>Part Bin</th>
+<th>Element Bin</th>
 </tr>
 </thead>
 <tbody id=results>
@@ -102,7 +103,7 @@ function update() {
 
   results.slice(0,100).forEach((r) => {
     let img_url = 'https://m.rebrickable.com/media/parts/ldraw/' + r[3] + '/' + r[4] + '.png'
-    content += `<tr><td><img src="${img_url}"></td><td>${r[4]}</td><td>${r[2]}</td><td>${r[0]}</td><td>${r[1]}</td><td>${r[5] || ''} ${r[6] ? '(Also sorted by element)' : ''}</td></tr>`
+    content += `<tr><td><img src="${img_url}"></td><td>${r[4]}</td><td>${r[2]}</td><td>${r[0]}</td><td>${r[1]}</td><td>${r[5] || ''}</td><td>${r[6] || ''}</td></tr>`
   })
 
   document.querySelector('#results').innerHTML = content
@@ -144,11 +145,12 @@ with open(path + "elements.html", "w") as out:
     colors.id,
     parts.part_num,
     part_bins.bin_id,
-    part_bins.size
+    element_bins.bin_id
   from my_parts
   join parts on parts.part_num=my_parts.part_num 
   join colors on colors.id=my_parts.color_id
-  left join part_bins on parts.part_num=part_bins.part_num
+  left join part_bins as element_bins on my_parts.part_num=element_bins.part_num and my_parts.color_id=element_bins.color_id
+  left join part_bins on my_parts.part_num=part_bins.part_num and part_bins.color_id=-1
   group by parts.part_num, colors.id
   having sum(quantity) > 0
   order by sum(quantity) desc
