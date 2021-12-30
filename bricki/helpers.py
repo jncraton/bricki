@@ -291,6 +291,17 @@ def add_part(part, color, quantity=1, notes=None):
     )
 
 
+def update_bin(part, color, bin_id):
+    """ Adds part by inserting a new transation into the part_transactions table """
+    part = search_part(part)[0][0]
+    color = search_color(color)[0][0]
+
+    query(
+        "insert or replace into part_bins (part_num, color_id, bin_id) values (?, ?, ?)",
+        (part, color, bin_id),
+    )
+
+
 def get_part_total(part, color):
     """ Gets total element count in inventory """
     part = search_part(part)[0][0]

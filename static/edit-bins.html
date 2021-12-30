@@ -33,6 +33,30 @@ function getImg(part_num, color_id) {
 let colors = []
 let selected_part
 
+async function update() {
+  let parts_response = await fetch('/search_part?q=' + document.querySelector("input[name=part_search]").value)
+  let parts = await parts_response.json()
+
+  let bins_response = await fetch('/bins')
+  let bins = await bins_response.json()
+
+  document.querySelector('#part_results').innerHTML = ''
+  parts.forEach((part, i) => {
+    if (i == 0) { selected_part = part.part_num }
+    document.querySelector('#part_results').innerHTML += `<tr><td><img src="${getImg(part.part_num, 71)}" alt=""/><td>${part.part_name}</tr>`
+
+    bins.forEach(bin => {
+      if (bin[3] == part.part_num) {
+        let color_name = bin[0]
+        let color = bin[4] == -1 ? 71 : bin[4]
+        let name = bin[2]
+
+        document.querySelector('#part_results').innerHTML += `<tr><td><img src="${getImg(part.part_num, color)}" alt=""/><td>${color_name} ${part.part_name} ${name}</tr>`
+      }
+    })
+  })
+}
+
 async function init() {
   let colors_response = await fetch('/colors')
   colors = await colors_response.json()
@@ -42,29 +66,22 @@ async function init() {
     document.querySelector('#colors').innerHTML += `<option value="${color}">`
   })
 
-  document.querySelector("input[name=part_search]").addEventListener('input', async (e) => {
-    let parts_response = await fetch('/search_part?q=' + document.querySelector("input[name=part_search]").value)
-    let parts = await parts_response.json()
+  document.querySelector("input[name=part_search]").addEventListener('input', update)
 
-    let bins_response = await fetch('/bins')
-    let bins = await bins_response.json()
-
-    document.querySelector('#part_results').innerHTML = ''
-    parts.forEach((part, i) => {
-      if (i == 0) { selected_part = part.part_num }
-      document.querySelector('#part_results').innerHTML += `<tr><td><img src="${getImg(part.part_num, 71)}" alt=""/><td>${part.part_name}</tr>`
-
-      bins.forEach(bin => {
-        if (bin[3] == part.part_num) {
-          let color_name = bin[0]
-          let color = bin[4] == -1 ? 71 : bin[4]
-          let name = bin[2]
-
-          document.querySelector('#part_results').innerHTML += `<tr><td><img src="${getImg(part.part_num, color)}" alt=""/><td>${color_name} ${part.part_name} ${name}</tr>`
-        }
-      })
+  document.querySelector("button#update").addEventListener('click', async () => {
+    const data = new URLSearchParams()
+    data.append("bin_id", document.querySelector("input[name=bin_id]").value)
+    data.append("color", document.querySelector("input[name=color]").value)
+    data.append("part", selected_part)
+    
+    await fetch("/bins", {
+        method: 'post',
+        body: data,
     })
+
+    update()
   })
+
 }
 
 init()
