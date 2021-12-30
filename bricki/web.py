@@ -54,6 +54,23 @@ def add_part():
     return ""
 
 
+@app.route("/bins")
+def bins():
+    bins = helpers.query("""
+        select colors.name, parts.name, bin_id, part_bins.part_num, part_bins.color_id
+            from part_bins 
+            join parts on part_bins.part_num = parts.part_num
+            join colors on colors.id = part_bins.color_id
+            order by colors.name asc, parts.name asc
+    """)
+    return jsonify(bins)
+
+
+@app.route("/edit-bins")
+def edit_bins():
+    return open("static/edit-bins.html").read()
+
+
 @app.route("/")
 def static_file():
     return open("static/index.html").read()

@@ -1,0 +1,46 @@
+<html>
+<head>
+<style>
+* {
+  font-size:24px;
+  font-family:sans;
+}
+body {
+  margin: 0 auto;
+  padding: 5em;
+  width: 800px;
+}
+</style>
+</head>
+<body>
+<section id=bins>
+</section>
+
+<script>
+function getImg(part_num, color_id) {
+  return ''
+  return `https://cdn.rebrickable.com/media/thumbs/parts/ldraw/${color_id}/${part_num}.png/85x85p.png`
+}
+
+let colors = []
+
+async function init() {
+  let colors_response = await fetch('/colors')
+  colors = await colors_response.json()
+
+  let bins_response = await fetch('/bins')
+  let bins = await bins_response.json()
+
+  document.querySelector('#bins').innerHTML = ''
+  bins.forEach(bin => {
+    let part = bin[0]
+    let color = bin[1] == -1 ? 71 : bin[1]
+    let name = bin[2]
+    document.querySelector('#bins').innerHTML += `<p><img loading=lazy src="${getImg(part, color)}">${bin}`
+  })
+}
+
+init()
+</script>
+</body>
+</html>
