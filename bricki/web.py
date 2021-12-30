@@ -1,6 +1,6 @@
 import json
 
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, redirect
 
 import helpers
 
@@ -64,6 +64,16 @@ def bins():
             order by colors.name asc, parts.name asc
     """)
     return jsonify(bins)
+
+
+@app.route("/bins", methods=["POST"])
+def update_bin():
+    helpers.update_bin(
+        request.form["part"],
+        request.form["color"],
+        request.form["bin_id"],
+    )
+    return redirect("/bins")
 
 
 @app.route("/edit-bins")
