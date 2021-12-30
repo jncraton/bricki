@@ -10,6 +10,13 @@ body {
   padding: 5em;
   width: 800px;
 }
+table {
+  border-collapse: collapse;
+}
+td {
+  padding: 0px 18px;
+  border:1px solid #ddd;
+}
 </style>
 </head>
 <body>
@@ -51,7 +58,7 @@ async function update() {
         let color = bin[4] == -1 ? 71 : bin[4]
         let name = bin[2]
 
-        document.querySelector('#part_results').innerHTML += `<tr><td><img src="${getImg(part.part_num, color)}" alt=""/><td>${color_name} ${part.part_name} ${name}</tr>`
+        document.querySelector('#part_results').innerHTML += `<tr><td><img src="${getImg(part.part_num, color)}" alt=""/><td>${color_name}</td><td>${part.part_name}</td><td>${name}</td></tr>`
       }
     })
   })
