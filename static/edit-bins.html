@@ -50,7 +50,7 @@ async function update() {
   document.querySelector('#part_results').innerHTML = ''
   parts.forEach((part, i) => {
     if (i == 0) { selected_part = part.part_num }
-    document.querySelector('#part_results').innerHTML += `<tr><td><img src="${getImg(part.part_num, 71)}" alt=""/><td>${part.part_name}</tr>`
+    document.querySelector('#part_results').innerHTML += `<tr><td><img src="${getImg(part.part_num, 71)}" alt=""/><td>${part.part_name} (${part.part_num})</tr>`
 
     bins.forEach(bin => {
       if (bin[3] == part.part_num) {
