@@ -26,7 +26,7 @@ search = """
 <body>
 
 <label>Search <input name=q /></label>
-<label>Part <input name=part /></label>
+<label>Part or Bin<input name=part /></label>
 <label>Color <input name=color list=colors /></label>
 <label>Min Quantity <input name=minqty value=0 /></label>
 <label>Group by Part <input name=groupcolors type=checkbox /></label>
@@ -59,7 +59,7 @@ const my_parts = {{ my_parts }}
 function search_part(q, color, part, min_qty) {
   const re = new RegExp(q.toLowerCase(),'ui')
 
-  let results = my_parts.filter((p) => (!part || p[4] == part) && (!color || p[0] == color) && (!q || re.test(p[1])))
+  let results = my_parts.filter((p) => (!part || p[4] == part ||  p[5] == part || p[6] == part) && (!color || p[0] == color) && (!q || re.test(p[1])))
 
   if (!color && document.querySelector('[name=groupcolors]').checked) {
       let parts = results.reduce((storage, el) => {
