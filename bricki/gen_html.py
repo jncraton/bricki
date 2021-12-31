@@ -150,8 +150,8 @@ with open(path + "elements.html", "w") as out:
   join parts on parts.part_num=my_parts.part_num 
   join colors on colors.id=my_parts.color_id
   join canonical_parts on canonical_parts.part_num = my_parts.part_num
-  left join part_bins as element_bins on my_parts.part_num=element_bins.part_num and my_parts.color_id=element_bins.color_id
-  left join part_bins on my_parts.part_num=part_bins.part_num and part_bins.color_id=-1
+  left join part_bins as element_bins on canonical_parts.canonical_part_num=element_bins.part_num and my_parts.color_id=element_bins.color_id
+  left join part_bins on canonical_parts.canonical_part_num=part_bins.part_num and part_bins.color_id=-1
   group by canonical_part_num, colors.id
   having sum(quantity) > 0
   order by sum(quantity) desc
