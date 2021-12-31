@@ -175,6 +175,8 @@ def search_part(needle, printed=False, duplo=False):
     '4070a'
     >>> search_part("slope 2x1")[0][0]
     '3040b'
+    >>> search_part("slope 2x1")[1][0] != '3040a'
+    True
     >>> search_part("tile 1x1 clip")[0][0]
     '12825'
     >>> search_part("4444pr0003")[0][0]
@@ -215,7 +217,7 @@ def search_part(needle, printed=False, duplo=False):
     filter = ""
 
     if not printed:
-        filter += "canonical.name not like '%%print%%' and canonical_part_num not like '%%pr%%' and "
+        filter += "parts.name not like '%%print%%' and parts.part_num not like '%%pr%%' and "
     if not duplo:
         filter += "parts.part_cat_id != 4 and "  # For is the ID for Dulpo parts
 
@@ -223,15 +225,15 @@ def search_part(needle, printed=False, duplo=False):
 
     values = tuple([needle] + kws)
 
-    kw_clause = ("canonical.name like ? and " * len(kws))[:-5]
+    kw_clause = ("parts.name like ? and " * len(kws))[:-5]
 
     parts = query(
         """
             select canonical.part_num, canonical.name
             from parts
             join canonical_parts on canonical_parts.part_num = parts.part_num
-            join parts as canonical on canonical_parts.part_num = canonical.part_num
-            where %s (canonical_part_num like :needle or (%s))
+            join parts as canonical on canonical_parts.canonical_part_num = canonical.part_num
+            where %s (parts.part_num like :needle or (%s))
             group by canonical.part_num
             order by length(canonical.name) asc
         """ % (filter, kw_clause),
