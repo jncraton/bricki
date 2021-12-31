@@ -215,19 +215,26 @@ def search_part(needle, printed=False, duplo=False):
     filter = ""
 
     if not printed:
-        filter += "name not like '%%print%%' and part_num not like '%%pr%%' and "
+        filter += "canonical.name not like '%%print%%' and canonical_part_num not like '%%pr%%' and "
     if not duplo:
-        filter += "part_cat_id != 4 and "  # For is the ID for Dulpo parts
+        filter += "parts.part_cat_id != 4 and "  # For is the ID for Dulpo parts
 
     kws = ["%%%s%%" % kw for kw in part_keywords(needle)]
 
     values = tuple([needle] + kws)
 
-    kw_clause = ("name like ? and " * len(kws))[:-5]
+    kw_clause = ("canonical.name like ? and " * len(kws))[:-5]
 
     parts = query(
-        "select part_num, name from parts where %s (part_num like :needle or (%s)) order by length(name) asc"
-        % (filter, kw_clause),
+        """
+            select canonical.part_num, canonical.name
+            from parts
+            join canonical_parts on canonical_parts.part_num = parts.part_num
+            join parts as canonical on canonical_parts.part_num = canonical.part_num
+            where %s (canonical_part_num like :needle or (%s))
+            group by canonical.part_num
+            order by length(canonical.name) asc
+        """ % (filter, kw_clause),
         values,
     )
 
