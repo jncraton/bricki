@@ -15,3 +15,5 @@ update set_transactions set notes = null where notes = '';
 
 delete from part_bins;
 .import data/part_bins.csv part_bins
+
+.import data/part_relationships.csv part_relationships
