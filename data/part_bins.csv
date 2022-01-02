@@ -167,7 +167,6 @@
 3460,71,light-bluish-gray-3730-1
 3622,71,light-bluish-gray-3730-1
 3660,71,light-bluish-gray-3730-1
-3660b,71,light-bluish-gray-3730-1
 3665,71,light-bluish-gray-3730-1
 3666,71,light-bluish-gray-3730-1
 3710,71,light-bluish-gray-3730-1
@@ -182,7 +181,6 @@
 30136,-1,patterned-bricks+slopes
 30137,-1,patterned-bricks+slopes
 3660,-1,patterned-bricks+slopes
-3660b,-1,patterned-bricks+slopes
 3941,-1,patterned-bricks+slopes
 4460a,-1,patterned-bricks+slopes
 98283,-1,patterned-bricks+slopes
@@ -217,7 +215,7 @@
 3040b,4,red-3730-1
 3460,4,red-3730-1
 3622,4,red-3730-1
-3660b,4,red-3730-1
+3660,4,red-3730-1
 3665,4,red-3730-1
 3666,4,red-3730-1
 3710,4,red-3730-1
@@ -255,7 +253,6 @@
 3031,70,reddish-brown-3730-1
 3036,70,reddish-brown-3730-1
 3660,70,reddish-brown-3730-1
-3660b,70,reddish-brown-3730-1
 3665,70,reddish-brown-3730-1
 3666,70,reddish-brown-3730-1
 3710,70,reddish-brown-3730-1
@@ -423,7 +420,6 @@
 3040b,14,yellow-3730-1
 3460,14,yellow-3730-1
 3622,14,yellow-3730-1
-3660b,14,yellow-3730-1
 3665,14,yellow-3730-1
 3666,14,yellow-3730-1
 3710,14,yellow-3730-1
