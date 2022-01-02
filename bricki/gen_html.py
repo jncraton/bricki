@@ -30,6 +30,7 @@ search = """
 <label>Color <input name=color list=colors /></label>
 <label>Min Quantity <input name=minqty value=0 /></label>
 <label>Group by Part <input name=groupcolors type=checkbox /></label>
+<label>Exclude Technic and 2xn Bricks <input name=exclude type=checkbox /></label>
 
 <datalist id=colors>    
 {{ color_options }}
@@ -59,7 +60,9 @@ const my_parts = {{ my_parts }}
 function search_part(q, color, part, min_qty) {
   const re = new RegExp(q.toLowerCase(),'ui')
 
-  let results = my_parts.filter((p) => (!part || p[4] == part ||  p[5] == part || p[6] == part) && (!color || p[0] == color) && (!q || re.test(p[1])))
+  const exclude = document.querySelector('[name=exclude]').checked
+
+  let results = my_parts.filter((p) => (!part || p[4] == part ||  p[5] == part || p[6] == part) && (!color || p[0] == color) && (!q || re.test(p[1])) && (!exclude || (p[5] != '2x2-bricks' && p[5] != '2x3-bricks' && p[5] != '2x4-bricks' && !p[1].includes('Technic'))))
 
   if (!color && document.querySelector('[name=groupcolors]').checked) {
       let parts = results.reduce((storage, el) => {
@@ -114,6 +117,7 @@ document.querySelector('input[name=part]').addEventListener('input', update)
 document.querySelector('input[name=color]').addEventListener('input', update)
 document.querySelector('input[name=minqty]').addEventListener('input', update)
 document.querySelector('input[name=groupcolors]').addEventListener('input', update)
+document.querySelector('input[name=exclude]').addEventListener('input', update)
 
 update()
 
