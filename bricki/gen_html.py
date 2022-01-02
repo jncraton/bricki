@@ -36,7 +36,7 @@ search = """
 {{ color_options }}
 </datalist>
 
-<section><p>Unique: <span id=unique></span> Total quantity: <span id=count></span></p></section>
+<section><p>Unique: <span id=unique></span> Total quantity: <span id=count></span> Sorted Elements: <span id=sorted_elements></span></p></section>
 
 <table>
 <thead>
@@ -101,6 +101,9 @@ function update() {
 
   let unique = results.reduce((p, c) => {return 1 + p}, 0)
   document.getElementById('unique').textContent = unique
+
+  let sorted_elements = results.reduce((p, c) => {return( c[6] ? c[2] : 0) + p}, 0)
+  document.getElementById('sorted_elements').textContent = `${sorted_elements} (${parseInt(100*sorted_elements/count)}%)`
 
   let content = ''
 
