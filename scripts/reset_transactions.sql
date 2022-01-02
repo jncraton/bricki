@@ -17,3 +17,4 @@ delete from part_bins;
 .import data/part_bins.csv part_bins
 
 .import data/part_relationships.csv part_relationships
+.import data/bl_part_weights.csv part_weights

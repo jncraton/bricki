@@ -40,6 +40,13 @@ create table if not exists part_bins (
   primary key (part_num, color_id)
 );
 
+create table if not exists part_weights (
+  part_num varchar(16),
+  weight real,
+  foreign key (part_num) references parts(part_num),
+  primary key (part_num)
+);
+
 drop view if exists my_set_parts;
 create view if not exists my_set_parts
 as
