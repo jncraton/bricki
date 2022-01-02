@@ -180,7 +180,7 @@ def search_part(needle, printed=False, duplo=False):
     >>> search_part("tile 1x1 clip")[0][0]
     '12825'
     >>> search_part("plate 1x1 clip horiz")[0][0]
-    '6019'
+    '61252'
     >>> search_part("4444pr0003")[0][0]
     '4444pr0003'
     >>> search_part("")
