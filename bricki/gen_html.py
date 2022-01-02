@@ -29,11 +29,11 @@ search = """
 <label>Part or Bin<input name=part /></label>
 <label>Color <input name=color list=colors /></label>
 <label>Min Quantity <input name=minqty value=0 /></label>
-<label>Group by Part <input name=groupcolors type=checkbox /></label>
-<label>Technic<input name=technic type=checkbox checked /></label>
-<label>2xn Bricks <input name=bricks_2xn type=checkbox checked /></label>
-<label>Part Bin <input name=has_part_bin type=checkbox checked /></label>
-<label>Element Bin <input name=has_element_bin type=checkbox checked /></label>
+<label><input name=groupcolors type=checkbox /> Group by Part</label>
+<label><input name=technic type=checkbox checked /> Technic</label>
+<label><input name=bricks_2xn type=checkbox checked /> 2xn Bricks</label>
+<label><input name=has_part_bin type=checkbox checked /> Part Bin</label>
+<label><input name=has_element_bin type=checkbox checked /> Element Bin</label>
 
 <datalist id=colors>    
 {{ color_options }}
