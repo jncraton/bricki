@@ -30,7 +30,10 @@ search = """
 <label>Color <input name=color list=colors /></label>
 <label>Min Quantity <input name=minqty value=0 /></label>
 <label>Group by Part <input name=groupcolors type=checkbox /></label>
-<label>Exclude Technic and 2xn Bricks <input name=exclude type=checkbox /></label>
+<label>Technic<input name=technic type=checkbox checked /></label>
+<label>2xn Bricks <input name=bricks_2xn type=checkbox checked /></label>
+<label>Part Bin <input name=has_part_bin type=checkbox checked /></label>
+<label>Element Bin <input name=has_element_bin type=checkbox checked /></label>
 
 <datalist id=colors>    
 {{ color_options }}
@@ -60,9 +63,19 @@ const my_parts = {{ my_parts }}
 function search_part(q, color, part, min_qty) {
   const re = new RegExp(q.toLowerCase(),'ui')
 
-  const exclude = document.querySelector('[name=exclude]').checked
+  const technic = document.querySelector('[name=technic]').checked
+  const bricks_2xn = document.querySelector('[name=bricks_2xn]').checked
+  const has_part_bin = document.querySelector('[name=has_part_bin]').checked
+  const has_element_bin = document.querySelector('[name=has_element_bin]').checked
 
-  let results = my_parts.filter((p) => (!part || p[4] == part ||  p[5] == part || p[6] == part) && (!color || p[0] == color) && (!q || re.test(p[1])) && (!exclude || (p[5] != '2x2-bricks' && p[5] != '2x3-bricks' && p[5] != '2x4-bricks' && !p[1].includes('Technic'))))
+  let results = my_parts.filter((p) => 
+    (!part || p[4] == part ||  p[5] == part || p[6] == part) && 
+    (!color || p[0] == color) && (!q || re.test(p[1])) && 
+    (technic || !p[1].includes('Technic')) &&
+    (bricks_2xn || (p[5] != '2x2-bricks' && p[5] != '2x3-bricks' && p[5] != '2x4-bricks')) &&
+    (has_part_bin || !p[5]) &&
+    (has_element_bin || !p[6])
+ )
 
   if (!color && document.querySelector('[name=groupcolors]').checked) {
       let parts = results.reduce((storage, el) => {
@@ -123,7 +136,10 @@ document.querySelector('input[name=part]').addEventListener('input', update)
 document.querySelector('input[name=color]').addEventListener('input', update)
 document.querySelector('input[name=minqty]').addEventListener('input', update)
 document.querySelector('input[name=groupcolors]').addEventListener('input', update)
-document.querySelector('input[name=exclude]').addEventListener('input', update)
+document.querySelector('input[name=technic]').addEventListener('input', update)
+document.querySelector('input[name=bricks_2xn]').addEventListener('input', update)
+document.querySelector('input[name=has_part_bin]').addEventListener('input', update)
+document.querySelector('input[name=has_element_bin]').addEventListener('input', update)
 
 update()
 
