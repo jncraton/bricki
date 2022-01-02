@@ -35,7 +35,7 @@ search = """
 {{ color_options }}
 </datalist>
 
-<section><p>Unique: <span id=unique></span> Total quantity: <span id=count></span></p></section>
+<section><p>Unique: <span id=unique></span> Total quantity: <span id=count></span> Total weight: <span id=weight></span>kg</p></section>
 
 <table>
 <thead>
@@ -43,6 +43,7 @@ search = """
 <th></th>
 <th>Part</th>
 <th>Quantity</th>
+<th>Weight</th>
 <th>Color</th>
 <th>Name</th>
 <th>Part Bin</th>
@@ -99,11 +100,14 @@ function update() {
   let unique = results.reduce((p, c) => {return 1 + p}, 0)
   document.getElementById('unique').textContent = unique
 
+  let weight = results.reduce((p, c) => {return ((c[2]*c[7]) || 0) + p}, 0)
+  document.getElementById('weight').textContent = parseInt(weight) / 1000
+
   let content = ''
 
   results.slice(0,100).forEach((r) => {
     let img_url = 'https://m.rebrickable.com/media/parts/ldraw/' + r[3] + '/' + r[4] + '.png'
-    content += `<tr><td><img src="${img_url}"></td><td>${r[4]}</td><td>${r[2]}</td><td>${r[0]}</td><td>${r[1]}</td><td>${r[5] || ''}</td><td>${r[6] || ''}</td></tr>`
+    content += `<tr><td><img src="${img_url}"></td><td>${r[4]}</td><td>${r[2]}</td><td>${parseInt(r[2] * r[7])}</td><td>${r[0]}</td><td>${r[1]}</td><td>${r[5] || ''}</td><td>${r[6] || ''}</td></tr>`
   })
 
   document.querySelector('#results').innerHTML = content
@@ -145,11 +149,13 @@ with open(path + "elements.html", "w") as out:
     colors.id,
     canonical_part_num,
     part_bins.bin_id,
-    element_bins.bin_id
+    element_bins.bin_id,
+    weight
   from my_parts
   join parts on parts.part_num=my_parts.part_num 
   join colors on colors.id=my_parts.color_id
   join canonical_parts on canonical_parts.part_num = my_parts.part_num
+  left join part_weights on part_weights.part_num = canonical_part_num
   left join part_bins as element_bins on canonical_parts.canonical_part_num=element_bins.part_num and my_parts.color_id=element_bins.color_id
   left join part_bins on canonical_parts.canonical_part_num=part_bins.part_num and part_bins.color_id=-1
   group by canonical_part_num, colors.id
