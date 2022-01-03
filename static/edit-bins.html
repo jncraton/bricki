@@ -39,29 +39,34 @@ function getImg(part_num, color_id) {
 
 let colors = []
 let selected_part
+let timer
 
 async function update() {
-  let parts_response = await fetch('/search_part?q=' + document.querySelector("input[name=part_search]").value)
-  let parts = await parts_response.json()
+  clearTimeout(timer)
 
-  let bins_response = await fetch('/bins')
-  let bins = await bins_response.json()
+  timer = setTimeout(async () => {
+    let parts_response = await fetch('/search_part?q=' + document.querySelector("input[name=part_search]").value)
+    let parts = await parts_response.json()
 
-  document.querySelector('#part_results').innerHTML = ''
-  parts.forEach((part, i) => {
-    if (i == 0) { selected_part = part.part_num }
-    document.querySelector('#part_results').innerHTML += `<tr><td><img src="${getImg(part.part_num, 71)}" alt=""/><td>${part.part_name} (${part.part_num})</tr>`
+    let bins_response = await fetch('/bins')
+    let bins = await bins_response.json()
 
-    bins.forEach(bin => {
-      if (bin[3] == part.part_num) {
-        let color_name = bin[0]
-        let color = bin[4] == -1 ? 71 : bin[4]
-        let name = bin[2]
+    document.querySelector('#part_results').innerHTML = ''
+    parts.forEach((part, i) => {
+      if (i == 0) { selected_part = part.part_num }
+      document.querySelector('#part_results').innerHTML += `<tr><td><img src="${getImg(part.part_num, 71)}" alt=""/><td>${part.part_name} (${part.part_num})</tr>`
 
-        document.querySelector('#part_results').innerHTML += `<tr><td><img src="${getImg(part.part_num, color)}" alt=""/><td>${color_name}</td><td>${part.part_name}</td><td>${name}</td></tr>`
-      }
+      bins.forEach(bin => {
+        if (bin[3] == part.part_num) {
+          let color_name = bin[0]
+          let color = bin[4] == -1 ? 71 : bin[4]
+          let name = bin[2]
+
+          document.querySelector('#part_results').innerHTML += `<tr><td><img src="${getImg(part.part_num, color)}" alt=""/><td>${color_name}</td><td>${part.part_name}</td><td>${name}</td></tr>`
+        }
+      })
     })
-  })
+  }, 300)
 }
 
 async function init() {
