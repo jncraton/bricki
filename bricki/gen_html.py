@@ -70,7 +70,7 @@ function search_part(q, color, part, min_qty) {
 
   let results = my_parts.filter((p) => 
     (!part || p[4] == part ||  p[5] == part || p[6] == part) && 
-    (!color || p[0] == color) && (!q || re.test(p[1])) && 
+    (!color || color.split(',').includes(p[0])) && (!q || re.test(p[1])) && 
     (technic || !p[1].includes('Technic')) &&
     (bricks_2xn || (p[5] != '2x2-bricks' && p[5] != '2x3-bricks' && p[5] != '2x4-bricks')) &&
     (has_part_bin || !p[5]) &&
