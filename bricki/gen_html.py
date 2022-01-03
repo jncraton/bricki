@@ -41,7 +41,7 @@ search = """
 
 <section><p>Unique: <span id=unique></span> Total quantity: <span id=count></span> Sorted Elements: <span id=sorted_elements></span> Sorted Parts: <span id=sorted_parts></span></p></section>
 
-<table>
+<table contenteditable>
 <thead>
 <tr>
 <th></th>
