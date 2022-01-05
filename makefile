@@ -13,7 +13,7 @@ $(db):
 	sqlite3 $(db) < scripts/schema.sql
 	sqlite3 $(db) < scripts/reset_transactions.sql
 
-export:
+export: $(db)
 	sqlite3 $(db) < scripts/export.sql
 
 dumps:
@@ -37,10 +37,10 @@ bins:
 www: $(db)
 	python3 bricki/gen_html.py www
 
-run:
+run: $(db)
 	python3 bricki/cli.py
 
-web:
+web: $(db)
 	FLASK_APP=bricki/web.py python3 -m flask run
 
 clean:
