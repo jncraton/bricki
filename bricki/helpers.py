@@ -177,10 +177,10 @@ def search_part(needle, printed=False, duplo=False):
     '3040b'
     >>> search_part("slope 2x1")[1][0] != '3040a'
     True
-    >>> search_part("tile 1x1 clip")[0][0]
-    '12825'
     >>> search_part("plate 1x1 clip horiz")[0][0]
     '61252'
+    >>> search_part("plate 1x2 arm up")[0][0]
+    '88072'
     >>> search_part("4444pr0003")[0][0]
     '4444pr0003'
     >>> search_part("")
