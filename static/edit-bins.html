@@ -21,7 +21,9 @@ td {
 </head>
 <body>
 
-<input name="bin_id" placeholder="Bin..." />
+<input list="bins" name="bin_id" placeholder="Bin..." />
+<datalist id="bins">
+</datalist>
 <input list="colors" name="color" />
 <datalist id="colors">
 </datalist>
@@ -50,6 +52,15 @@ async function update() {
 
     let bins_response = await fetch('/bins')
     let bins = await bins_response.json()
+
+    let seen = new Set()
+    document.querySelector('#bins').innerHTML = ''
+    bins.forEach(bin => {
+      if (!seen.has(bin[2])) {
+        document.querySelector('#bins').innerHTML += `<option value="${bin[2]}">`
+        seen.add(bin[2])
+      }
+    })
 
     document.querySelector('#part_results').innerHTML = ''
     parts.forEach((part, i) => {
@@ -94,6 +105,7 @@ async function init() {
     update()
   })
 
+  update()
 }
 
 init()
