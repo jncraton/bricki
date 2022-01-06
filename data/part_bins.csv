@@ -14,12 +14,14 @@
 14704,71,1xn-plates
 14704,-1,1xn-plates
 15397,-1,1xn-plates
+15456,-1,1xn-plates
 2420,-1,1xn-plates
 3023,-1,1xn-plates
 3024,-1,1xn-plates
 32028,-1,1xn-plates
 34103,-1,1xn-plates
 3460,-1,1xn-plates
+35480,-1,1xn-plates
 3623,-1,1xn-plates
 3666,-1,1xn-plates
 3710,-1,1xn-plates
@@ -264,6 +266,7 @@
 12825,-1,clip-plates
 15712,-1,clip-plates
 18649,-1,clip-plates
+20482,-1,clip-plates
 2397,-1,clip-plates
 2429,-1,clip-plates
 2430,-1,clip-plates
@@ -739,10 +742,9 @@
 42023,-1,slopes-curved
 43710,-1,slopes-curved
 43711,-1,slopes-curved
-43720,-1,slopes-curved
-43721,-1,slopes-curved
 44126,-1,slopes-curved
 44675,-1,slopes-curved
+47457,-1,slopes-curved
 50950,-1,slopes-curved
 6081,-1,slopes-curved
 6091,-1,slopes-curved
@@ -771,6 +773,7 @@
 3041,-1,slopes-small
 3044b,-1,slopes-small
 3045,-1,slopes-small
+3046a,-1,slopes-small
 3049d,-1,slopes-small
 3299,-1,slopes-small
 3300,-1,slopes-small
@@ -786,6 +789,7 @@
 11211,-1,studs-not-on-top
 2436,-1,studs-not-on-top
 30414,-1,studs-not-on-top
+32952,-1,studs-not-on-top
 4070,-1,studs-not-on-top
 4070a,-1,studs-not-on-top
 44728,-1,studs-not-on-top
