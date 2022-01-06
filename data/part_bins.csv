@@ -692,9 +692,12 @@
 3795,70,reddish-brown-3730-1
 3941,70,reddish-brown-3730-1
 3037,-1,slopes
+3038,-1,slopes
 3039,-1,slopes
+3297,-1,slopes
 3298,-1,slopes
 3684,-1,slopes
+4445,-1,slopes
 4460b,-1,slopes
 11477,-1,slopes-curved
 15068,-1,slopes-curved
@@ -830,6 +833,7 @@
 62462,-1,technic-small
 6536,-1,technic-small
 6558,-1,technic-small
+63864,-1,tile
 2412b,-1,tiles
 2431,-1,tiles
 2432,-1,tiles
@@ -839,7 +843,6 @@
 3070b,-1,tiles
 4150,-1,tiles
 4162,-1,tiles
-63864,-1,tile
 6636,-1,tiles
 87079,-1,tiles
 98138,-1,tiles
