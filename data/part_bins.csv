@@ -605,11 +605,8 @@
 2877,-1,patterned-bricks+slopes
 30136,-1,patterned-bricks+slopes
 30137,-1,patterned-bricks+slopes
-3660,-1,patterned-bricks+slopes
-3665,-1,patterned-bricks+slopes
 3941,-1,patterned-bricks+slopes
 4460a,-1,patterned-bricks+slopes
-4460b,-1,patterned-bricks+slopes
 98283,-1,patterned-bricks+slopes
 2417,-1,plants
 2423,-1,plants
@@ -697,6 +694,8 @@
 3037,-1,slopes
 3039,-1,slopes
 3298,-1,slopes
+3684,-1,slopes
+4460b,-1,slopes
 11477,-1,slopes-curved
 15068,-1,slopes-curved
 30165,-1,slopes-curved
@@ -722,6 +721,16 @@
 88293,-1,slopes-curved
 88930,-1,slopes-curved
 93273,-1,slopes-curved
+2449,-1,slopes-inverted
+3660,-1,slopes-inverted
+3665,-1,slopes-inverted
+3676,-1,slopes-inverted
+3747b,-1,slopes-inverted
+4287a,-1,slopes-inverted
+4854,-1,slopes-inverted
+4855,-1,slopes-inverted
+4871,-1,slopes-inverted
+52501,-1,slopes-inverted
 15571,-1,slopes-small
 15672,-1,slopes-small
 28192,-1,slopes-small
