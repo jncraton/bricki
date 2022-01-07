@@ -1,142 +1,150 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      img {
+        height: 64px;
+      }
+      table {
+        border-collapse: collapse;
+      }
+      td {
+        padding: 0px 18px;
+        border: 1px solid #ddd;
+      }
+    </style>
+  </head>
 
-<head>
-  <meta charset="utf-8">
-  <style>
-  img {
-    height: 64px;
-  }
-  table {
-    border-collapse: collapse;
-  }
-  td {
-    padding: 0px 18px;
-    border:1px solid #ddd;
-  }
-  </style>
-</head>
+  <body>
+    <label>Search <input name="q" /></label>
+    <label>Part or Bin<input name="part" /></label>
+    <label>Color <input name="color" list="colors" /></label>
+    <label>Min Quantity <input name="minqty" value="0" /></label>
+    <label><input name="groupcolors" type="checkbox" /> Group by Part</label>
+    <label><input name="technic" type="checkbox" checked /> Technic</label>
+    <label
+      ><input name="bricks_2xn" type="checkbox" checked /> 2xn Bricks</label
+    >
+    <label
+      ><input name="has_part_bin" type="checkbox" checked /> Part Bin</label
+    >
+    <label
+      ><input name="has_element_bin" type="checkbox" checked /> Element
+      Bin</label
+    >
 
-<body>
+    <datalist id="colors">{{ color_options }}</datalist>
 
-<label>Search <input name=q /></label>
-<label>Part or Bin<input name=part /></label>
-<label>Color <input name=color list=colors /></label>
-<label>Min Quantity <input name=minqty value=0 /></label>
-<label><input name=groupcolors type=checkbox /> Group by Part</label>
-<label><input name=technic type=checkbox checked /> Technic</label>
-<label><input name=bricks_2xn type=checkbox checked /> 2xn Bricks</label>
-<label><input name=has_part_bin type=checkbox checked /> Part Bin</label>
-<label><input name=has_element_bin type=checkbox checked /> Element Bin</label>
+    <section>
+      <p>
+        Unique: <span id="unique"></span> Total quantity:
+        <span id="count"></span> Sorted Elements:
+        <span id="sorted_elements"></span> Sorted Parts:
+        <span id="sorted_parts"></span>
+      </p>
+    </section>
 
-<datalist id=colors>    
-{{ color_options }}
-</datalist>
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          <th>Part</th>
+          <th>Quantity</th>
+          <th>Color</th>
+          <th>Name</th>
+          <th>Part Bin</th>
+          <th>Element Bin</th>
+        </tr>
+      </thead>
+      <tbody id="results"></tbody>
+    </table>
 
-<section><p>Unique: <span id=unique></span> Total quantity: <span id=count></span> Sorted Elements: <span id=sorted_elements></span> Sorted Parts: <span id=sorted_parts></span></p></section>
+    <script>
+      const my_parts = {{ my_parts }}
 
-<table>
-<thead>
-<tr>
-<th></th>
-<th>Part</th>
-<th>Quantity</th>
-<th>Color</th>
-<th>Name</th>
-<th>Part Bin</th>
-<th>Element Bin</th>
-</tr>
-</thead>
-<tbody id=results>
-</tbody>
-</table>
+      function search_part(q, color, part, min_qty) {
+        const re = new RegExp(q.toLowerCase(),'ui')
 
-<script>
-const my_parts = {{ my_parts }}
+        const technic = document.querySelector('[name=technic]').checked
+        const bricks_2xn = document.querySelector('[name=bricks_2xn]').checked
+        const has_part_bin = document.querySelector('[name=has_part_bin]').checked
+        const has_element_bin = document.querySelector('[name=has_element_bin]').checked
 
-function search_part(q, color, part, min_qty) {
-  const re = new RegExp(q.toLowerCase(),'ui')
+        let results = my_parts.filter((p) =>
+          (!part || p[4] == part ||  p[5] == part || p[6] == part) &&
+          (!color || color.split(',').includes(p[0])) && (!q || re.test(p[1])) &&
+          (technic || !p[1].includes('Technic')) &&
+          (bricks_2xn || (p[5] != '2x2-bricks' && p[5] != '2x3-bricks' && p[5] != '2x4-bricks')) &&
+          (has_part_bin || !p[5]) &&
+          (has_element_bin || !p[6])
+       )
 
-  const technic = document.querySelector('[name=technic]').checked
-  const bricks_2xn = document.querySelector('[name=bricks_2xn]').checked
-  const has_part_bin = document.querySelector('[name=has_part_bin]').checked
-  const has_element_bin = document.querySelector('[name=has_element_bin]').checked
+        if (!color && document.querySelector('[name=groupcolors]').checked) {
+            let parts = results.reduce((storage, el) => {
+              let group = el[4]
+              if (!storage[group]) {
+                storage[group] = [...el]
+                storage[group][0] = 0
+              } else {
+                storage[group][2] += el[2]
+              }
+              storage[group][0] += 1
+              storage[group][3] = 71
+              return storage
+            }, {})
 
-  let results = my_parts.filter((p) => 
-    (!part || p[4] == part ||  p[5] == part || p[6] == part) && 
-    (!color || color.split(',').includes(p[0])) && (!q || re.test(p[1])) && 
-    (technic || !p[1].includes('Technic')) &&
-    (bricks_2xn || (p[5] != '2x2-bricks' && p[5] != '2x3-bricks' && p[5] != '2x4-bricks')) &&
-    (has_part_bin || !p[5]) &&
-    (has_element_bin || !p[6])
- )
-
-  if (!color && document.querySelector('[name=groupcolors]').checked) {
-      let parts = results.reduce((storage, el) => {
-        let group = el[4]
-        if (!storage[group]) {
-          storage[group] = [...el]
-          storage[group][0] = 0
-        } else {
-          storage[group][2] += el[2]
+            results = Object.values(parts).reduce((p, c) => {p.push(c); return p}, [])
         }
-        storage[group][0] += 1
-        storage[group][3] = 71
-        return storage
-      }, {})
 
-      results = Object.values(parts).reduce((p, c) => {p.push(c); return p}, [])
-  }
+        results = results.filter((p) => (!min_qty || p[2] >= min_qty))
 
-  results = results.filter((p) => (!min_qty || p[2] >= min_qty))
+        results = results.sort((a,b) => {return a[2] < b[2]})
 
-  results = results.sort((a,b) => {return a[2] < b[2]})
+        return results
+      }
 
-  return results
-}
+      function update() {
+        let q = document.querySelector('input[name=q]').value
+        let color = document.querySelector('input[name=color]').value
+        let part = document.querySelector('input[name=part]').value
+        let min_qty = document.querySelector('input[name=minqty]').value
 
-function update() {
-  let q = document.querySelector('input[name=q]').value
-  let color = document.querySelector('input[name=color]').value
-  let part = document.querySelector('input[name=part]').value
-  let min_qty = document.querySelector('input[name=minqty]').value
+        let results = search_part(q,color,part,min_qty)
 
-  let results = search_part(q,color,part,min_qty)
+        let count = results.reduce((p, c) => {return c[2] + p}, 0)
+        document.getElementById('count').textContent = count
 
-  let count = results.reduce((p, c) => {return c[2] + p}, 0)
-  document.getElementById('count').textContent = count
+        let unique = results.reduce((p, c) => {return 1 + p}, 0)
+        document.getElementById('unique').textContent = unique
 
-  let unique = results.reduce((p, c) => {return 1 + p}, 0)
-  document.getElementById('unique').textContent = unique
+        let sorted_elements = results.reduce((p, c) => {return( c[6] ? c[2] : 0) + p}, 0)
+        document.getElementById('sorted_elements').textContent = `${sorted_elements} (${parseInt(100*sorted_elements/count)}%)`
 
-  let sorted_elements = results.reduce((p, c) => {return( c[6] ? c[2] : 0) + p}, 0)
-  document.getElementById('sorted_elements').textContent = `${sorted_elements} (${parseInt(100*sorted_elements/count)}%)`
+        let sorted_parts = results.reduce((p, c) => {return( c[5] || c[6] ? c[2] : 0) + p}, 0)
+        document.getElementById('sorted_parts').textContent = `${sorted_parts} (${parseInt(100*sorted_parts/count)}%)`
 
-  let sorted_parts = results.reduce((p, c) => {return( c[5] || c[6] ? c[2] : 0) + p}, 0)
-  document.getElementById('sorted_parts').textContent = `${sorted_parts} (${parseInt(100*sorted_parts/count)}%)`
+        let content = ''
 
-  let content = ''
+        results.slice(0,100).forEach((r) => {
+          let img_url = 'https://m.rebrickable.com/media/parts/ldraw/' + r[3] + '/' + r[4] + '.png'
+          content += `<tr><td><img src="${img_url}"></td><td><a href="https://rebrickable.com/parts/${r[4]}">${r[4]}</a></td><td>${r[2]}</td><td>${r[0]}</td><td>${r[1]}</td><td>${r[5] || ''}</td><td>${r[6] || ''}</td></tr>`
+        })
 
-  results.slice(0,100).forEach((r) => {
-    let img_url = 'https://m.rebrickable.com/media/parts/ldraw/' + r[3] + '/' + r[4] + '.png'
-    content += `<tr><td><img src="${img_url}"></td><td><a href="https://rebrickable.com/parts/${r[4]}">${r[4]}</a></td><td>${r[2]}</td><td>${r[0]}</td><td>${r[1]}</td><td>${r[5] || ''}</td><td>${r[6] || ''}</td></tr>`
-  })
+        document.querySelector('#results').innerHTML = content
+      }
 
-  document.querySelector('#results').innerHTML = content
-}
+      document.querySelector('input[name=q]').addEventListener('input', update)
+      document.querySelector('input[name=part]').addEventListener('input', update)
+      document.querySelector('input[name=color]').addEventListener('input', update)
+      document.querySelector('input[name=minqty]').addEventListener('input', update)
+      document.querySelector('input[name=groupcolors]').addEventListener('input', update)
+      document.querySelector('input[name=technic]').addEventListener('input', update)
+      document.querySelector('input[name=bricks_2xn]').addEventListener('input', update)
+      document.querySelector('input[name=has_part_bin]').addEventListener('input', update)
+      document.querySelector('input[name=has_element_bin]').addEventListener('input', update)
 
-document.querySelector('input[name=q]').addEventListener('input', update)
-document.querySelector('input[name=part]').addEventListener('input', update)
-document.querySelector('input[name=color]').addEventListener('input', update)
-document.querySelector('input[name=minqty]').addEventListener('input', update)
-document.querySelector('input[name=groupcolors]').addEventListener('input', update)
-document.querySelector('input[name=technic]').addEventListener('input', update)
-document.querySelector('input[name=bricks_2xn]').addEventListener('input', update)
-document.querySelector('input[name=has_part_bin]').addEventListener('input', update)
-document.querySelector('input[name=has_element_bin]').addEventListener('input', update)
-
-update()
-
-</script>
-</body>
+      update()
+    </script>
+  </body>
 </html>
