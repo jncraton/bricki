@@ -70,10 +70,12 @@
               if (!storage[group]) {
                 storage[group] = [...el]
                 storage[group][0] = 0
+                storage[group][6] = 0
               } else {
                 storage[group][2] += el[2]
               }
               storage[group][0] += 1
+              storage[group][6] += el[6] ? 1 : 0
               storage[group][3] = 71
               return storage
             }, {})
