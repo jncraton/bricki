@@ -29,12 +29,7 @@
 
     <datalist id="colors">{{ color_options }}</datalist>
 
-    <section>
-      <p>
-        Unique: <span id="unique"></span> Total quantity: <span id="count"></span> Sorted Elements:
-        <span id="sorted_elements"></span> Sorted Parts: <span id="sorted_parts"></span>
-      </p>
-    </section>
+    <section id="stats"></section>
 
     <table>
       <thead>
@@ -97,16 +92,16 @@
         let results = search_part(value('q'),value('color'),value('part'),value('minqty'))
 
         let count = results.reduce((p, c) => {return c[2] + p}, 0)
-        document.getElementById('count').textContent = count
-
         let unique = results.reduce((p, c) => {return 1 + p}, 0)
-        document.getElementById('unique').textContent = unique
-
         let sorted_elements = results.reduce((p, c) => {return( c[6] ? c[2] : 0) + p}, 0)
-        document.getElementById('sorted_elements').textContent = `${sorted_elements} (${parseInt(100*sorted_elements/count)}%)`
-
         let sorted_parts = results.reduce((p, c) => {return( c[5] || c[6] ? c[2] : 0) + p}, 0)
-        document.getElementById('sorted_parts').textContent = `${sorted_parts} (${parseInt(100*sorted_parts/count)}%)`
+        
+        document.querySelector('#stats').textContent = `
+          Unique: ${unique}
+          Total quantity: ${count}
+          Sorted Elements: ${sorted_elements} (${parseInt(100*sorted_elements/count)}%)
+          Sorted Parts: ${sorted_parts} (${parseInt(100*sorted_parts/count)}%)
+        `
 
         document.querySelector('#results').innerHTML = results.slice(0,100).reduce((p,r) => {
           let img_url = 'https://m.rebrickable.com/media/parts/ldraw/' + r[3] + '/' + r[4] + '.png'
