@@ -184,7 +184,6 @@
 3009,0,black-3730-1
 3010,0,black-3730-1
 3020,0,black-3730-1
-3037,0,black-3730-1
 3039,0,black-3730-1
 3040b,0,black-3730-1
 3460,0,black-3730-1
@@ -204,6 +203,7 @@
 3068b,1,blue-3700-1
 3069b,1,blue-3700-1
 3070b,1,blue-3700-1
+3298,1,blue-3700-1
 3623,1,blue-3700-1
 3794b,1,blue-3700-1
 4070,1,blue-3700-1
@@ -692,7 +692,6 @@
 3009,4,red-3730-1
 3010,4,red-3730-1
 3020,4,red-3730-1
-3037,4,red-3730-1
 3039,4,red-3730-1
 3040b,4,red-3730-1
 3460,4,red-3730-1
@@ -740,6 +739,21 @@
 3710,70,reddish-brown-3730-1
 3795,70,reddish-brown-3730-1
 3941,70,reddish-brown-3730-1
+3037,320,roof-slopes
+3037,4,roof-slopes
+3037,272,roof-slopes
+3037,0,roof-slopes
+3038,0,roof-slopes
+3038,272,roof-slopes
+3039,272,roof-slopes
+3039,320,roof-slopes
+3297,320,roof-slopes
+3297,4,roof-slopes
+3297,1,roof-slopes
+3297,0,roof-slopes
+3298,0,roof-slopes
+4445,272,roof-slopes
+4445,320,roof-slopes
 3037,-1,slopes
 3038,-1,slopes
 3039,-1,slopes
