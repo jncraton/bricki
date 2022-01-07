@@ -108,14 +108,10 @@
         let sorted_parts = results.reduce((p, c) => {return( c[5] || c[6] ? c[2] : 0) + p}, 0)
         document.getElementById('sorted_parts').textContent = `${sorted_parts} (${parseInt(100*sorted_parts/count)}%)`
 
-        let content = ''
-
-        results.slice(0,100).forEach((r) => {
+        document.querySelector('#results').innerHTML = results.slice(0,100).reduce((p,r) => {
           let img_url = 'https://m.rebrickable.com/media/parts/ldraw/' + r[3] + '/' + r[4] + '.png'
-          content += `<tr><td><img src="${img_url}"></td><td><a href="https://rebrickable.com/parts/${r[4]}">${r[4]}</a></td><td>${r[2]}</td><td>${r[0]}</td><td>${r[1]}</td><td>${r[5] || ''}</td><td>${r[6] || ''}</td></tr>`
-        })
-
-        document.querySelector('#results').innerHTML = content
+          return p + `<tr><td><img src="${img_url}"></td><td><a href="https://rebrickable.com/parts/${r[4]}">${r[4]}</a></td><td>${r[2]}</td><td>${r[0]}</td><td>${r[1]}</td><td>${r[5] || ''}</td><td>${r[6] || ''}</td></tr>`
+        }, '')
       }
 
       document.querySelectorAll('input').forEach(e => e.addEventListener('input', update))
