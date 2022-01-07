@@ -118,15 +118,7 @@
         document.querySelector('#results').innerHTML = content
       }
 
-      document.querySelector('input[name=q]').addEventListener('input', update)
-      document.querySelector('input[name=part]').addEventListener('input', update)
-      document.querySelector('input[name=color]').addEventListener('input', update)
-      document.querySelector('input[name=minqty]').addEventListener('input', update)
-      document.querySelector('input[name=groupcolors]').addEventListener('input', update)
-      document.querySelector('input[name=technic]').addEventListener('input', update)
-      document.querySelector('input[name=bricks_2xn]').addEventListener('input', update)
-      document.querySelector('input[name=has_part_bin]').addEventListener('input', update)
-      document.querySelector('input[name=has_element_bin]').addEventListener('input', update)
+      document.querySelectorAll('input').forEach(e => e.addEventListener('input', update))
 
       update()
     </script>
