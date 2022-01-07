@@ -54,24 +54,22 @@
     <script>
       const my_parts = {{ my_parts }}
 
+      const isChecked = q => document.querySelector('[name=' + q).checked
+      const value = q => document.querySelector('[name=' + q).value
+
       function search_part(q, color, part, min_qty) {
         const re = new RegExp(q.toLowerCase(),'ui')
-
-        const technic = document.querySelector('[name=technic]').checked
-        const bricks_2xn = document.querySelector('[name=bricks_2xn]').checked
-        const has_part_bin = document.querySelector('[name=has_part_bin]').checked
-        const has_element_bin = document.querySelector('[name=has_element_bin]').checked
 
         let results = my_parts.filter((p) =>
           (!part || p[4] == part ||  p[5] == part || p[6] == part) &&
           (!color || color.split(',').includes(p[0])) && (!q || re.test(p[1])) &&
-          (technic || !p[1].includes('Technic')) &&
-          (bricks_2xn || (p[5] != '2x2-bricks' && p[5] != '2x3-bricks' && p[5] != '2x4-bricks')) &&
-          (has_part_bin || !p[5]) &&
-          (has_element_bin || !p[6])
+          (isChecked('technic') || !p[1].includes('Technic')) &&
+          (isChecked('bricks_2xn') || (p[5] != '2x2-bricks' && p[5] != '2x3-bricks' && p[5] != '2x4-bricks')) &&
+          (isChecked('has_part_bin') || !p[5]) &&
+          (isChecked('has_element_bin') || !p[6])
        )
 
-        if (!color && document.querySelector('[name=groupcolors]').checked) {
+        if (!color && isChecked('groupcolors')) {
             let parts = results.reduce((storage, el) => {
               let group = el[4]
               if (!storage[group]) {
@@ -96,12 +94,7 @@
       }
 
       function update() {
-        let q = document.querySelector('input[name=q]').value
-        let color = document.querySelector('input[name=color]').value
-        let part = document.querySelector('input[name=part]').value
-        let min_qty = document.querySelector('input[name=minqty]').value
-
-        let results = search_part(q,color,part,min_qty)
+        let results = search_part(value('q'),value('color'),value('part'),value('minqty'))
 
         let count = results.reduce((p, c) => {return c[2] + p}, 0)
         document.getElementById('count').textContent = count
