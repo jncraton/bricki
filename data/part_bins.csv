@@ -37,7 +37,7 @@
 64644,-1,bars+fences
 64647,-1,bars+fences
 6583,-1,bars+fences
-80324,-1,bars+fences
+44676,-1,bars+fences
 86208,-1,bars+fences
 87747,-1,bars+fences
 87994,-1,bars+fences
@@ -178,9 +178,8 @@
 2921,-1,bricks-special
 30000,-1,bricks-special
 30236,-1,bricks-special
-30237b,-1,bricks-special
+30237,-1,bricks-special
 30364,-1,bricks-special
-30365,-1,bricks-special
 30386,-1,bricks-special
 3062b,-1,bricks-special
 3830,-1,bricks-special
@@ -188,7 +187,7 @@
 39893,-1,bricks-special
 4216,-1,bricks-special
 48092,-1,bricks-special
-54671,-1,bricks-special
+30365,-1,bricks-special
 60475b,-1,bricks-special
 60583b,-1,bricks-special
 6232,-1,bricks-special
