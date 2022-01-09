@@ -84,7 +84,7 @@ with open(path + "bins.html", "w") as out:
     
         seen.add(p[3])
  
-        fig += f'<figure><img src="https://m.rebrickable.com/media/parts/ldraw/{p[4]}/{p[1]}.png" loading=lazy><figcaption>{p[1]} ({p[5]})</figcaption></figure>'
+        fig += f'<figure><img src="https://cdn.rebrickable.com/media/thumbs/parts/ldraw/{p[4]}/{p[1]}.png/250x250p.png" loading=lazy><figcaption>{p[1]} ({p[5]})</figcaption></figure>'
 
         return fig
 
