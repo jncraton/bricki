@@ -69,8 +69,21 @@ with open(path + "bins.html", "w") as out:
           """
     )
 
+    seen = set()
+
     def make_fig(p):
-        return f'<figure><img src="https://m.rebrickable.com/media/parts/ldraw/71/{p[1]}.png" loading=lazy><figcaption>{p[1]}</figcaption></figure>'
+        fig = ''
+
+        if not p[3] in seen:
+            bin = p[3].replace('-', ' ').title().replace('Xn','xN').replace('X','x')
+        
+            fig = f'</section><h1>{bin}</h1><section>'
+    
+        seen.add(p[3])
+ 
+        fig += f'<figure><img src="https://m.rebrickable.com/media/parts/ldraw/71/{p[1]}.png" loading=lazy><figcaption>{p[1]}</figcaption></figure>'
+
+        return fig
 
     figures = [make_fig(p) for p in parts]
 
