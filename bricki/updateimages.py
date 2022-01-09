@@ -1,6 +1,9 @@
 import helpers
 import urllib.request 
 
+# This script will overwrite existing images
+# Images should be converted to 16 color 96x96 thumbnails after download
+
 parts = helpers.query(
     """
       select 
