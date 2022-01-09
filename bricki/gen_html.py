@@ -75,7 +75,7 @@ with open(path + "bins.html", "w") as out:
         fig = ''
 
         if not p[3] in seen:
-            bin = p[3].replace('-', ' ').title().replace('Xn','xN').replace('X','x')
+            bin = p[3].replace('-', ' ').replace('+',', ').title().replace('Xn','xN').replace('X','x')
         
             fig = f'</section><h1>{bin}</h1><section>'
     
