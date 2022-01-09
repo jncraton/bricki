@@ -3,8 +3,6 @@ import json
 
 path = "www/"
 
-template = open('bricki/templates/elements.html').read()
-
 colors = helpers.query(
 """
 select 
@@ -19,6 +17,9 @@ order by colors.name
 color_options = [f'<option value="{c[0]}">' for c in colors]
 
 with open(path + "elements.html", "w") as out:
+    template = open('bricki/templates/elements.html').read()
+
+
     my_parts = helpers.query(
         """
   select 
@@ -43,5 +44,36 @@ with open(path + "elements.html", "w") as out:
 
     s = template.replace("{{ my_parts }}", json.dumps(my_parts))
     s = s.replace("{{ color_options }}", '\n'.join(color_options))
+
+    out.write(s)
+
+
+with open(path + "bins.html", "w") as out:
+    template = open('bricki/templates/bins.html').read()
+
+    parts = helpers.query(
+        """
+          select 
+            parts.name,
+            canonical_part_num,
+            sum(quantity) as quantity,
+            bin_id
+          from my_parts
+          join canonical_parts on canonical_parts.part_num = my_parts.part_num
+          join parts on parts.part_num=canonical_part_num
+          join part_bins on canonical_part_num=part_bins.part_num and part_bins.color_id=-1
+          where part_bins.bin_id not null
+          group by canonical_part_num
+          having sum(quantity) > 0
+          order by bin_id, parts.name asc
+          """
+    )
+
+    def make_fig(p):
+        return f'<figure><img src="https://m.rebrickable.com/media/parts/ldraw/71/{p[1]}.png" loading=lazy><figcaption>{p[1]}</figcaption></figure>'
+
+    figures = [make_fig(p) for p in parts]
+
+    s = template.replace("{{ figures }}", ''.join(figures))
 
     out.write(s)
