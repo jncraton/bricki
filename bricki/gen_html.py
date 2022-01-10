@@ -79,7 +79,7 @@ with open(path + "bins.html", "w") as out:
                 <h1>{part[1]} {part[0]}</h1>
                 <img src="images/{part[1]}.png">
                 <ul>
-                {''.join(["<li>" + str(e[2]) + " in " + e[0] + ((' stored in ' + str(e[6])) if e[6] else '') for e in elements])} 
+                {''.join(["<li><b>" + str(e[2]) + "</b> in <b>" + e[0] + '</b>' + ((' stored in <b>' + str(e[6]) + '</b>') if e[6] else '') for e in elements])} 
                 </ul>
             """))
 
