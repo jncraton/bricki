@@ -49,5 +49,5 @@ clean:
 	rm -f dumps/*
 	rm -rf bricki/__pycache__
 	rm -rf src/__pycache__
-	rm -f www/search.html www/parts.html www/elements.html www/bins.html
+	rm -f www/*.html
 	cd rebrickable-sqlite && make clean
