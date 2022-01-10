@@ -1,5 +1,6 @@
 import helpers
 import urllib.request 
+from os.path import exists
 
 # This script will overwrite existing images
 # Images should be converted to 16 color 96x96 thumbnails after download
@@ -27,8 +28,11 @@ parts = helpers.query(
 print(f"Downloading {len(parts)} images...")
 
 for p in parts:
-    img = f'https://cdn.rebrickable.com/media/thumbs/parts/ldraw/{p[4] or 71}/{p[1]}.png/250x250p.png'
-    try:
-        urllib.request.urlretrieve(img, f'www/images/{p[1]}.png')
-    except:
-        print(f'Error with {p[1]} {p[0]}')
+    filename = f'www/images/{p[1]}.png'
+
+    if not exists(filename):
+        img = f'https://cdn.rebrickable.com/media/thumbs/parts/ldraw/{p[4] or 71}/{p[1]}.png/250x250p.png'
+        try:
+            urllib.request.urlretrieve(img, f'www/images/{p[1]}.png')
+        except:
+            print(f'Error with {p[1]} {p[0]}')
