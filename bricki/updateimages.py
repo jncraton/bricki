@@ -33,6 +33,6 @@ for p in parts:
     if not exists(filename):
         img = f'https://cdn.rebrickable.com/media/thumbs/parts/ldraw/{p[4] or 71}/{p[1]}.png/250x250p.png'
         try:
-            urllib.request.urlretrieve(img, f'www/images/{p[1]}.png')
+            urllib.request.urlretrieve(img, f'www/images/new/{p[1]}.png')
         except:
             print(f'Error with {p[1]} {p[0]}')
