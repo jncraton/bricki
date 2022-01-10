@@ -16,11 +16,7 @@ order by colors.name
 
 color_options = [f'<option value="{c[0]}">' for c in colors]
 
-with open(path + "elements.html", "w") as out:
-    template = open('bricki/templates/elements.html').read()
-
-
-    my_parts = helpers.query(
+my_parts = helpers.query(
         """
   select 
     colors.name,
@@ -42,15 +38,16 @@ with open(path + "elements.html", "w") as out:
   """
     )
 
+with open(path + "elements.html", "w") as out:
+    template = open('bricki/templates/elements.html').read()
+
+
     s = template.replace("{{ my_parts }}", json.dumps(my_parts))
     s = s.replace("{{ color_options }}", '\n'.join(color_options))
 
     out.write(s)
 
-
 with open(path + "bins.html", "w") as out:
-    template = open('bricki/templates/bins.html').read()
-
     parts = helpers.query(
         """
           select 
@@ -72,6 +69,20 @@ with open(path + "bins.html", "w") as out:
           """
     )
 
+    template = open('bricki/templates/part.html').read()
+
+    for part in parts:
+        elements = [p for p in my_parts if p[4] == part[1]]
+
+        with open(f"{path}{part[1]}.html", "w") as part_page:
+            part_page.write(template.replace("{{ part }}", f"""
+                <h1>{part[1]} {part[0]}</h1>
+                <img src="images/{part[1]}.png">
+                <ul>
+                {''.join(["<li>" + e[0] + " " + " " + str(e[2]) + " " + str(e[6] or '') for e in elements])} 
+                </ul>
+            """))
+
     seen = set()
 
     def make_fig(p):
@@ -89,6 +100,8 @@ with open(path + "bins.html", "w") as out:
         return fig
 
     figures = [make_fig(p) for p in parts]
+
+    template = open('bricki/templates/bins.html').read()
 
     s = template.replace("{{ figures }}", ''.join(figures))
 
