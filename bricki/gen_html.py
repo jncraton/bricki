@@ -95,7 +95,7 @@ with open(path + "bins.html", "w") as out:
     
         seen.add(p[3])
  
-        fig += f'<figure><img src="images/{p[1]}.png" loading=lazy><figcaption>{p[1]} ({p[5]})</figcaption></figure>'
+        fig += f'<figure><a href="{p[1]}.html"><img src="images/{p[1]}.png" loading=lazy><figcaption>{p[1]} ({p[5]})</figcaption></a></figure>'
 
         return fig
 
