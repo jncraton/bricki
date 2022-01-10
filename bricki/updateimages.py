@@ -37,7 +37,6 @@ for p in parts:
         pass
 
     if not os.path.exists(filename):
-        img = f'https://cdn.rebrickable.com/media/thumbs/parts/ldraw/{p[4] or 71}/{p[1]}.png/250x250p.png'
         try:
             urllib.request.urlretrieve(f'https://cdn.rebrickable.com/media/thumbs/parts/ldraw/71/{p[1]}.png/250x250p.png', f'www/images/new/{p[1]}.png')
         except:
