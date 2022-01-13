@@ -35,6 +35,12 @@ create table if not exists part_bins (
   part_num varchar(16),
   color_id smallint,
   bin_id varchar(64),
+  -- grouped_by values
+  -- null - Stored as a single part in a bin
+  -- assembly - Stored as complete assembly (hinges,etc)
+  -- pair - Paired with matching part (left and right), wheels and tires, etc
+  -- group - Grouped with similar parts in the same bin
+  grouped_by varchar(1) check(grouped_by in ('pair','assembly','group')),
   foreign key (part_num) references parts(part_num),
   foreign key (color_id) references parts(color_id),
   primary key (part_num, color_id)
