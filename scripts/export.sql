@@ -8,4 +8,4 @@ select * from set_transactions;
 select * from part_transactions;
 
 .output data/part_bins.csv
-select * from part_bins where bin_id != '' order by bin_id, part_num;
+select * from part_bins where bin_id != '' order by bin_id, section_id, part_num;
