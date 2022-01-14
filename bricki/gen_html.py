@@ -56,7 +56,8 @@ with open(path + "bins.html", "w") as out:
             sum(quantity) as quantity,
             part_bins.bin_id,
             min(my_parts.color_id),
-            count(distinct element_bins.color_id)
+            count(distinct element_bins.color_id),
+            part_bins.section_id
           from my_parts
           join canonical_parts on canonical_parts.part_num = my_parts.part_num
           join parts on parts.part_num=canonical_part_num
@@ -84,16 +85,19 @@ with open(path + "bins.html", "w") as out:
             """))
 
     seen = set()
+    sections = set()
 
     def make_fig(p):
         fig = ''
 
         if not p[3] in seen:
             bin = p[3].replace('-', ' ').replace('+',', ').title().replace('Xn','xN').replace('X','x')
-        
             fig = f'</section><h1>{bin}</h1><section>'
-    
-        seen.add(p[3])
+            seen.add(p[3])
+
+        if p[6] and not p[6] in sections:
+            fig += f'</section><section class=grouped>'
+            sections.add(p[6])
  
         fig += f'<figure><a href="{p[1]}.html"><img src="images/{p[1]}.png" loading=lazy><figcaption>{p[1]} ({p[5]})</figcaption></a></figure>'
 
