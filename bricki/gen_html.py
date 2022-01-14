@@ -66,7 +66,7 @@ with open(path + "bins.html", "w") as out:
           where part_bins.bin_id not null
           group by canonical_part_num
           having sum(quantity) > 0
-          order by part_bins.bin_id, parts.name asc
+          order by part_bins.bin_id, part_bins.section_id, parts.name asc
           """
     )
 
@@ -96,12 +96,18 @@ with open(path + "bins.html", "w") as out:
             seen.add(p[3])
 
         if p[6] and not p[6] in sections:
-            fig += f'</section><section class=grouped>'
+            if make_fig.in_group:
+                make_fig.in_group = False
+                fig += f'</div>'
+            make_fig.in_group = True
+            fig += f'<div class=grouped>'
             sections.add(p[6])
  
         fig += f'<figure><a href="{p[1]}.html"><img src="images/{p[1]}.png" loading=lazy><figcaption>{p[1]} ({p[5]})</figcaption></a></figure>'
 
         return fig
+
+    make_fig.in_group = False
 
     figures = [make_fig(p) for p in parts]
 
