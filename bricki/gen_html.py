@@ -107,7 +107,7 @@ with open(path + "bins.html", "w") as out:
             sections.add(p[6])
 
         if p[7] == -1:
-            style = "background: linear-gradient(0deg, rgba(255,0,0,1) 0%, rgba(255,255,0,1) 35%, rgba(0,255,255,1) 50%, rgba(0,0,255,1) 75%, rgba(255,0,255,1) 100%);"
+            style = "background: linear-gradient(0deg, rgba(0,200,200,1) 25%, rgba(200,0,0,1) 75%);"
         else:
             style = f"background-color:#{p[8]};"
  
