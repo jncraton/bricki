@@ -57,12 +57,15 @@ with open(path + "bins.html", "w") as out:
             part_bins.bin_id,
             min(my_parts.color_id),
             count(distinct element_bins.color_id),
-            part_bins.section_id
+            part_bins.section_id,
+            part_bins.color_id,
+            colors.rgb
           from my_parts
           join canonical_parts on canonical_parts.part_num = my_parts.part_num
           join parts on parts.part_num=canonical_part_num
           join part_bins on canonical_part_num=part_bins.part_num
           left join part_bins as element_bins on canonical_part_num=element_bins.part_num and element_bins.color_id=my_parts.color_id
+          left join colors on colors.id = part_bins.color_id
           where part_bins.bin_id not null
           group by canonical_part_num, part_bins.color_id
           having sum(quantity) > 0
@@ -102,8 +105,13 @@ with open(path + "bins.html", "w") as out:
             make_fig.in_group = True
             fig += f'<div class=grouped>'
             sections.add(p[6])
+
+        if p[7] == -1:
+            style = "background: linear-gradient(0deg, rgba(255,0,0,1) 0%, rgba(255,255,0,1) 35%, rgba(0,255,255,1) 50%, rgba(0,0,255,1) 75%, rgba(255,0,255,1) 100%);"
+        else:
+            style = f"background-color:#{p[8]};"
  
-        fig += f'<figure><a href="{p[1]}.html"><img src="images/{p[1]}.png" loading=lazy><figcaption>{p[1]} ({p[5]})</figcaption></a></figure>'
+        fig += f'<figure><a href="{p[1]}.html"><img style="{style}" src="images/{p[1]}.png" loading=lazy><figcaption>{p[1]} ({p[5]})</figcaption></a></figure>'
 
         return fig
 
