@@ -75,17 +75,23 @@ with open(path + "bins.html", "w") as out:
 
     template = open('bricki/templates/part.html').read()
 
-    for part in parts:
-        elements = [p for p in my_parts if p[4] == part[1]]
+    part_seen = set()
 
-        with open(f"{path}{part[1]}.html", "w") as part_page:
-            part_page.write(template.replace("{{ part }}", f"""
-                <h1>{part[1]} {part[0]}</h1>
-                <img src="images/{part[1]}.png">
-                <ul>
-                {''.join(["<li><b>" + str(e[2]) + "</b> in <b>" + e[0] + '</b>' + ((' stored in <b>' + str(e[6]) + '</b>') if e[6] else '') for e in elements])} 
-                </ul>
-            """))
+    for part in parts:
+        if not part[1] in part_seen:
+            part_seen.add(part[1])
+        
+            elements = [p for p in my_parts if p[4] == part[1]]
+
+            with open(f"{path}{part[1]}.html", "w") as part_page:
+                part_page.write(template.replace("{{ part }}", f"""
+                    <h1>{part[1]} {part[0]}</h1>
+                    <img src="images/{part[1]}.png">
+                    <ul>
+                    <li><b>{part[2]}</b> total {"in " + part[3] if part[3] else ''}
+                    {''.join(["<li><b>" + str(e[2]) + "</b> in <b>" + e[0] + '</b>' + ((' stored in <b>' + str(e[6]) + '</b>') if e[6] else '') for e in elements])} 
+                    </ul>
+                """))
 
     seen = set()
     sections = set()
