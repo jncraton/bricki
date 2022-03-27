@@ -69,7 +69,7 @@ with open(path + "bins.html", "w") as out:
           where part_bins.bin_id not null
           group by canonical_part_num, part_bins.color_id
           having sum(quantity) > 0
-          order by part_bins.color_id!=-1, part_bins.bin_id, part_bins.section_id, parts.name asc
+          order by part_bins.bin_id, part_bins.section_id, parts.name asc
           """
     )
 
