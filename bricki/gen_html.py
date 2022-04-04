@@ -113,11 +113,11 @@ with open(path + "bins.html", "w") as out:
             sections.add(p[6])
 
         if p[7] == -1:
-            style = "background: linear-gradient(0deg, rgba(0,200,200,1) 25%, rgba(200,0,0,1) 75%);"
+            style = 'class=multicolor'
         else:
-            style = f"background-color:#{p[8]};"
+            style = f'style="background-color:#{p[8]};"'
  
-        fig += f'<figure><a href="{p[1]}.html"><img style="{style}" src="images/{p[1]}.png" loading=lazy><figcaption>{p[1]} ({p[5]})</figcaption></a></figure>'
+        fig += f'<figure><a href="{p[1]}.html"><img {style} src="images/{p[1]}.png" loading=lazy><figcaption>{p[1]} ({p[5]})</figcaption></a></figure>'
 
         return fig
 
