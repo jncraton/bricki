@@ -117,7 +117,7 @@ with open(path + "bins.html", "w") as out:
         else:
             style = f'style="background-color:#{p[8]};"'
  
-        fig += f'<figure><a href="{p[1]}.html"><img {style} src="images/{p[1]}.png" loading=lazy><figcaption>{p[1]} ({p[5]})</figcaption></a></figure>'
+        fig += f'<figure><a href="{p[1]}.html"><img {style} src="images/{p[1]}.png" loading=lazy><figcaption>{p[1]}</figcaption></a></figure>'
 
         return fig
 
