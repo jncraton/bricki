@@ -60,7 +60,6 @@
           (!part || p[4] == part ||  p[5] == part || p[6] == part) &&
           (!color || color.split(',').includes(p[0])) && (!q || re.test(p[1])) &&
           (isChecked('technic') || !p[1].includes('Technic')) &&
-          (isChecked('bricks_2xn') || (p[5] != '2x2-bricks' && p[5] != '2x3-bricks' && p[5] != '2x4-bricks')) &&
           (isChecked('has_part_bin') || !p[5]) &&
           (isChecked('has_element_bin') || !p[6])
        )
