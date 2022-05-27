@@ -31,6 +31,13 @@ create table if not exists part_transactions (
   foreign key (from_set_num) references sets(set_num)
 );
 
+create table if not exists bins (
+  bin_id varchar(64),
+  sort_style varchar(16),
+  shape varchar(16),
+  primary key (bin_id)
+);
+
 create table if not exists part_bins (
   part_num varchar(16),
   color_id smallint,
@@ -38,6 +45,7 @@ create table if not exists part_bins (
   -- A null value indicates that the part is stored alone
   -- Other values are used to group parts together
   section_id varchar(64),
+  foreign key (bin_id) references bins(bin_id),
   foreign key (part_num) references parts(part_num),
   foreign key (color_id) references parts(color_id),
   primary key (part_num, color_id)
