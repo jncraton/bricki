@@ -7,10 +7,10 @@ black-technic-bricks,element,3700
 blue-3700-1,element,3700
 blue-3730-1,element,3730
 bricks-1xn-,part,""
-bricks-2x2,part,
-bricks-2x3,part,
-bricks-2x4,part,
-bricks-large,type,
+bricks-2x2,part,""
+bricks-2x3,part,""
+bricks-2x4,part,""
+bricks-large,type,""
 bricks-patterned,part,deep
 bricks-special,part,shallow
 cars,part,shallow
@@ -55,7 +55,7 @@ technic-bricks,element,3600
 technic-gears,element,3600
 technic-pins,element,3600
 tiles,part,shallow
-tracks,type,
+tracks,type,""
 transparent-clear-3600,element,3600
 transparent-metallic-3600,element,3600
 white-3700-1,element,3700
