@@ -23,9 +23,6 @@
     <label>Min Quantity <input name="minqty" value="0" /></label>
     <label><input name="groupcolors" type="checkbox" /> Group by Part</label>
     <label><input name="technic" type="checkbox" checked /> Technic</label>
-    <label><input name="bricks_2xn" type="checkbox" checked /> 2xn Bricks</label>
-    <label><input name="has_part_bin" type="checkbox" checked /> Part Bin</label>
-    <label><input name="has_element_bin" type="checkbox" checked /> Element Bin</label>
 
     <datalist id="colors">{{ color_options }}</datalist>
 
@@ -39,8 +36,12 @@
           <th>Quantity</th>
           <th>Color</th>
           <th>Name</th>
-          <th>Part Bin</th>
-          <th>Element Bin</th>
+          <th>Part Bin
+            <label>(<input name="has_part_bin" type="checkbox" checked /> Show Sorted)</label>
+          </th>
+          <th>Element Bin
+            <label>(<input name="has_element_bin" type="checkbox" checked /> Show Sorted)</label>
+          </th>
         </tr>
       </thead>
       <tbody id="results"></tbody>
