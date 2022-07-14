@@ -34,7 +34,7 @@ test:
 bins:
 	python3 bricki/update_bins_from_common_parts.py
 
-www: $(db)
+www: $(db) bricki/gen_html.py
 	python3 bricki/gen_html.py www
 
 run: $(db)
