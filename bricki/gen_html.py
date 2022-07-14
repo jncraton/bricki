@@ -56,7 +56,7 @@ with open(path + "bins.html", "w") as out:
             sum(quantity) as quantity,
             part_bins.bin_id,
             min(my_parts.color_id),
-            count(distinct element_bins.color_id),
+            count(distinct part_bins.color_id),
             part_bins.section_id,
             part_bins.color_id,
             colors.rgb,
@@ -64,11 +64,10 @@ with open(path + "bins.html", "w") as out:
           from my_parts
           join canonical_parts on canonical_parts.part_num = my_parts.part_num
           join parts on parts.part_num=canonical_part_num
-          join part_bins on canonical_part_num=part_bins.part_num
-          natural join bins
+          left join part_bins on canonical_part_num=part_bins.part_num and (part_bins.color_id=-1 or part_bins.color_id=my_parts.color_id)
           left join part_bins as element_bins on canonical_part_num=element_bins.part_num and element_bins.color_id=my_parts.color_id
+          natural join bins
           left join colors on colors.id = part_bins.color_id
-          where part_bins.bin_id not null
           group by canonical_part_num, part_bins.color_id
           having sum(quantity) > 0
           order by bins.sort_style, part_bins.bin_id, part_bins.section_id, parts.name asc
@@ -119,7 +118,7 @@ with open(path + "bins.html", "w") as out:
         else:
             style = f'style="background-color:#{p[8]};"'
  
-        fig += f'<figure><a href="{p[1]}.html"><img {style} src="images/{p[1]}.png" loading=lazy><figcaption>{p[1]}</figcaption></a></figure>'
+        fig += f'<figure><a href="{p[1]}.html"><img {style} src="images/{p[1]}.png" loading=lazy><figcaption>{p[1]}<br>{p[2]}  pcs</figcaption></a></figure>'
 
         return fig
 
