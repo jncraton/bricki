@@ -51,7 +51,7 @@ studs-not-on-top,part,shallow
 tan-3700-1,element,3700
 technic-axles,element,3600
 technic-beams,element,3700
-technic-bricks,element,3600
+technic-bricks,part,3730
 technic-gears,element,3600
 technic-pins,element,3600
 tiles,part,shallow
