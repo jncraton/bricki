@@ -79,7 +79,7 @@ with open(path + "bins.html", "w") as out:
     part_seen = set()
 
     for part in parts:
-        if not part[1] in part_seen:
+        if not part[1] in part_seen and part[7] == -1:
             part_seen.add(part[1])
         
             elements = [p for p in my_parts if p[4] == part[1]]
@@ -89,8 +89,9 @@ with open(path + "bins.html", "w") as out:
                     <h1>{part[1]} {part[0]}</h1>
                     <img src="images/{part[1]}.png">
                     <ul>
-                    <li><b>{part[2]}</b> total {"in " + part[3] if part[3] else ''}
-                    {''.join(["<li><b>" + str(e[2]) + "</b> in <b>" + e[0] + '</b>' + ((' stored in <b>' + str(e[6]) + '</b>') if e[6] else '') for e in elements])} 
+                    <li><b>{part[2]}</b> total
+                    <li>Stored in <b>{part[3]}</b> if not stored by color
+                    {''.join(["<li><b>" + str(e[2]) + "</b> in <b>" + e[0] + '</b>' + ((' stored in <b>' + str(e[6]) + '</b>') if e[6] else f' stored in {str(part[3])}') for e in elements])}
                     </ul>
                 """))
 
