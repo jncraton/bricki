@@ -16,6 +16,7 @@ create table if not exists set_transactions (
   set_num varchar(16),
   quantity smallint,
   notes varchar(255),
+  inventory_exclusion_reason varchar(64),
   foreign key (set_num) references sets(set_num)
 );
 
