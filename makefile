@@ -16,7 +16,7 @@ $(db):
 export: $(db)
 	sqlite3 $(db) < scripts/export.sql
 
-dumps:
+dumps: $(db)
 	sqlite3 $(db) < scripts/dump.sql
 	sqlite3 $(db) < scripts/dumpbynotes.sql
 	sqlite3 $(db) < scripts/dumprecentparts.sql
