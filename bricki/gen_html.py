@@ -68,6 +68,7 @@ with open(path + "bins.html", "w") as out:
           left join part_bins as element_bins on canonical_part_num=element_bins.part_num and element_bins.color_id=my_parts.color_id
           natural join bins
           left join colors on colors.id = part_bins.color_id
+          where bins.sort_style != 'unsorted'
           group by canonical_part_num, part_bins.color_id
           having sum(quantity) > 0
           order by bins.sort_style, part_bins.bin_id, part_bins.section_id, parts.name asc
