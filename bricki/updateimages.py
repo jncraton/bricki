@@ -19,8 +19,9 @@ parts = helpers.query(
       join canonical_parts on canonical_parts.part_num = my_parts.part_num
       join parts on parts.part_num=canonical_part_num
       join part_bins on canonical_part_num=part_bins.part_num
+      join bins on part_bins.bin_id = bins.bin_id
       left join part_bins as element_bins on canonical_part_num=element_bins.part_num and element_bins.color_id=my_parts.color_id
-      where part_bins.bin_id not null
+      where part_bins.bin_id not null and bins.sort_style != 'unsorted'
       group by canonical_part_num
       order by part_bins.bin_id, parts.name asc
       """
