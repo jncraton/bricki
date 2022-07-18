@@ -490,6 +490,14 @@
 54200,288,greens-3700-1,
 54200,378,greens-3700-1,
 54200,326,greens-3700-1,
+2433,-1,legacy-elements,unsorted
+4276b,-1,legacy-elements,unsorted
+4275b,-1,legacy-elements,unsorted
+4625,-1,legacy-elements,unsorted
+2452,-1,legacy-elements,unsorted
+4531,-1,legacy-elements,unsorted
+2880,-1,legacy-elements,unsorted
+4504,-1,legacy-elements,unsorted
 122c01,7,legacy-elements,unsorted
 12825,7,legacy-elements,unsorted
 12825,6,legacy-elements,unsorted
@@ -1679,6 +1687,7 @@ flex08c19l,7,legacy-elements,unsorted
 2878,0,train,train-wheels
 57878,0,train,train-wheels
 4025,-1,train,
+4092,-1,train,
 50254,-1,train,
 92088,-1,train,
 2871b,0,train,
