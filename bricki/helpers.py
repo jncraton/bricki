@@ -161,8 +161,6 @@ def search_part(needle, printed=False, duplo=False):
     ('87079', 'Tile 2 x 4 with Groove')
     >>> search_part("cheese slope")[0][0]
     '54200'
-    >>> search_part("plate jumper 1x2")[0][0]
-    '3794b'
     >>> search_part("3794b")[0][0]
     '3794b'
     >>> search_part("Brick 2x6")[0][0]
