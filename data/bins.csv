@@ -37,7 +37,7 @@ plants,type,3700
 plates-angled,part,shallow
 plates-small,part,shallow
 plates-medium,part,deep
-plates-4xn+plates-6xn,part,deep
+plates-plates-large,part,deep
 plates-xl,type,""
 plates-special,part,shallow
 red-3700-1,element,3700
