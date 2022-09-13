@@ -36,7 +36,7 @@ panels+misc,part,shallow
 plants,type,3700
 plates-angled,part,shallow
 plates-small,part,shallow
-plates-2xn,part,deep
+plates-medium,part,deep
 plates-4xn+plates-6xn,part,deep
 plates-large,type,""
 plates-special,part,shallow
