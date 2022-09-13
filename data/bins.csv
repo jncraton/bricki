@@ -14,7 +14,7 @@ bricks-large,type,""
 bricks-patterned,part,deep
 bricks-special,part,shallow
 cars,part,shallow
-clip-plates,part,shallow
+plates-special,part,shallow
 dark-blue-3700-1,element,3700
 dark-bluish-gray-3700-1,element,3700
 dark-bluish-gray-3700-2,element,3700
