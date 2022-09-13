@@ -39,7 +39,7 @@ plates-1xn,part,shallow
 plates-2xn,part,deep
 plates-4xn+plates-6xn,part,deep
 plates-large,type,""
-plates-round+plates-angled,part,shallow
+plates-angled,part,shallow
 red-3700-1,element,3700
 red-3730-1,element,3730
 reddish-brown-3700-1,element,3700
