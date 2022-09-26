@@ -60,7 +60,6 @@
           (!part || p[4] == part ||  p[5] == part || p[6] == part) &&
           (!color || color.split(',').includes(p[0])) && (!q || re.test(p[1])) &&
           (isChecked('technic') || !p[1].includes('Technic')) &&
-          (isChecked('has_part_bin') || !p[5]) &&
           (isChecked('has_element_bin') || !p[6])
        )
 
@@ -70,18 +69,35 @@
               if (!storage[group]) {
                 storage[group] = [...el]
                 storage[group][0] = 0
-                storage[group][6] = 0
+                storage[group][7] = el[2] // Sorted by element count
+                storage[group][8] = 0 // Total element bins
               } else {
                 storage[group][2] += el[2]
+                if (el[6]) {
+                  storage[group][7] += el[2]
+                }
               }
               storage[group][0] += 1
-              storage[group][6] += el[6] ? 1 : 0
+              storage[group][8] += el[6] ? 1 : 0
               storage[group][3] = 71
+
+              let element_storage_percentage = storage[group][7] / storage[group][2]
+
+              if (element_storage_percentage == 1.0 && !storage[group][5]) {
+                storage[group][5] = '100% by element'
+              }
+
+              if (element_storage_percentage < 1.0 && storage[group][5] == '100% by element') {                storage[group][5] = ''
+              }
+
+              storage[group][6] = storage[group][8] + ' (' + element_storage_percentage.toLocaleString(undefined,{style: 'percent', maximumFractionDigits:0}) + ')'
               return storage
             }, {})
 
             results = Object.values(parts).reduce((p, c) => {p.push(c); return p}, [])
         }
+
+        results = results.filter((p) => (isChecked('has_part_bin') || !p[5]))
 
         results = results.filter((p) => (!min_qty || p[2] >= min_qty))
 
