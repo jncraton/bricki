@@ -57,7 +57,7 @@
         const re = new RegExp(q.toLowerCase(),'ui')
 
         let results = my_parts.filter((p) =>
-          (!part || p[4] == part ||  p[5] == part || p[6] == part) &&
+          (!part || p[4] == part ||  p[5] == part || p[6] == part || p[7] == part) &&
           (!color || color.split(',').includes(p[0])) && (!q || re.test(p[1])) &&
           (isChecked('technic') || !p[1].includes('Technic')) &&
           (isChecked('has_element_bin') || !p[6])
