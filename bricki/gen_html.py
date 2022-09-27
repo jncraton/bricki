@@ -25,13 +25,15 @@ my_parts = helpers.query(
     colors.id,
     canonical_part_num,
     part_bins.bin_id,
-    element_bins.bin_id
+    element_bins.bin_id,
+    part_categories.name
   from my_parts
   join parts on parts.part_num=my_parts.part_num 
   join colors on colors.id=my_parts.color_id
   join canonical_parts on canonical_parts.part_num = my_parts.part_num
   left join part_bins as element_bins on canonical_parts.canonical_part_num=element_bins.part_num and my_parts.color_id=element_bins.color_id
   left join part_bins on canonical_parts.canonical_part_num=part_bins.part_num and part_bins.color_id=-1
+  left join part_categories on parts.part_cat_id = part_categories.id
   group by canonical_part_num, colors.id
   having sum(quantity) > 0
   order by sum(quantity) desc
@@ -67,6 +69,7 @@ with open(path + "bins.html", "w") as out:
           left join part_bins on canonical_part_num=part_bins.part_num and (part_bins.color_id=-1 or part_bins.color_id=my_parts.color_id)
           left join part_bins as element_bins on canonical_part_num=element_bins.part_num and element_bins.color_id=my_parts.color_id
           natural join bins
+          natural join part_categories
           left join colors on colors.id = part_bins.color_id
           where bins.sort_style != 'unsorted'
           group by canonical_part_num, part_bins.color_id

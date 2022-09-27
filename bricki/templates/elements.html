@@ -69,19 +69,19 @@
               if (!storage[group]) {
                 storage[group] = [...el]
                 storage[group][0] = 0
-                storage[group][7] = el[2] // Sorted by element count
-                storage[group][8] = 0 // Total element bins
+                storage[group][8] = el[2] // Sorted by element count
+                storage[group][9] = 0 // Total element bins
               } else {
                 storage[group][2] += el[2]
                 if (el[6]) {
-                  storage[group][7] += el[2]
+                  storage[group][8] += el[2]
                 }
               }
               storage[group][0] += 1
-              storage[group][8] += el[6] ? 1 : 0
+              storage[group][9] += el[6] ? 1 : 0
               storage[group][3] = 71
 
-              let element_storage_percentage = storage[group][7] / storage[group][2]
+              let element_storage_percentage = storage[group][8] / storage[group][2]
 
               if (element_storage_percentage == 1.0 && !storage[group][5]) {
                 storage[group][5] = '100% by element'
@@ -127,7 +127,7 @@
             <td><img src="${img_url}"></td>
             <td><a href="${r[4]}.html">${r[4]}</a></td>
             <td>${r[0]}</td>
-            <td>${r[1]}</td>
+            <td>${r[7]}, ${r[1]}</td>
             <td>${r[5] || ''}</td>
             <td>${r[6] || ''}</td></tr>`
         }, '')
