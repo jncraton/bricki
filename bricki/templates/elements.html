@@ -64,7 +64,8 @@
           (!part || p[4] == part ||  p[5] == part || p[6] == part || p[7] == part) &&
           (!color || color.split(',').includes(p[0])) && (!q || re.test(p[1])) &&
           (isChecked('technic') || !p[1].includes('Technic')) &&
-          (isChecked('has_element_bin') || !p[6])
+          (isChecked('has_element_bin') || !p[6]) &&
+          (isChecked('has_part_bin') || !p[5])
        )
 
         if (!color && value('groupby') != 2) {
