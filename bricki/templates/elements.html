@@ -74,13 +74,13 @@
               if (!storage[group]) {
                 storage[group] = [...el]
                 storage[group][0] = 0
-                storage[group][8] = el[2] // Sorted by element count
+                storage[group][8] = 0 // Sorted by element count
                 storage[group][9] = 0 // Total element bins
               } else {
                 storage[group][2] += el[2]
-                if (el[6]) {
-                  storage[group][8] += el[2]
-                }
+              }
+              if (el[6]) {
+                storage[group][8] += el[2]
               }
               storage[group][0] += 1
               storage[group][9] += el[6] ? 1 : 0
