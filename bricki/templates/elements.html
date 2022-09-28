@@ -21,7 +21,11 @@
     <label>Part or Bin<input name="part" /></label>
     <label>Color <input name="color" list="colors" /></label>
     <label>Min Quantity <input name="minqty" value="0" /></label>
-    <label><input name="groupcolors" type="checkbox" /> Group by Part</label>
+    <label><select name="groupby">
+      <option value="2">Element</option>
+      <option value="4">Part</option>
+      <option value="7">Category</option>
+    </select></label>
     <label><input name="technic" type="checkbox" checked /> Technic</label>
 
     <datalist id="colors">{{ color_options }}</datalist>
@@ -63,9 +67,9 @@
           (isChecked('has_element_bin') || !p[6])
        )
 
-        if (!color && isChecked('groupcolors')) {
+        if (!color && value('groupby') != 2) {
             let parts = results.reduce((storage, el) => {
-              let group = el[4]
+              let group = el[parseInt(value('groupby'))]
               if (!storage[group]) {
                 storage[group] = [...el]
                 storage[group][0] = 0
@@ -133,7 +137,7 @@
         }, '')
       }
 
-      document.querySelectorAll('input').forEach(e => e.addEventListener('input', update))
+      document.querySelectorAll('input,select').forEach(e => e.addEventListener('input', update))
 
       update()
     </script>
