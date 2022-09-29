@@ -69,7 +69,6 @@ with open(path + "bins.html", "w") as out:
           left join part_bins on canonical_part_num=part_bins.part_num and (part_bins.color_id=-1 or part_bins.color_id=my_parts.color_id)
           left join part_bins as element_bins on canonical_part_num=element_bins.part_num and element_bins.color_id=my_parts.color_id
           natural join bins
-          natural join part_categories
           left join colors on colors.id = part_bins.color_id
           where bins.sort_style != 'unsorted'
           group by canonical_part_num, part_bins.color_id
