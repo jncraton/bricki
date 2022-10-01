@@ -2,6 +2,7 @@ import helpers
 import urllib.request 
 import os
 from os.path import exists
+from subprocess import run
 
 # This script will overwrite existing images
 # Images should be converted to 16 color 96x96 thumbnails after download
@@ -37,6 +38,9 @@ print(f"{len(parts)} total images...")
 def get_filename(part):
     return f'www/images/{part[1]}.png'
 
+def get_new_filename(part):
+    return f'www/images/new/{part[1]}.png'
+
 needed = [p for p in parts if not os.path.exists(get_filename(p))]
 
 print(f"{len(needed)} missing. Attempting download...")
@@ -50,3 +54,38 @@ for p in needed:
                 urllib.request.urlretrieve(f'https://cdn.rebrickable.com/media/thumbs/parts/ldraw/{p[4]}/{p[1]}.png/250x250p.png', f'www/images/new/{p[1]}.png')
             except:
                 print(f'Error with {p[1]} {p[0]}')
+                continue
+
+        # Resize to 96x96
+        run(['convert',
+             '-resize', '96x96^',
+             get_new_filename(p), get_new_filename(p)])
+
+        # Add transparency
+        run(['convert',
+            get_new_filename(p),
+             '(', 
+                '-clone', '0', 
+                '-fill', '#999999', 
+                '-colorize', '100', 
+            ')',
+             '(', 
+                '-clone', '0,1', 
+                '-compose', 'difference', 
+                '-composite', 
+                '-separate', 
+                '+channel',
+                '-evaluate-sequence', 'max',
+                '-auto-level',
+            ')',
+            '-delete', '1',
+            '-alpha', 'off',
+            '-compose', 'over',
+            '-compose', 'copy_opacity',
+            '-composite',
+            get_new_filename(p)])
+
+        # Compress PNG
+        run(['pngquant', '--force', '--ext', '.png', '--ordered', '--speed', '1', '16', get_new_filename(p)])
+
+        run(['advpng', '-z', '-4', get_new_filename(p)])
