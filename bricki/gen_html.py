@@ -102,6 +102,8 @@ with open(path + "bins.html", "w") as out:
     sections = set()
 
     def make_fig(p):
+        if p[9] == 'category': return
+
         fig = ''
 
         if not p[3] in seen:
