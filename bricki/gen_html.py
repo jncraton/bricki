@@ -126,7 +126,7 @@ with open(path + "bins.html", "w") as out:
             style = f'style="background-color:#{p[8]};"'
 
         if p[9] != 'category':
-            fig += f'<figure><a href="{p[1]}.html"><img {style} src="images/{p[1]}.png" loading=lazy><figcaption>{p[1]}<br>{p[2]}  pcs</figcaption></a></figure>'
+            fig += f'<figure><a href="{p[1]}.html"><img {style} src="images/{p[1]}.png" alt="{p[0]}" loading=lazy><figcaption>{p[1]}<br>{p[2]}  pcs</figcaption></a></figure>'
 
         return fig
 
