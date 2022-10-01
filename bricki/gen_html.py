@@ -73,7 +73,7 @@ with open(path + "bins.html", "w") as out:
           where bins.sort_style != 'unsorted'
           group by canonical_part_num, part_bins.color_id
           having sum(quantity) > 0
-          order by bins.sort_style, part_bins.bin_id, part_bins.section_id, parts.name asc
+          order by bins.sort_style == 'category' asc, bins.sort_style, part_bins.bin_id, part_bins.section_id, parts.name asc
           """
     )
 
