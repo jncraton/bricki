@@ -56,14 +56,11 @@ for p in needed:
                 print(f'Error with {p[1]} {p[0]}')
                 continue
 
-        # Resize to 96x96
-        run(['convert',
-             '-resize', '96x96^',
-             get_new_filename(p), get_new_filename(p)])
-
         # Add transparency
         run(['convert',
             get_new_filename(p),
+             '-resize', '96x96^',
+             '-colorspace', 'Gray',
              '(', 
                 '-clone', '0', 
                 '-fill', '#999999', 
