@@ -102,8 +102,6 @@ with open(path + "bins.html", "w") as out:
     sections = set()
 
     def make_fig(p):
-        if p[9] == 'category': return
-
         fig = ''
 
         if not p[3] in seen:
@@ -118,13 +116,17 @@ with open(path + "bins.html", "w") as out:
             make_fig.in_group = True
             fig += f'<div class=grouped>'
             sections.add(p[6])
+            if p[9] == 'category':
+                fig += f'<figure><figcaption>{p[6].replace("-"," ").title()}</figcaption></figure>'
+
 
         if p[7] == -1:
             style = 'class=multicolor'
         else:
             style = f'style="background-color:#{p[8]};"'
- 
-        fig += f'<figure><a href="{p[1]}.html"><img {style} src="images/{p[1]}.png" loading=lazy><figcaption>{p[1]}<br>{p[2]}  pcs</figcaption></a></figure>'
+
+        if p[9] != 'category':
+            fig += f'<figure><a href="{p[1]}.html"><img {style} src="images/{p[1]}.png" loading=lazy><figcaption>{p[1]}<br>{p[2]}  pcs</figcaption></a></figure>'
 
         return fig
 
