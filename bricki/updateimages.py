@@ -6,6 +6,11 @@ from os.path import exists
 # This script will overwrite existing images
 # Images should be converted to 16 color 96x96 thumbnails after download
 
+try:
+    os.mkdir('www/images/new')
+except:
+    pass
+
 parts = helpers.query(
     """
       select 
@@ -27,17 +32,17 @@ parts = helpers.query(
       """
 )
 
-print(f"Downloading {len(parts)} images...")
+print(f"{len(parts)} total images...")
 
-for p in parts:
-    filename = f'www/images/{p[1]}.png'
+def get_filename(part):
+    return f'www/images/{part[1]}.png'
 
-    try:
-        os.mkdir('www/images/new')
-    except:
-        pass
+needed = [p for p in parts if not os.path.exists(get_filename(p))]
 
-    if not os.path.exists(filename):
+print(f"{len(needed)} missing. Attempting download...")
+
+for p in needed:
+    if not os.path.exists(get_filename(p)):
         try:
             urllib.request.urlretrieve(f'https://cdn.rebrickable.com/media/thumbs/parts/ldraw/71/{p[1]}.png/250x250p.png', f'www/images/new/{p[1]}.png')
         except:
