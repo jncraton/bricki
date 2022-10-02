@@ -38,9 +38,6 @@ print(f"{len(parts)} total images...")
 def get_filename(part):
     return f'www/images/{part[1]}.png'
 
-def get_new_filename(part):
-    return f'www/images/new/{part[1]}.png'
-
 needed = [p for p in parts if not os.path.exists(get_filename(p))]
 
 print(f"{len(needed)} missing. Attempting download...")
@@ -49,7 +46,7 @@ for p in needed:
     if not os.path.exists(get_filename(p)):
         for color in ['71', '7', '72', '4', p[4]]:
             try:
-                urllib.request.urlretrieve(f'https://cdn.rebrickable.com/media/thumbs/parts/ldraw/{color}/{p[1]}.png/250x250p.png', f'www/images/new/{p[1]}.png')
+                urllib.request.urlretrieve(f'https://cdn.rebrickable.com/media/thumbs/parts/ldraw/{color}/{p[1]}.png/250x250p.png', get_filename(p))
                 break
             except:
                 pass
@@ -59,7 +56,7 @@ for p in needed:
 
         # Add transparency
         run(['convert',
-            get_new_filename(p),
+            get_filename(p),
              '-resize', '96x96^',
              '-colorspace', 'Gray',
              '-auto-gamma',
@@ -83,9 +80,9 @@ for p in needed:
             '-compose', 'over',
             '-compose', 'copy_opacity',
             '-composite',
-            get_new_filename(p)])
+            get_filename(p)])
 
         # Compress PNG
-        run(['pngquant', '--force', '--ext', '.png', '--ordered', '--speed', '1', '16', get_new_filename(p)])
+        run(['pngquant', '--force', '--ext', '.png', '--ordered', '--speed', '1', '16', get_filename(p)])
 
-        run(['advpng', '-z', '-4', get_new_filename(p)])
+        run(['advpng', '-z', '-4', get_filename(p)])
