@@ -9,7 +9,7 @@ $(sqldump): $(db)
 	sqlite3 $(db) .dump > $(sqldump)
 
 $(db):
-	cd rebrickable-sqlite && make clean && make DB=../$(db)
+	cd rebrickable-sqlite && make DB=../$(db)
 	sqlite3 $(db) < scripts/schema.sql
 	sqlite3 $(db) < scripts/reset_transactions.sql
 
@@ -43,11 +43,13 @@ run: $(db)
 web: $(db)
 	FLASK_APP=bricki/web.py python3 -m flask run
 
-clean:
+clean-keep-cache:
 	rm -f bricks.db
 	rm -f $(sqldump)
 	rm -f dumps/*
 	rm -rf bricki/__pycache__
 	rm -rf src/__pycache__
 	rm -f www/*.html
+
+clean: clean-keep-cache
 	cd rebrickable-sqlite && make clean
