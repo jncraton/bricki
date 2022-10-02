@@ -47,14 +47,15 @@ print(f"{len(needed)} missing. Attempting download...")
 
 for p in needed:
     if not os.path.exists(get_filename(p)):
-        try:
-            urllib.request.urlretrieve(f'https://cdn.rebrickable.com/media/thumbs/parts/ldraw/71/{p[1]}.png/250x250p.png', f'www/images/new/{p[1]}.png')
-        except:
+        for color in ['71', '7', '72', '4', p[4]]:
             try:
-                urllib.request.urlretrieve(f'https://cdn.rebrickable.com/media/thumbs/parts/ldraw/{p[4]}/{p[1]}.png/250x250p.png', f'www/images/new/{p[1]}.png')
+                urllib.request.urlretrieve(f'https://cdn.rebrickable.com/media/thumbs/parts/ldraw/{color}/{p[1]}.png/250x250p.png', f'www/images/new/{p[1]}.png')
+                break
             except:
-                print(f'Error with {p[1]} {p[0]}')
-                continue
+                pass
+        else:
+            print(f'Error with {p[1]} {p[0]}')
+            continue
 
         # Add transparency
         run(['convert',
