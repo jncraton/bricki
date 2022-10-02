@@ -130,9 +130,9 @@
           return p + `<tr>
             <td>${r[2]}</td>
             <td><img src="${img_url}"></td>
-            <td><a href="${r[4]}.html">${r[4]}</a> (<a href="https://rebrickable.com/parts/${r[4]}">rb</a>)</td>
+            <td><a href="${r[4]}.html">${r[4]}</a></td>
             <td>${r[0]}</td>
-            <td>${r[7]}${value('groupby') != 7 ? ', ' + r[1] : ''}</td>
+            <td>${r[7]}${value('groupby') != 7 ? ', ' + r[1] + ' (<a href="https://rebrickable.com/parts/' + r[4] + '">rb</a>)' : ''}</td>
             <td>${r[5] || ''}</td>
             <td>${r[6] || ''}</td></tr>`
         }, '')
