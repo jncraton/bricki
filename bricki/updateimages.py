@@ -62,6 +62,8 @@ for p in needed:
             get_new_filename(p),
              '-resize', '96x96^',
              '-colorspace', 'Gray',
+             '-auto-gamma',
+             '-gamma', '8.0',
              '(', 
                 '-clone', '0', 
                 '-fill', '#999999', 
