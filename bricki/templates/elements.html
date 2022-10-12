@@ -21,7 +21,6 @@
   </head>
 
   <body>
-    <label>Min Quantity <input name="minqty" value="0" /></label>
     <label><select name="groupby">
       <option value="2">Element</option>
       <option value="4">Part</option>
@@ -34,7 +33,10 @@
     <table>
       <thead>
         <tr>
-          <th>Quantity</th>
+          <th>
+              <label>Quantity <input name="minqty" value="0" /></label>
+          </th>
+
           <th>Image</th>
           <th>
             <label>Part<input name="part" /></label>
