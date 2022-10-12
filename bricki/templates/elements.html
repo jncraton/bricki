@@ -9,13 +9,16 @@
       table {
         border-collapse: collapse;
       }
-      td {
+      td, th {
         padding: 0px 18px;
+        text-align: left;
+      }
+      td:nth-child(1), th:nth-child(1),
+      td:nth-child(3), th:nth-child(3) {
+        text-align: right;
       }
       input {
-        display:block;
-        margin:auto;
-        width:90%;
+        width:100%;
       }
     </style>
   </head>
@@ -32,20 +35,20 @@
       <thead>
         <tr>
           <th>
-              <label>Quantity <input name="minqty" value="0" /></label>
+              <label>Quantity <input name="minqty" value="0" size=1 /></label>
           </th>
 
           <th>Image</th>
           <th>
-            <label>Part<input name="part" /></label>
+            <label>Part<input name="part" size=1 /></label>
           </th>
           <th>
             <label>Color
-            <input name="color" list="colors" /></label>
+            <input name="color" list="colors" size=1 /></label>
             <datalist id="colors">{{ color_options }}</datalist>
           </th>
           <th>
-            <label>Name <input name="q" /></label>
+            <label>Name <input name="q" size=1 /></label>
           </th>
           <th>
             <div>Part Bin</div>
