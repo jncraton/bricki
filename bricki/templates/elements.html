@@ -26,8 +26,6 @@
       <option value="4">Part</option>
       <option value="7">Category</option>
     </select></label>
-    <label><input name="technic" type="checkbox" checked /> Technic</label>
-
     <section id="stats"></section>
 
     <table>
@@ -80,7 +78,6 @@
         let results = my_parts.filter((p) =>
           (!part || p[4] == part) &&
           (!color || color.split(',').includes(p[0])) && (!q || re.test(p[1])) &&
-          (isChecked('technic') || !p[1].includes('Technic')) &&
           (value('element_bin_filter') == 'all' || !p[6]) &&
           (value('part_bin_filter') == 'all' || !p[5])
        )
