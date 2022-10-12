@@ -72,12 +72,20 @@
       const isChecked = q => document.querySelector('[name=' + q).checked
       const value = q => document.querySelector('[name=' + q).value
 
-      function search_part(q, color, part, min_qty) {
-        const re = new RegExp(q.toLowerCase(),'ui')
+      function keyword_match(keywords, haystack) {
+        return keywords.split(' ').every(keyword => {
+          if (keyword[0] == '-') {
+            return !haystack.toLowerCase().includes(keyword.substring(1).toLowerCase())
+          } else {
+            return haystack.toLowerCase().includes(keyword.toLowerCase())
+          }
+        })
+      }
 
+      function search_part(q, color, part, min_qty) {
         let results = my_parts.filter((p) =>
           (!part || p[4] == part) &&
-          (!color || color.split(',').includes(p[0])) && (!q || re.test(p[1])) &&
+          (!color || color.split(',').includes(p[0])) && (!q || keyword_match(q, p[1])) &&
           (value('element_bin_filter') == 'all' || !p[6]) &&
           (value('part_bin_filter') == 'all' || !p[5])
        )
