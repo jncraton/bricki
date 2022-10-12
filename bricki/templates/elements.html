@@ -19,7 +19,6 @@
   <body>
     <label>Search <input name="q" /></label>
     <label>Part or Bin<input name="part" /></label>
-    <label>Color <input name="color" list="colors" /></label>
     <label>Min Quantity <input name="minqty" value="0" /></label>
     <label><select name="groupby">
       <option value="2">Element</option>
@@ -27,8 +26,6 @@
       <option value="7">Category</option>
     </select></label>
     <label><input name="technic" type="checkbox" checked /> Technic</label>
-
-    <datalist id="colors">{{ color_options }}</datalist>
 
     <section id="stats"></section>
 
@@ -38,7 +35,11 @@
           <th>Quantity</th>
           <th>Image</th>
           <th>Part</th>
-          <th>Color</th>
+          <th>
+            <label for=color>Color</label>
+            <input id=color name="color" list="colors" />
+            <datalist id="colors">{{ color_options }}</datalist>
+          </th>
           <th>Name</th>
           <th>
             <div>Part Bin</div>
