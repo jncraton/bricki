@@ -13,11 +13,14 @@
         padding: 0px 18px;
         border: 1px solid #ddd;
       }
+      input {
+        display:block;
+        margin:auto;
+      }
     </style>
   </head>
 
   <body>
-    <label>Search <input name="q" /></label>
     <label>Part or Bin<input name="part" /></label>
     <label>Min Quantity <input name="minqty" value="0" /></label>
     <label><select name="groupby">
@@ -40,7 +43,9 @@
             <input name="color" list="colors" /></label>
             <datalist id="colors">{{ color_options }}</datalist>
           </th>
-          <th>Name</th>
+          <th>
+            <label>Name <input name="q" /></label>
+          </th>
           <th>
             <div>Part Bin</div>
             <select name="part_bin_filter">
