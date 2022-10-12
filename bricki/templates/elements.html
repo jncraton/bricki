@@ -40,11 +40,19 @@
           <th>Part</th>
           <th>Color</th>
           <th>Name</th>
-          <th>Part Bin
-            <label>(<input name="has_part_bin" type="checkbox" checked /> Show Sorted)</label>
+          <th>
+            <div>Part Bin</div>
+            <select name="part_bin_filter">
+              <option value=all>All</option>
+              <option value=unsorted>Unsorted</option>
+            </select>
           </th>
-          <th>Element Bin
-            <label>(<input name="has_element_bin" type="checkbox" checked /> Show Sorted)</label>
+          <th>
+            <div>Element Bin</div>
+            <select name="element_bin_filter">
+              <option value=all>All</option>
+              <option value=unsorted>Unsorted</option>
+            </select>
           </th>
         </tr>
       </thead>
@@ -64,8 +72,8 @@
           (!part || p[4] == part ||  p[5] == part || p[6] == part || p[7] == part) &&
           (!color || color.split(',').includes(p[0])) && (!q || re.test(p[1])) &&
           (isChecked('technic') || !p[1].includes('Technic')) &&
-          (isChecked('has_element_bin') || !p[6]) &&
-          (isChecked('has_part_bin') || !p[5])
+          (value('element_bin_filter') == 'all' || !p[6]) &&
+          (value('part_bin_filter') == 'all' || !p[5])
        )
 
         if (!color && value('groupby') != 2) {
@@ -102,7 +110,7 @@
             results = Object.values(parts).reduce((p, c) => {p.push(c); return p}, [])
         }
 
-        results = results.filter((p) => (isChecked('has_part_bin') || !p[5]))
+        results = results.filter((p) => (value('part_bin_filter') == 'all' || !p[5]))
 
         results = results.filter((p) => (!min_qty || p[2] >= min_qty))
 
