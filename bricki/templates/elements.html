@@ -24,13 +24,6 @@
   </head>
 
   <body>
-    <label><select name="groupby">
-      <option value="2">Element</option>
-      <option value="4">Part</option>
-      <option value="7">Category</option>
-    </select></label>
-    <section id="stats"></section>
-
     <table>
       <thead>
         <tr>
@@ -68,6 +61,13 @@
       </thead>
       <tbody id="results"></tbody>
     </table>
+
+    <label>Group by <select name="groupby">
+      <option value="2">Element</option>
+      <option value="4">Part</option>
+      <option value="7">Category</option>
+    </select></label>
+    <section id="stats"></section>
 
     <script>
       const my_parts = {{ my_parts }}
