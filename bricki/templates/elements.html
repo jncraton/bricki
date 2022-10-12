@@ -21,7 +21,6 @@
   </head>
 
   <body>
-    <label>Part or Bin<input name="part" /></label>
     <label>Min Quantity <input name="minqty" value="0" /></label>
     <label><select name="groupby">
       <option value="2">Element</option>
@@ -37,7 +36,9 @@
         <tr>
           <th>Quantity</th>
           <th>Image</th>
-          <th>Part</th>
+          <th>
+            <label>Part<input name="part" /></label>
+          </th>
           <th>
             <label>Color
             <input name="color" list="colors" /></label>
@@ -75,7 +76,7 @@
         const re = new RegExp(q.toLowerCase(),'ui')
 
         let results = my_parts.filter((p) =>
-          (!part || p[4] == part ||  p[5] == part || p[6] == part || p[7] == part) &&
+          (!part || p[4] == part) &&
           (!color || color.split(',').includes(p[0])) && (!q || re.test(p[1])) &&
           (isChecked('technic') || !p[1].includes('Technic')) &&
           (value('element_bin_filter') == 'all' || !p[6]) &&
