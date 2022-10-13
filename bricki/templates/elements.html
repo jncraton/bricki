@@ -55,6 +55,9 @@
             <datalist id="colors">{{ color_options }}</datalist>
           </th>
           <th>
+            <label>Category <input name="category" size=1 /></label>
+          </th>
+          <th>
             <label>Name <input name="q" size=1 /></label>
           </th>
           <th>
@@ -173,7 +176,8 @@
             <td><img src="${img_url}"></td>
             <td><a href="${r[4]}.html">${r[4]}</a></td>
             <td>${r[0]}</td>
-            <td>${r[7]}${value('groupby') != 7 ? ', ' + r[1] + ' (<a href="https://rebrickable.com/parts/' + r[4] + '">rb</a>)' : ''}</td>
+            <td>${r[7]}</td>
+            <td>${r[1] + ' (<a href="https://rebrickable.com/parts/' + r[4] + '">rb</a>)'}</td>
             <td>${r[5] || ''}</td>
             <td>${r[6] || ''}</td>
             <td>${r[2]}</td></tr>`
