@@ -96,7 +96,7 @@
       const value = q => document.querySelector('[name=' + q).value
 
       function keyword_match(keywords, haystack) {
-        return keywords.split(' ').every(keyword => {
+        return keywords.every(keyword => {
           if (keyword[0] == '-') {
             return !haystack.toLowerCase().includes(keyword.substring(1).toLowerCase())
           } else {
@@ -109,7 +109,7 @@
         let results = my_parts.filter((p) =>
           (!part || p[4] == part) &&
           (!category || p[7] == category) &&
-          (!color || color.split(',').includes(p[0])) && (!q || keyword_match(q, p[1])) &&
+          (!color || color.split(',').includes(p[0])) && (!q || keyword_match(q.split(' '), p[1])) &&
           (value('element_bin_filter') == 'all' || !p[6]) &&
           (value('part_bin_filter') == 'all' || !p[5])
        )
