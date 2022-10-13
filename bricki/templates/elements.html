@@ -185,8 +185,12 @@
         }, '')
       }
 
-      document.querySelectorAll('input,select').forEach(e => e.addEventListener('input', update))
+      let updateTimer;
 
+      document.querySelectorAll('input,select').forEach(e => e.addEventListener('input', () => {
+        clearTimeout(updateTimer)
+        updateTimer = setTimeout(update, 100)
+      }))
       update()
     </script>
   </body>
