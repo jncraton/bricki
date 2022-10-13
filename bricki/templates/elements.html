@@ -105,9 +105,10 @@
         })
       }
 
-      function search_part(q, color, part, min_qty) {
+      function search_part(q, color, category, part, min_qty) {
         let results = my_parts.filter((p) =>
           (!part || p[4] == part) &&
+          (!category || p[7] == category) &&
           (!color || color.split(',').includes(p[0])) && (!q || keyword_match(q, p[1])) &&
           (value('element_bin_filter') == 'all' || !p[6]) &&
           (value('part_bin_filter') == 'all' || !p[5])
@@ -157,7 +158,7 @@
       }
 
       function update() {
-        let results = search_part(value('q'),value('color'),value('part'),value('minqty'))
+        let results = search_part(value('q'),value('color'),value('category'),value('part'),value('minqty'))
 
         let count = results.reduce((p, c) => {return c[2] + p}, 0)
         let sorted_elements = results.reduce((p, c) => {return( c[6] ? c[2] : 0) + p}, 0)
