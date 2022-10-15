@@ -39,7 +39,7 @@ plates-angled,part,shallow
 plates-small,part,shallow
 plates-medium,part,deep
 plates-large,part,deep
-plates-xl,type,""
+plates-xl,part,""
 plates-special,part,shallow
 red-3700-1,element,3700
 red-3730-1,element,3730
