@@ -47,7 +47,13 @@
     <table>
       <thead>
         <tr>
-          <th></th>
+          <th>
+            <label>Group by <select name="groupby">
+              <option value="2">Element</option>
+              <option value="4">Part</option>
+              <option value="7">Category</option>
+            </select></label>
+          </th>
           <th>
             <label>Part<input name="part" size=1 /></label>
           </th>
@@ -84,11 +90,6 @@
       <tbody id="results"></tbody>
     </table>
 
-    <label>Group by <select name="groupby">
-      <option value="2">Element</option>
-      <option value="4">Part</option>
-      <option value="7">Category</option>
-    </select></label>
     <section id="stats"></section>
 
     <script>
