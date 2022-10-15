@@ -44,7 +44,7 @@ print(f"{len(needed)} missing. Attempting download...")
 
 for p in needed:
     if not os.path.exists(get_filename(p)):
-        for color in ['71', '7', '72', '4', p[4]]:
+        for color in ['71', '7', '72', '4', p[4], 0]:
             try:
                 urllib.request.urlretrieve(f'https://cdn.rebrickable.com/media/thumbs/parts/ldraw/{color}/{p[1]}.png/250x250p.png', get_filename(p))
                 break
