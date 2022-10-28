@@ -51,5 +51,12 @@ clean-keep-cache:
 	rm -rf src/__pycache__
 	rm -f www/*.html
 
+format:
+	npx prettier --write bricki/templates/*.html
+
+check:
+	npx jshint --extract=always bricki/templates/*.html
+	npx prettier --check bricki/templates/*.html
+
 clean: clean-keep-cache
 	cd rebrickable-sqlite && make clean
