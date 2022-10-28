@@ -44,7 +44,7 @@ with open(path + "elements.html", "w") as out:
     template = open('bricki/templates/elements.html').read()
 
 
-    s = template.replace('"{{ my_parts }}"', json.dumps(my_parts))
+    s = template.replace("'{{ my_parts }}'", json.dumps(my_parts))
     s = s.replace("{{ color_options }}", '\n'.join(color_options))
 
     out.write(s)

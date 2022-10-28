@@ -4,28 +4,29 @@
     <meta charset="utf-8" />
     <style>
       section {
-        display:flex;
-        flex-flow:row wrap;
+        display: flex;
+        flex-flow: row wrap;
       }
       figure {
         width: 96px;
         margin: 8px;
       }
       figcaption {
-        text-align:center;
-        color:#222;
-        font-size:smaller;
+        text-align: center;
+        color: #222;
+        font-size: smaller;
       }
-      a:link, a:visited {
-        text-decoration:none;
+      a:link,
+      a:visited {
+        text-decoration: none;
       }
       .grouped {
-        border:1px solid #ccc;
-        display:inherit;
-        flex-flow:row wrap;
+        border: 1px solid #ccc;
+        display: inherit;
+        flex-flow: row wrap;
       }
       .multicolor {
-        background: linear-gradient(0deg, rgba(0,200,200,1) 25%, rgba(200,0,0,1) 75%);
+        background: linear-gradient(0deg, rgba(0, 200, 200, 1) 25%, rgba(200, 0, 0, 1) 75%);
       }
       img {
         height: 96px;
@@ -37,8 +38,6 @@
   </head>
 
   <body>
-    <section>
-    {{ figures }}
-    </section>
+    <section>{{ figures }}</section>
   </body>
 </html>

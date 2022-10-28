@@ -4,12 +4,14 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style>
-      body,input,select {
-        font-family:sans-serif;
-        font-size:16px;
+      body,
+      input,
+      select {
+        font-family: sans-serif;
+        font-size: 16px;
       }
       body {
-        margin:0 16pt;
+        margin: 0 16pt;
       }
       img {
         height: 64px;
@@ -20,25 +22,28 @@
       thead {
         position: sticky;
         top: 0;
-        background: linear-gradient(0deg, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);
+        background: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
       }
       thead th {
         vertical-align: top;
       }
-      td, th {
+      td,
+      th {
         padding: 10pt;
         text-align: left;
         font-weight: normal;
         line-height: 1.5;
       }
-      td:nth-child(1), th:nth-child(1),
-      td:nth-child(3), th:nth-child(3),
+      td:nth-child(1),
+      th:nth-child(1),
+      td:nth-child(3),
+      th:nth-child(3),
       th:nth-child(1) input,
       th:nth-child(3) input {
         text-align: right;
       }
       input {
-        width:100%;
+        width: 100%;
       }
     </style>
   </head>
@@ -48,42 +53,48 @@
       <thead>
         <tr>
           <th>
-            <label><div>Group by</div><select name="groupby">
-              <option value="2">Element</option>
-              <option value="4">Part</option>
-              <option value="7">Category</option>
-            </select></label>
+            <label
+              ><div>Group by</div>
+              <select name="groupby">
+                <option value="2">Element</option>
+                <option value="4">Part</option>
+                <option value="7">Category</option>
+              </select></label
+            >
           </th>
           <th>
-            <label>Part<input name="part" size=1 /></label>
+            <label>Part<input name="part" size="1" /></label>
           </th>
           <th>
-            <label>Color
-            <input name="color" list="colors" size=1 /></label>
+            <label>Color <input name="color" list="colors" size="1" /></label>
             <datalist id="colors">{{ color_options }}</datalist>
           </th>
           <th>
-            <label>Category <input name="category" size=1 /></label>
+            <label>Category <input name="category" size="1" /></label>
           </th>
           <th>
-            <label>Name <input name="q" size=1 /></label>
+            <label>Name <input name="q" size="1" /></label>
           </th>
           <th>
-            <label><div>Part Bin</div>
-            <select name="part_bin_filter">
-              <option value=all>All</option>
-              <option value=unsorted>Unsorted</option>
-            </select></label>
+            <label
+              ><div>Part Bin</div>
+              <select name="part_bin_filter">
+                <option value="all">All</option>
+                <option value="unsorted">Unsorted</option>
+              </select></label
+            >
           </th>
           <th>
-            <label><div>Element Bin</div>
-            <select name="element_bin_filter">
-              <option value=all>All</option>
-              <option value=unsorted>Unsorted</option>
-            </select></label>
+            <label
+              ><div>Element Bin</div>
+              <select name="element_bin_filter">
+                <option value="all">All</option>
+                <option value="unsorted">Unsorted</option>
+              </select></label
+            >
           </th>
           <th>
-              <label>Quantity <input name="minqty" value="0" size=1 /></label>
+            <label>Quantity <input name="minqty" value="0" size="1" /></label>
           </th>
         </tr>
       </thead>
@@ -93,7 +104,7 @@
     <section id="stats"></section>
 
     <script>
-      const my_parts = "{{ my_parts }}"
+      const my_parts = '{{ my_parts }}'
 
       const value = q => document.querySelector('[name=' + q).value
 
@@ -108,74 +119,105 @@
       }
 
       function search_part(q, color, category, part, min_qty) {
-        let results = my_parts.filter((p) =>
-          (!part || p[4] == part) &&
-          (!category || p[7] == category) &&
-          (!color || color.split(',').includes(p[0])) && (!q || keyword_match(q.split(' '), p[1])) &&
-          (value('element_bin_filter') == 'all' || !p[6]) &&
-          (value('part_bin_filter') == 'all' || !p[5])
-       )
+        let results = my_parts.filter(
+          p =>
+            (!part || p[4] == part) &&
+            (!category || p[7] == category) &&
+            (!color || color.split(',').includes(p[0])) &&
+            (!q || keyword_match(q.split(' '), p[1])) &&
+            (value('element_bin_filter') == 'all' || !p[6]) &&
+            (value('part_bin_filter') == 'all' || !p[5])
+        )
 
         if (!color && value('groupby') != 2) {
-            let parts = results.reduce((storage, el) => {
-              let group = el[parseInt(value('groupby'))]
-              if (!storage[group]) {
-                storage[group] = [...el]
-                storage[group][0] = 0
-                storage[group][8] = 0 // Sorted by element count
-                storage[group][9] = 0 // Total element bins
-              } else {
-                storage[group][2] += el[2]
-              }
-              if (el[6]) {
-                storage[group][8] += el[2]
-              }
-              storage[group][0] += 1
-              storage[group][9] += el[6] ? 1 : 0
-              storage[group][3] = 71
+          let parts = results.reduce((storage, el) => {
+            let group = el[parseInt(value('groupby'))]
+            if (!storage[group]) {
+              storage[group] = [...el]
+              storage[group][0] = 0
+              storage[group][8] = 0 // Sorted by element count
+              storage[group][9] = 0 // Total element bins
+            } else {
+              storage[group][2] += el[2]
+            }
+            if (el[6]) {
+              storage[group][8] += el[2]
+            }
+            storage[group][0] += 1
+            storage[group][9] += el[6] ? 1 : 0
+            storage[group][3] = 71
 
-              let element_storage_percentage = storage[group][8] / storage[group][2]
+            let element_storage_percentage = storage[group][8] / storage[group][2]
 
-              if (element_storage_percentage == 1.0 && !storage[group][5]) {
-                storage[group][5] = '100% by element'
-              }
+            if (element_storage_percentage == 1.0 && !storage[group][5]) {
+              storage[group][5] = '100% by element'
+            }
 
-              if (element_storage_percentage < 1.0 && storage[group][5] == '100% by element') {                storage[group][5] = ''
-              }
+            if (element_storage_percentage < 1.0 && storage[group][5] == '100% by element') {
+              storage[group][5] = ''
+            }
 
-              storage[group][6] = storage[group][8] + ' (' + element_storage_percentage.toLocaleString(undefined,{style: 'percent', maximumFractionDigits:0}) + ')'
-              return storage
-            }, {})
+            storage[group][6] =
+              storage[group][8] +
+              ' (' +
+              element_storage_percentage.toLocaleString(undefined, {
+                style: 'percent',
+                maximumFractionDigits: 0,
+              }) +
+              ')'
+            return storage
+          }, {})
 
-            results = Object.values(parts).reduce((p, c) => {p.push(c); return p}, [])
+          results = Object.values(parts).reduce((p, c) => {
+            p.push(c)
+            return p
+          }, [])
         }
 
-        results = results.filter((p) => (value('part_bin_filter') == 'all' || !p[5]))
+        results = results.filter(p => value('part_bin_filter') == 'all' || !p[5])
 
-        results = results.filter((p) => (!min_qty || p[2] >= min_qty))
+        results = results.filter(p => !min_qty || p[2] >= min_qty)
 
-        results = results.sort((a,b) => {return a[2] < b[2]})
+        results = results.sort((a, b) => {
+          return a[2] < b[2]
+        })
 
         return results
       }
 
       function update() {
-        let results = search_part(value('q'),value('color'),value('category'),value('part'),value('minqty'))
+        let results = search_part(
+          value('q'),
+          value('color'),
+          value('category'),
+          value('part'),
+          value('minqty')
+        )
 
-        let count = results.reduce((p, c) => {return c[2] + p}, 0)
-        let sorted_elements = results.reduce((p, c) => {return( c[6] ? c[2] : 0) + p}, 0)
-        let sorted_parts = results.reduce((p, c) => {return( c[5] || c[6] ? c[2] : 0) + p}, 0)
-        
+        let count = results.reduce((p, c) => {
+          return c[2] + p
+        }, 0)
+        let sorted_elements = results.reduce((p, c) => {
+          return (c[6] ? c[2] : 0) + p
+        }, 0)
+        let sorted_parts = results.reduce((p, c) => {
+          return (c[5] || c[6] ? c[2] : 0) + p
+        }, 0)
+
         document.querySelector('#stats').textContent = `
-          Unique: ${results.reduce(p => {return 1 + p}, 0)}
+          Unique: ${results.reduce(p => {
+            return 1 + p
+          }, 0)}
           Total quantity: ${count}
-          Sorted Elements: ${sorted_elements} (${parseInt(100*sorted_elements/count)}%)
-          Sorted Parts: ${sorted_parts} (${parseInt(100*sorted_parts/count)}%)
+          Sorted Elements: ${sorted_elements} (${parseInt((100 * sorted_elements) / count)}%)
+          Sorted Parts: ${sorted_parts} (${parseInt((100 * sorted_parts) / count)}%)
         `
 
-        document.querySelector('#results').innerHTML = results.slice(0,100).reduce((p,r) => {
+        document.querySelector('#results').innerHTML = results.slice(0, 100).reduce((p, r) => {
           let img_url = 'https://m.rebrickable.com/media/parts/ldraw/' + r[3] + '/' + r[4] + '.png'
-          return p + `<tr>
+          return (
+            p +
+            `<tr>
             <td><img src="${img_url}"></td>
             <td><a href="${r[4]}.html">${r[4]}</a></td>
             <td>${r[0]}</td>
@@ -184,15 +226,18 @@
             <td>${r[5] || ''}</td>
             <td>${r[6] || ''}</td>
             <td>${r[2]}</td></tr>`
+          )
         }, '')
       }
 
-      let updateTimer;
+      let updateTimer
 
-      document.querySelectorAll('input,select').forEach(e => e.addEventListener('input', () => {
-        clearTimeout(updateTimer)
-        updateTimer = setTimeout(update, 100)
-      }))
+      document.querySelectorAll('input,select').forEach(e =>
+        e.addEventListener('input', () => {
+          clearTimeout(updateTimer)
+          updateTimer = setTimeout(update, 100)
+        })
+      )
       update()
     </script>
   </body>
