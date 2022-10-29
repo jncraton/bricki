@@ -238,6 +238,10 @@
           updateTimer = setTimeout(update, 100)
         })
       )
+
+      if (location.hash.length > 1) {
+        document.querySelector('[name=part]').value = location.hash.slice(1)
+      }
       update()
     </script>
   </body>
