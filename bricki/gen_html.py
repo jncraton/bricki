@@ -68,9 +68,8 @@ with open(path + "bins.html", "w") as out:
           join parts on parts.part_num=canonical_part_num
           left join part_bins on canonical_part_num=part_bins.part_num and (part_bins.color_id=-1 or part_bins.color_id=my_parts.color_id)
           left join part_bins as element_bins on canonical_part_num=element_bins.part_num and element_bins.color_id=my_parts.color_id
-          natural join bins
+          left join bins on part_bins.bin_id == bins.bin_id
           left join colors on colors.id = part_bins.color_id
-          where bins.sort_style != 'unsorted'
           group by canonical_part_num, part_bins.color_id
           having sum(quantity) > 0
           order by bins.sort_style == 'category' asc, bins.sort_style, part_bins.bin_id, part_bins.section_id, parts.name asc
@@ -82,7 +81,7 @@ with open(path + "bins.html", "w") as out:
     part_seen = set()
 
     for part in parts:
-        if not part[1] in part_seen and part[7] == -1:
+        if not part[1] in part_seen and (part[7] == -1 or part[7] == None):
             part_seen.add(part[1])
         
             elements = [p for p in my_parts if p[4] == part[1]]
@@ -131,6 +130,8 @@ with open(path + "bins.html", "w") as out:
         return fig
 
     make_fig.in_group = False
+
+    parts = [p for p in parts if p[3] and p[9] != 'unsorted']
 
     figures = [make_fig(p) for p in parts]
 
