@@ -42,7 +42,7 @@ needed = [p for p in parts if not os.path.exists(get_filename(p))]
 
 print(f"{len(needed)} missing. Attempting download...")
 
-for p in needed:
+def get_image(p): 
     if not os.path.exists(get_filename(p)):
         for color in ['71', '7', '72', '4', p[4], 0]:
             try:
@@ -52,7 +52,7 @@ for p in needed:
                 pass
         else:
             print(f'Error with {p[1]} {p[0]}')
-            continue
+            return
 
         # Add transparency
         run(['convert',
@@ -86,3 +86,8 @@ for p in needed:
         run(['pngquant', '--force', '--ext', '.png', '--ordered', '--speed', '1', '16', get_filename(p)])
 
         run(['advpng', '-z', '-4', get_filename(p)])
+
+from multiprocessing import Pool
+
+with Pool(8) as pool:
+    pool.map(get_image, needed)
