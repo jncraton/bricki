@@ -59,6 +59,8 @@ def get_image(p):
             get_filename(p),
              '-resize', '96x96^',
              '-colorspace', 'Gray',
+             '-auto-gamma',
+             '-gamma', '1.8',
              '(', 
                 '-clone', '0', 
                 '-fill', '#999999', 
