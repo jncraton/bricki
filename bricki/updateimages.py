@@ -29,7 +29,7 @@ def get_image(p, url=None):
              '-resize', '96x96^',
              '-colorspace', 'Gray',
              '-auto-gamma',
-             '-gamma', '1.8',
+             '-gamma', '8.0',
              '(', 
                 '-clone', '0', 
                 '-fill', '#999999', 
