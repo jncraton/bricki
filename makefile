@@ -53,6 +53,10 @@ clean-keep-cache:
 
 format:
 	npx prettier --write bricki/templates/*.html
+	xsv sort --no-headers --select 3,4,1 data/part_bins.csv | sponge data/part_bins.csv
+	xsv sort --no-headers --select 3,2,1 data/part_relationships.csv | sponge data/part_relationships.csv
+	xsv sort --no-headers --select 1 data/bins.csv | sponge data/bins.csv
+	unix2dos data/*.csv
 
 check:
 	npx jshint --extract=always bricki/templates/*.html
