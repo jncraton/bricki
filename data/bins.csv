@@ -61,7 +61,7 @@ technic-gears,element,3600
 technic-pins,element,3600
 tiles,part,shallow
 tracks,type,
-train,unsorted,unknown
+train,type,unknown
 transparent-clear-3600,element,3600
 transparent-metallic-3600,element,3600
 wheels,type,3731
