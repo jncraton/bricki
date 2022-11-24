@@ -60,11 +60,11 @@ technic-bricks,part,3730
 technic-gears,element,3600
 technic-pins,element,3600
 tiles,part,shallow
-tires,unsorted,3731
 tracks,type,
 train,unsorted,unknown
 transparent-clear-3600,element,3600
 transparent-metallic-3600,element,3600
+wheels,type,3731
 white-3700-1,element,3700
 white-3730-1,element,3730
 yellow-3700-1,element,3700
