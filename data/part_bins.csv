@@ -1852,7 +1852,7 @@ flex08c19l,7,legacy-elements,unsorted
 98138,297,transparent-metallic-3600,
 98138,36,transparent-metallic-3600,
 11208,-1,wheels,wheel
-11209,-1,wheels,wheel
+11209,0,wheels,wheel
 13971,-1,wheels,wheel
 18976,-1,wheels,wheel
 18977,0,wheels,wheel
@@ -1862,7 +1862,7 @@ flex08c19l,7,legacy-elements,unsorted
 24869,-1,wheels,wheel
 2496,-1,wheels,wheel
 2515,-1,wheels,wheel
-2902,-1,wheels,wheel
+2902,0,wheels,wheel
 2903,-1,wheels,wheel
 29117a,-1,wheels,wheel
 29117b,-1,wheels,wheel
@@ -1876,7 +1876,7 @@ flex08c19l,7,legacy-elements,unsorted
 3464,-1,wheels,wheel
 3482,-1,wheels,wheel
 3483,0,wheels,wheel
-3634,-1,wheels,wheel
+3634,0,wheels,wheel
 39367pat0002,-1,wheels,wheel
 42610,-1,wheels,wheel
 4288,-1,wheels,wheel
@@ -1895,7 +1895,6 @@ flex08c19l,7,legacy-elements,unsorted
 56897,0,wheels,wheel
 56902,-1,wheels,wheel
 56903,-1,wheels,wheel
-58090,0,wheels,wheel
 59895,0,wheels,wheel
 6118,-1,wheels,wheel
 61254,0,wheels,wheel
@@ -1904,11 +1903,11 @@ flex08c19l,7,legacy-elements,unsorted
 6230,0,wheels,wheel
 62359,-1,wheels,wheel
 62701,-1,wheels,wheel
-6578,-1,wheels,wheel
-6579,-1,wheels,wheel
+6578,0,wheels,wheel
+6579,0,wheels,wheel
 6580,-1,wheels,wheel
 6580a,-1,wheels,wheel
-6594,-1,wheels,wheel
+6594,0,wheels,wheel
 6595,-1,wheels,wheel
 69909,0,wheels,wheel
 7039,-1,wheels,wheel
