@@ -1794,8 +1794,6 @@ flex08c19l,7,legacy-elements,unsorted
 53401,72,tracks,
 74746,72,tracks,
 74747,72,tracks,
-2871b,0,train,
-28740,0,train,
 2927,0,train,
 2972,-1,train,
 32083,-1,train,
@@ -1803,8 +1801,10 @@ flex08c19l,7,legacy-elements,unsorted
 4025,-1,train,
 4092,-1,train,
 50254,-1,train,
-70358,0,train,
 92088,-1,train,
+2871b,0,train,train-motor
+28740,0,train,train-motor
+70358,0,train,train-motor
 2878,0,train,train-wheels
 2878c01,0,train,train-wheels
 38340,0,train,train-wheels
