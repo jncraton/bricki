@@ -86,14 +86,29 @@ with open(path + "bins.html", "w") as out:
         
             elements = [p for p in my_parts if p[4] == part[1]]
 
+            sets = helpers.query("""
+                select
+                    set_transactions.set_num,
+                    sum(set_parts.quantity * set_transactions.quantity) as q from set_transactions
+                left outer join set_parts on
+                    set_parts.set_num = set_transactions.set_num
+                where part_num = :part_num
+                group by set_transactions.set_num
+                order by q desc""", {"part_num": part[1]})
+
             with open(f"{path}{part[1]}.html", "w") as part_page:
                 part_page.write(template.replace("{{ part }}", f"""
                     <h1>{part[1]} {part[0]}</h1>
                     <img src="images/{part[1]}.png">
+                    <h2>Storage</h2>
                     <ul>
                     <li><b>{part[2]}</b> total
                     <li>Stored in <b>{part[3]}</b> if not stored by color
                     {''.join(["<li><b>" + str(e[2]) + "</b> in <b>" + e[0] + '</b>' + ((' stored in <b>' + str(e[6]) + '</b>') if e[6] else f' stored in {str(part[3])}') for e in elements])}
+                    </ul>
+                    <h2>Sets</h2>
+                    <ul>
+                    {''.join([f"<li>{s[1]} from {s[0]}" for s in sets])}
                     </ul>
                 """))
 
