@@ -102,7 +102,7 @@ with open(path + "bins.html", "w") as out:
                     <img src="images/{part[1]}.png">
                     <h2>Storage</h2>
                     <ul>
-                    <li><b>{part[2]}</b> total
+                    <li><b>{sum([e[2] for e in elements])}</b> total
                     <li>Stored in <b>{part[3]}</b> if not stored by color
                     {''.join(["<li><b>" + str(e[2]) + "</b> in <b>" + e[0] + '</b>' + ((' stored in <b>' + str(e[6]) + '</b>') if e[6] else f' stored in {str(part[3])}') for e in elements])}
                     </ul>
