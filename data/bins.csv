@@ -54,12 +54,12 @@ slopes-inverted,part,shallow
 slopes-small,part,shallow
 studs-not-on-top,part,shallow
 tan-3700-1,element,3700
+technic-1,part,shallow
 technic-axles,element,3600
 technic-beams,element,3700
 technic-bricks,part,3730
 technic-gears,element,3600
 technic-pins,element,3600
-technic-1,part,shallow
 tiles,part,shallow
 tracks,type,
 train,type,unknown
