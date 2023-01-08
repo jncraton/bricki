@@ -59,6 +59,7 @@ technic-beams,element,3700
 technic-bricks,part,3730
 technic-gears,element,3600
 technic-pins,element,3600
+technic-1,part,shallow
 tiles,part,shallow
 tracks,type,
 train,type,unknown
