@@ -3,6 +3,31 @@ import json
 
 path = "www/"
 
+sets = helpers.query(
+"""
+select
+  year,
+  set_transactions.set_num,
+  name,
+  sum(set_transactions.quantity)
+from set_transactions
+natural join sets
+group by set_transactions.set_num
+order by year desc
+"""
+)
+
+with open(path + "sets.html", "w") as out:
+    template = open('bricki/templates/sets.html').read()
+    table = ""
+
+    for s in sets:
+        table += f"<tr><td>{'</td><td>'.join(map(str,s))}</td></tr>"
+
+    s = template.replace("{{ sets }}", table)
+
+    out.write(s)
+
 colors = helpers.query(
 """
 select 
