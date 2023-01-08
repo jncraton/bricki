@@ -9,7 +9,8 @@ select
   year,
   set_transactions.set_num,
   name,
-  sum(set_transactions.quantity)
+  sum(set_transactions.quantity),
+  img_url
 from set_transactions
 natural join sets
 group by set_transactions.set_num
@@ -22,7 +23,7 @@ with open(path + "sets.html", "w") as out:
     table = ""
 
     for s in sets:
-        table += f"<tr><td>{'</td><td>'.join(map(str,s))}</td></tr>"
+        table += f'<tr><td><img src="{s[4]}" width="320px"/></td><td>{s[0]}</td><td>{s[1]}</td><td>{s[2]}</td><td>{s[3]}</td></tr>'
 
     s = template.replace("{{ sets }}", table)
 
