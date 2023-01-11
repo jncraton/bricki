@@ -1731,10 +1731,8 @@ flex08c19l,7,legacy-elements,unsorted
 2825,-1,technic-2,
 3743,-1,technic-2,
 45590,-1,technic-2,
+6553,-1,technic-2,
 6632,-1,technic-2,
-32529,-1,technic-2,connector-plate
-32530,-1,technic-2,connector-plate
-74698,-1,technic-2,connector-plate
 10928,-1,technic-2,gears
 18575,-1,technic-2,gears
 32060,-1,technic-2,gears
@@ -1791,6 +1789,10 @@ flex08c19l,7,legacy-elements,unsorted
 53923,-1,technic-2,technic-click-hinge
 57360,-1,technic-2,technic-click-hinge
 57697,-1,technic-2,technic-click-hinge
+32529,-1,technic-2,technic-connector-system
+32530,-1,technic-2,technic-connector-system
+74698,-1,technic-2,technic-connector-system
+85943,-1,technic-2,technic-connector-system
 18938,-1,technic-2,turntable-differential
 18939,-1,technic-2,turntable-differential
 65413,-1,technic-2,turntable-differential
