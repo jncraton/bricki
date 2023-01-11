@@ -1217,7 +1217,6 @@ flex08c19l,7,legacy-elements,unsorted
 15706,-1,misc-1,
 18677,-1,misc-1,
 2444,-1,misc-1,
-2476a,-1,misc-1,
 2569,-1,misc-1,
 2817,-1,misc-1,
 2926,-1,misc-1,
@@ -1793,6 +1792,13 @@ flex08c19l,7,legacy-elements,unsorted
 32530,-1,technic-2,technic-connector-system
 74698,-1,technic-2,technic-connector-system
 85943,-1,technic-2,technic-connector-system
+2476a,-1,technic-2,technic-pin-connector-system
+30000,-1,technic-2,technic-pin-connector-system
+30157,-1,technic-2,technic-pin-connector-system
+30592,-1,technic-2,technic-pin-connector-system
+47720,-1,technic-2,technic-pin-connector-system
+53540,-1,technic-2,technic-pin-connector-system
+6249,-1,technic-2,technic-pin-connector-system
 18938,-1,technic-2,turntable-differential
 18939,-1,technic-2,turntable-differential
 65413,-1,technic-2,turntable-differential
