@@ -178,13 +178,6 @@
 3666,1,blue-3730-1,
 3710,1,blue-3730-1,
 3795,1,blue-3730-1,
-2357,-1,bricks-1xn,
-3004,-1,bricks-1xn,
-3005,-1,bricks-1xn,
-3008,-1,bricks-1xn,
-3009,-1,bricks-1xn,
-3010,-1,bricks-1xn,
-3622,-1,bricks-1xn,
 3003,-1,bricks-2x2,
 3002,-1,bricks-2x3,
 3001,-1,bricks-2x4,
@@ -200,6 +193,7 @@
 3245c,-1,bricks-large,bricks-large
 6111,-1,bricks-large,bricks-large
 6112,-1,bricks-large,bricks-large
+2357,-1,bricks-patterned,
 2877,-1,bricks-patterned,
 30136,-1,bricks-patterned,
 30137,-1,bricks-patterned,
@@ -1298,6 +1292,12 @@ flex08c19l,7,legacy-elements,unsorted
 54568,-1,misc-1,transportation-air-props
 6041,-1,misc-1,transportation-air-props
 92842,-1,misc-1,transportation-air-props
+3004,-1,misc-2,
+3005,-1,misc-2,
+3008,-1,misc-2,
+3009,-1,misc-2,
+3010,-1,misc-2,
+3622,-1,misc-2,
 50947,-1,misc-2,
 50944,-1,misc-2,50944
 50951,0,misc-2,50944
