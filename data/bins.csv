@@ -58,7 +58,7 @@ technic-1,part,shallow
 technic-2,part,shallow
 technic-axles,element,3600
 technic-beams,element,3700
-technic-bricks,part,3730
+technic-bricks,part,shallow
 technic-gears,element,3600
 technic-pins,element,3600
 tiles,part,shallow
