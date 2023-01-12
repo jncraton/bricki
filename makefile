@@ -53,8 +53,11 @@ clean-keep-cache:
 
 format:
 	npx prettier --write bricki/templates/*.html
+	cp data/part_bins.csv data/~part_bins.csv
 	xsv sort --no-headers --select 3,4,1 data/part_bins.csv | sponge data/part_bins.csv
+	cp data/part_relationships.csv data/~part_relationships.csv
 	xsv sort --no-headers --select 3,2,1 data/part_relationships.csv | sponge data/part_relationships.csv
+	cp data/bins.csv data/~bins.csv
 	xsv sort --no-headers --select 1 data/bins.csv | sponge data/bins.csv
 	unix2dos data/*.csv
 
