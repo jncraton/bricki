@@ -1912,7 +1912,6 @@ flex08c19l,7,legacy-elements,unsorted
 4070,19,tan-3700-1,
 54200,19,tan-3700-1,
 6141,19,tan-3700-1,
-14720,-1,technic-1,
 18654,-1,technic-1,
 25214,-1,technic-1,
 32009,-1,technic-1,
@@ -1929,6 +1928,11 @@ flex08c19l,7,legacy-elements,unsorted
 6629,-1,technic-1,
 59443,-1,technic-1,technic-axle-connector
 6538b,-1,technic-1,technic-axle-connector
+14720,-1,technic-1,technic-beams-thick-misc
+32271,-1,technic-1,technic-beams-thick-misc
+32348,-1,technic-1,technic-beams-thick-misc
+60484,-1,technic-1,technic-beams-thick-misc
+71710,-1,technic-1,technic-beams-thick-misc
 32123b,-1,technic-1,technic-bushes-less-common-colors
 3713,-1,technic-1,technic-bushes-less-common-colors
 15462,-1,technic-1,technic-less-common-axle-colors
@@ -1958,6 +1962,7 @@ flex08c19l,7,legacy-elements,unsorted
 6558,-1,technic-1,technic-pins-less-common-colors
 6628,-1,technic-1,technic-pins-less-common-colors
 2825,-1,technic-2,
+32557,-1,technic-2,
 3743,-1,technic-2,
 45590,-1,technic-2,
 6553,-1,technic-2,
@@ -2001,6 +2006,7 @@ flex08c19l,7,legacy-elements,unsorted
 85544,-1,technic-2,pulleys
 85545,-1,technic-2,pulleys
 85546,-1,technic-2,pulleys
+98585,-1,technic-2,pulleys
 32474,-1,technic-2,technic-ball-joint
 50923,-1,technic-2,technic-ball-joint
 67695,-1,technic-2,technic-ball-joint
