@@ -50,6 +50,7 @@ clean-keep-cache:
 	rm -rf bricki/__pycache__
 	rm -rf src/__pycache__
 	rm -f www/*.html
+	rm -rf data/~*
 
 format:
 	npx prettier --write bricki/templates/*.html
