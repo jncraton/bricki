@@ -39,6 +39,7 @@ plants,type,3700
 plates-angled,part,shallow
 plates-large,part,deep
 plates-medium,part,deep
+plates-misc,type,
 plates-small,part,shallow
 plates-special,part,shallow
 plates-xl,part,
