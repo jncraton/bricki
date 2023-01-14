@@ -45,7 +45,7 @@ my_parts = helpers.query(
         """
   select 
     colors.name,
-    parts.name,
+    replace(parts.name, " x ", "x"),
     sum(quantity),
     colors.id,
     canonical_part_num,
@@ -78,7 +78,7 @@ with open(path + "bins.html", "w") as out:
     parts = helpers.query(
         """
           select 
-            parts.name,
+            replace(parts.name, " x ", "x"),
             canonical_part_num,
             sum(quantity) as quantity,
             part_bins.bin_id,
