@@ -114,12 +114,15 @@ with open(path + "bins.html", "w") as out:
             sets = helpers.query("""
                 select
                     set_transactions.set_num,
-                    sum(set_parts.quantity * set_transactions.quantity) as q from set_transactions
+                    sum(set_parts.quantity * set_transactions.quantity) as q,
+                    colors.name
+                from set_transactions
                 left outer join set_parts on
                     set_parts.set_num = set_transactions.set_num
+                join colors on colors.id = set_parts.color_id
                 where part_num = :part_num
-                group by set_transactions.set_num
-                order by q desc""", {"part_num": part[1]})
+                group by set_transactions.set_num, set_parts.color_id
+                order by colors.name, q desc""", {"part_num": part[1]})
 
             with open(f"{path}{part[1]}.html", "w") as part_page:
                 part_page.write(template.replace("{{ part }}", f"""
@@ -133,7 +136,7 @@ with open(path + "bins.html", "w") as out:
                     </ul>
                     <h2>Sets</h2>
                     <ul>
-                    {''.join([f"<li>{s[1]} from {s[0]}" for s in sets])}
+                    {''.join([f"<li>{s[1]} in {s[2]} from {s[0]}" for s in sets])}
                     </ul>
                 """))
 
