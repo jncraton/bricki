@@ -199,6 +199,8 @@
 3008,-1,bricks-large,bricks-large
 30145,-1,bricks-large,bricks-large
 3245c,-1,bricks-large,bricks-large
+43888,-1,bricks-large,bricks-large
+59349,-1,bricks-large,bricks-large
 6111,-1,bricks-large,bricks-large
 6112,-1,bricks-large,bricks-large
 20310,-1,bricks-special,
@@ -418,6 +420,7 @@
 6154,-1,doors+windows,doors+windows
 6155,-1,doors+windows,doors+windows
 6556,-1,doors+windows,doors+windows
+73878,-1,doors+windows,doors+windows
 90195,-1,doors+windows,doors+windows
 38320,-1,doors+windows,window-1x2x2
 60592,-1,doors+windows,window-1x2x2
@@ -1540,6 +1543,7 @@ flex08c19l,7,legacy-elements,unsorted
 6179,-1,plates-misc,
 6180,-1,plates-misc,
 6205,-1,plates-misc,
+62743,-1,plates-misc,
 64799,-1,plates-misc,
 88646,-1,plates-misc,
 92099,-1,plates-misc,
@@ -2325,6 +2329,7 @@ flex08c19l,7,legacy-elements,unsorted
 4025,-1,train,
 4092,-1,train,
 50254,-1,train,
+57999,-1,train,
 92088,-1,train,
 2871b,0,train,train-motor
 28740,0,train,train-motor
