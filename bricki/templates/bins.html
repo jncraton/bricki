@@ -38,6 +38,34 @@
   </head>
 
   <body>
+    <input id="filter" placeholder="Filter..." />
+
     <section>{{ figures }}</section>
+
+    <script>
+      const filter = query => {
+        document.querySelectorAll('figure').forEach(fig => {
+          if (!query) {
+            fig.style.display = 'inline-block'
+            return
+          }
+
+          let caption = fig.querySelector('figcaption').innerHTML.replace('<br>', ' ')
+          let alt = fig.querySelector('img').alt
+          let keywords = (caption + ' ' + alt).toLowerCase().split(/ +/)
+
+          let match = query
+            .toLowerCase()
+            .split(/ +/)
+            .every(kw => keywords.includes(kw))
+
+          fig.style.display = match ? 'inline-block' : 'none'
+        })
+      }
+
+      document.querySelector('input#filter').addEventListener('input', e => {
+        filter(e.target.value)
+      })
+    </script>
   </body>
 </html>
