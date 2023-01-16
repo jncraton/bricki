@@ -106,7 +106,7 @@ with open(path + "bins.html", "w") as out:
     part_pages = set()
 
     for part in parts:
-        if not part[1] in part_seen and (part[7] == -1 or part[7] == None):
+        if not part[1] in part_seen:
             part_seen.add(part[1])
             part_pages.add(part)
 
