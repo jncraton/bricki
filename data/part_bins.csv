@@ -1354,7 +1354,6 @@ flex08c19l,7,legacy-elements,unsorted
 3479,-1,misc-2,transportains-air-tails
 44661,-1,misc-2,transportains-air-tails
 6239,-1,misc-2,transportains-air-tails
-2684c01a,-1,misc-large,legacy-electric-large
 2838c01,-1,misc-large,legacy-electric-large
 2847c01,-1,misc-large,legacy-electric-large
 4760c01,-1,misc-large,legacy-electric-large
@@ -2323,6 +2322,9 @@ flex08c19l,7,legacy-elements,unsorted
 53401,72,tracks,
 74746,72,tracks,
 74747,72,tracks,
+2684c01a,-1,train,
+2686c01,0,train,
+2687,0,train,
 2927,0,train,
 2972,-1,train,
 32083,-1,train,
