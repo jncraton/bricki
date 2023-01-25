@@ -2322,9 +2322,6 @@ flex08c19l,7,legacy-elements,unsorted
 53401,72,tracks,
 74746,72,tracks,
 74747,72,tracks,
-2684c01a,-1,train,
-2686c01,0,train,
-2687,0,train,
 2927,0,train,
 2972,-1,train,
 32083,-1,train,
@@ -2334,6 +2331,9 @@ flex08c19l,7,legacy-elements,unsorted
 50254,-1,train,
 57999,-1,train,
 92088,-1,train,
+2684c01a,15,train,monorail-base
+2686c01,0,train,monorail-base
+2687,0,train,monorail-base
 2871b,0,train,train-motor
 28740,0,train,train-motor
 70358,0,train,train-motor
