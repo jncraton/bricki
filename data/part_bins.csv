@@ -1941,13 +1941,13 @@ flex08c19l,7,legacy-elements,unsorted
 4445,272,roof-slopes,
 4445,320,roof-slopes,
 3037,-1,slopes,
-3038,-1,slopes,
 3039,-1,slopes,
 3297,-1,slopes,
 3298,-1,slopes,
 3684,-1,slopes,
-4445,-1,slopes,
 4460b,-1,slopes,
+3038,-1,slopes,slopes-2x3-2x8
+4445,-1,slopes,slopes-2x3-2x8
 11477,-1,slopes-curved,
 15068,-1,slopes-curved,
 30165,-1,slopes-curved,
