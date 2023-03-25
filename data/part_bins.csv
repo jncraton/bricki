@@ -197,7 +197,6 @@
 2465,-1,bricks-large,bricks-large
 3006,-1,bricks-large,bricks-large
 3007,-1,bricks-large,bricks-large
-3008,-1,bricks-large,bricks-large
 30145,-1,bricks-large,bricks-large
 3245c,-1,bricks-large,bricks-large
 43888,-1,bricks-large,bricks-large
@@ -1940,6 +1939,7 @@ flex08c19l,7,legacy-elements,unsorted
 3298,0,roof-slopes,
 4445,272,roof-slopes,
 4445,320,roof-slopes,
+3008,-1,slopes,
 3037,-1,slopes,
 3039,-1,slopes,
 3297,-1,slopes,
