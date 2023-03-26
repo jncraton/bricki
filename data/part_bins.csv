@@ -1423,7 +1423,6 @@ flex08c19l,7,legacy-elements,unsorted
 54200,25,orange-3700-1,
 6141,25,orange-3700-1,
 6141,29,orange-3700-1,
-11215,-1,panels+misc,
 2362,-1,panels+misc,
 30367,-1,panels+misc,
 30663,-1,panels+misc,
@@ -1447,6 +1446,8 @@ flex08c19l,7,legacy-elements,unsorted
 91501,-1,panels+misc,
 3679,-1,panels+misc,3680
 3680,-1,panels+misc,3680
+11215,-1,panels+misc,medium-brackets
+73562,-1,panels+misc,medium-brackets
 2417,-1,plants,plants
 2423,-1,plants,plants
 24855,-1,plants,plants
