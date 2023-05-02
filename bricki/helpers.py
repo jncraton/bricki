@@ -251,8 +251,8 @@ def search_color(needle):
     (272, 'Dark Blue')
     >>> search_color("bley")[0]
     (71, 'Light Bluish Gray')
-    >>> search_color("trans-black")[0]
-    (40, 'Trans-Black')
+    >>> search_color("trans-green")[0]
+    (34, 'Trans-Green')
     """
     needle = norm_color(needle)
     needle_like = "%%%s%%" % needle
