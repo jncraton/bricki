@@ -108,10 +108,7 @@ def gen_bins(filename, parts):
                     fig += f'<figure><figcaption>{p[6].replace("-"," ").title()}</figcaption></figure>'
 
 
-            if p[7] == -1:
-                style = 'class=multicolor'
-            else:
-                style = f'style="background-color:#{p[8]};"'
+            style = f'style="background-color:#{p[8]};"'
 
             if p[9] != 'category':
                 fig += f'<figure><a href="{p[1]}.html"><img {style} src="images/{p[1]}.png" alt="{p[0]}" loading=lazy><figcaption>{p[1]}<br>{p[2]}  pcs</figcaption></a></figure>'
@@ -129,6 +126,32 @@ def gen_bins(filename, parts):
         s = template.replace("{{ figures }}", ''.join(figures))
 
         out.write(s)
+
+gen_bins(path + "bins.html", helpers.query(
+    """
+      select 
+        replace(parts.name, " x ", "x"),
+        canonical_part_num,
+        sum(quantity) as quantity,
+        coalesce(element_bins.bin_id, part_bins.bin_id),
+        min(my_parts.color_id),
+        count(distinct part_bins.color_id),
+        coalesce(element_bins.section_id, part_bins.section_id),
+        part_bins.color_id,
+        colors.rgb,
+        bins.sort_style
+      from my_parts
+      join canonical_parts on canonical_parts.part_num = my_parts.part_num
+      join parts on parts.part_num=canonical_part_num
+      left join part_bins on canonical_part_num=part_bins.part_num and (part_bins.color_id=-1)
+      left join part_bins as element_bins on canonical_part_num=element_bins.part_num and element_bins.color_id=my_parts.color_id
+      left join bins on coalesce(element_bins.bin_id, part_bins.bin_id) == bins.bin_id
+      left join colors on colors.id = my_parts.color_id
+      group by canonical_part_num, my_parts.color_id
+      having sum(quantity) > 0
+      order by bins.sort_style == 'category' asc, bins.sort_style, COALESCE(element_bins.bin_id, part_bins.bin_id), COALESCE(element_bins.section_id, part_bins.section_id), parts.name asc
+      """
+    ))
 
 for s in sets:
     gen_bins(path + f"bins-{s[1]}.html", helpers.query(
@@ -159,32 +182,6 @@ for s in sets:
         ))
 
     print(f"Bins for {s[1]} complete")
-
-gen_bins(path + "bins.html", helpers.query(
-    """
-      select 
-        replace(parts.name, " x ", "x"),
-        canonical_part_num,
-        sum(quantity) as quantity,
-        part_bins.bin_id,
-        min(my_parts.color_id),
-        count(distinct part_bins.color_id),
-        part_bins.section_id,
-        part_bins.color_id,
-        colors.rgb,
-        bins.sort_style
-      from my_parts
-      join canonical_parts on canonical_parts.part_num = my_parts.part_num
-      join parts on parts.part_num=canonical_part_num
-      left join part_bins on canonical_part_num=part_bins.part_num and (part_bins.color_id=-1 or part_bins.color_id=my_parts.color_id)
-      left join part_bins as element_bins on canonical_part_num=element_bins.part_num and element_bins.color_id=my_parts.color_id
-      left join bins on part_bins.bin_id == bins.bin_id
-      left join colors on colors.id = part_bins.color_id
-      group by canonical_part_num, part_bins.color_id
-      having sum(quantity) > 0
-      order by bins.sort_style == 'category' asc, bins.sort_style, part_bins.bin_id, part_bins.section_id, parts.name asc
-      """
-    ))
 
 # Part pages
 part_template = open('bricki/templates/part.html').read()
