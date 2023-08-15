@@ -75,13 +75,68 @@ with open(path + "elements.html", "w") as out:
 
     out.write(s)
 
-with open(path + "bins.html", "w") as out:
-    parts = helpers.query(
-        """
+part_pages = set()
+
+def gen_bins(filename, parts):
+    with open(filename, "w") as out:
+        part_seen = set()
+
+        for part in parts:
+            if not part[1] in part_seen:
+                part_seen.add(part[1])
+                part_pages.add(part)
+
+        seen = set()
+        sections = set()
+
+        def make_fig(p):
+            fig = ''
+
+            if not p[3] in seen:
+                bin = p[3].replace('-', ' ').replace('+',', ').title().replace('Xn','xN').replace('X','x')
+                fig = f'</section><h1>{bin}</h1><section>'
+                seen.add(p[3])
+
+            if p[6] and not p[6] in sections:
+                if make_fig.in_group:
+                    make_fig.in_group = False
+                    fig += f'</div>'
+                make_fig.in_group = True
+                fig += f'<div class=grouped>'
+                sections.add(p[6])
+                if p[9] == 'category':
+                    fig += f'<figure><figcaption>{p[6].replace("-"," ").title()}</figcaption></figure>'
+
+
+            if p[7] == -1:
+                style = 'class=multicolor'
+            else:
+                style = f'style="background-color:#{p[8]};"'
+
+            if p[9] != 'category':
+                fig += f'<figure><a href="{p[1]}.html"><img {style} src="images/{p[1]}.png" alt="{p[0]}" loading=lazy><figcaption>{p[1]}<br>{p[2]}  pcs</figcaption></a></figure>'
+
+            return fig
+
+        make_fig.in_group = False
+
+        parts = [p for p in parts if p[3] and p[9] != 'unsorted']
+
+        figures = [make_fig(p) for p in parts]
+
+        template = open('bricki/templates/bins.html').read()
+
+        s = template.replace("{{ figures }}", ''.join(figures))
+
+        out.write(s)
+
+for s in sets:
+    gen_bins(path + f"bins-{s[1]}.html", helpers.query(
+        f"""
           select 
             replace(parts.name, " x ", "x"),
             canonical_part_num,
-            sum(quantity) as quantity,
+            sum(my_parts.quantity) as quantity,
             part_bins.bin_id,
             min(my_parts.color_id),
             count(distinct part_bins.color_id),
@@ -89,70 +144,49 @@ with open(path + "bins.html", "w") as out:
             part_bins.color_id,
             colors.rgb,
             bins.sort_style
-          from my_parts
+          from set_transactions
+          left outer join set_parts as my_parts on
+            my_parts.set_num = set_transactions.set_num
           join canonical_parts on canonical_parts.part_num = my_parts.part_num
           join parts on parts.part_num=canonical_part_num
           left join part_bins on canonical_part_num=part_bins.part_num and (part_bins.color_id=-1 or part_bins.color_id=my_parts.color_id)
           left join part_bins as element_bins on canonical_part_num=element_bins.part_num and element_bins.color_id=my_parts.color_id
           left join bins on part_bins.bin_id == bins.bin_id
           left join colors on colors.id = part_bins.color_id
+          where set_transactions.set_num = '{s[1]}'
           group by canonical_part_num, part_bins.color_id
-          having sum(quantity) > 0
+          having sum(my_parts.quantity) > 0
           order by bins.sort_style == 'category' asc, bins.sort_style, part_bins.bin_id, part_bins.section_id, parts.name asc
           """
-    )
+        ))
 
-    part_seen = set()
-    part_pages = set()
+    print(f"Bins for {s[1]} complete")
 
-    for part in parts:
-        if not part[1] in part_seen:
-            part_seen.add(part[1])
-            part_pages.add(part)
-
-    seen = set()
-    sections = set()
-
-    def make_fig(p):
-        fig = ''
-
-        if not p[3] in seen:
-            bin = p[3].replace('-', ' ').replace('+',', ').title().replace('Xn','xN').replace('X','x')
-            fig = f'</section><h1>{bin}</h1><section>'
-            seen.add(p[3])
-
-        if p[6] and not p[6] in sections:
-            if make_fig.in_group:
-                make_fig.in_group = False
-                fig += f'</div>'
-            make_fig.in_group = True
-            fig += f'<div class=grouped>'
-            sections.add(p[6])
-            if p[9] == 'category':
-                fig += f'<figure><figcaption>{p[6].replace("-"," ").title()}</figcaption></figure>'
-
-
-        if p[7] == -1:
-            style = 'class=multicolor'
-        else:
-            style = f'style="background-color:#{p[8]};"'
-
-        if p[9] != 'category':
-            fig += f'<figure><a href="{p[1]}.html"><img {style} src="images/{p[1]}.png" alt="{p[0]}" loading=lazy><figcaption>{p[1]}<br>{p[2]}  pcs</figcaption></a></figure>'
-
-        return fig
-
-    make_fig.in_group = False
-
-    parts = [p for p in parts if p[3] and p[9] != 'unsorted']
-
-    figures = [make_fig(p) for p in parts]
-
-    template = open('bricki/templates/bins.html').read()
-
-    s = template.replace("{{ figures }}", ''.join(figures))
-
-    out.write(s)
+gen_bins(path + "bins.html", helpers.query(
+    """
+      select 
+        replace(parts.name, " x ", "x"),
+        canonical_part_num,
+        sum(quantity) as quantity,
+        part_bins.bin_id,
+        min(my_parts.color_id),
+        count(distinct part_bins.color_id),
+        part_bins.section_id,
+        part_bins.color_id,
+        colors.rgb,
+        bins.sort_style
+      from my_parts
+      join canonical_parts on canonical_parts.part_num = my_parts.part_num
+      join parts on parts.part_num=canonical_part_num
+      left join part_bins on canonical_part_num=part_bins.part_num and (part_bins.color_id=-1 or part_bins.color_id=my_parts.color_id)
+      left join part_bins as element_bins on canonical_part_num=element_bins.part_num and element_bins.color_id=my_parts.color_id
+      left join bins on part_bins.bin_id == bins.bin_id
+      left join colors on colors.id = part_bins.color_id
+      group by canonical_part_num, part_bins.color_id
+      having sum(quantity) > 0
+      order by bins.sort_style == 'category' asc, bins.sort_style, part_bins.bin_id, part_bins.section_id, parts.name asc
+      """
+    ))
 
 # Part pages
 part_template = open('bricki/templates/part.html').read()
