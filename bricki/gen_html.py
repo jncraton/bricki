@@ -110,14 +110,13 @@ def gen_bins(filename, parts):
 
             style = f'style="background-color:#{p[8]};"'
 
-            if p[9] != 'category':
-                fig += f'<figure><a href="{p[1]}.html"><img {style} src="images/{p[1]}.png" alt="{p[0]}" loading=lazy><figcaption>{p[1]}<br>{p[2]}  pcs</figcaption></a></figure>'
+            fig += f'<figure><a href="{p[1]}.html"><img {style} src="images/{p[1]}.png" alt="{p[0]}" loading=lazy><figcaption>{p[1]}<br>{p[2]}  pcs</figcaption></a></figure>'
 
             return fig
 
         make_fig.in_group = False
 
-        parts = [p for p in parts if p[3] and p[9] != 'unsorted']
+        parts = [p for p in parts if p[3]]
 
         figures = [make_fig(p) for p in parts]
 
@@ -133,7 +132,7 @@ gen_bins(path + "bins.html", helpers.query(
         replace(parts.name, " x ", "x"),
         canonical_part_num,
         sum(quantity) as quantity,
-        coalesce(element_bins.bin_id, part_bins.bin_id),
+        coalesce(element_bins.bin_id, part_bins.bin_id, 'Unsorted'),
         min(my_parts.color_id),
         count(distinct part_bins.color_id),
         coalesce(element_bins.section_id, part_bins.section_id),
@@ -149,7 +148,7 @@ gen_bins(path + "bins.html", helpers.query(
       left join colors on colors.id = my_parts.color_id
       group by canonical_part_num, my_parts.color_id
       having sum(quantity) > 0
-      order by bins.sort_style == 'category' asc, bins.sort_style, COALESCE(element_bins.bin_id, part_bins.bin_id), COALESCE(element_bins.section_id, part_bins.section_id), parts.name asc
+      order by bins.sort_style is null, bins.sort_style == 'category' asc, bins.sort_style, COALESCE(element_bins.bin_id, part_bins.bin_id), COALESCE(element_bins.section_id, part_bins.section_id), parts.name asc
       """
     ))
 
@@ -160,7 +159,7 @@ for s in sets:
             replace(parts.name, " x ", "x"),
             canonical_part_num,
             sum(my_parts.quantity) as quantity,
-            coalesce(element_bins.bin_id, part_bins.bin_id),
+            coalesce(element_bins.bin_id, part_bins.bin_id, 'Unsorted'),
             min(my_parts.color_id),
             count(distinct part_bins.color_id),
             coalesce(element_bins.section_id, part_bins.section_id),
@@ -177,7 +176,7 @@ for s in sets:
           where my_parts.set_num = '{s[1]}'
           group by canonical_part_num, my_parts.color_id
           having sum(my_parts.quantity) > 0
-          order by bins.sort_style == 'category' asc, bins.sort_style, COALESCE(element_bins.bin_id, part_bins.bin_id), COALESCE(element_bins.section_id, part_bins.section_id), parts.name asc
+          order by bins.sort_style is null, bins.sort_style == 'category' asc, bins.sort_style, COALESCE(element_bins.bin_id, part_bins.bin_id), COALESCE(element_bins.section_id, part_bins.section_id), parts.name asc
           """
         ))
 
