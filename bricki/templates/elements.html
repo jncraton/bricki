@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
     <meta charset="utf-8" />
@@ -126,7 +126,7 @@
             (!color || color.split(',').includes(p[0])) &&
             (!q || keyword_match(q.split(' '), p[1])) &&
             (value('element_bin_filter') == 'all' || !p[6]) &&
-            (value('part_bin_filter') == 'all' || !p[5])
+            (value('part_bin_filter') == 'all' || !p[5]),
         )
 
         if (!color && value('groupby') != 2) {
@@ -191,7 +191,7 @@
           value('color'),
           value('category'),
           value('part'),
-          value('minqty')
+          value('minqty'),
         )
 
         let count = results.reduce((p, c) => {
@@ -236,7 +236,7 @@
         e.addEventListener('input', () => {
           clearTimeout(updateTimer)
           updateTimer = setTimeout(update, 100)
-        })
+        }),
       )
 
       if (location.hash.length > 1) {
