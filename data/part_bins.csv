@@ -1254,7 +1254,6 @@ flex08c19l,7,legacy-elements,unsorted
 2817,-1,misc-1,
 2926,-1,misc-1,
 30359b,-1,misc-1,
-30602,-1,misc-1,
 33909,-1,misc-1,
 3956,-1,misc-1,
 4732,-1,misc-1,
@@ -1334,9 +1333,12 @@ flex08c19l,7,legacy-elements,unsorted
 3005,-1,misc-2,
 3009,-1,misc-2,
 3010,-1,misc-2,
+30602,-1,misc-2,
 3622,-1,misc-2,
 41854,-1,misc-2,
 44674,-1,misc-2,
+44675,-1,misc-2,
+47457,-1,misc-2,
 50947,-1,misc-2,
 50944,-1,misc-2,50944
 50951,0,misc-2,50944
@@ -1420,6 +1422,7 @@ flex08c19l,7,legacy-elements,unsorted
 6141,25,orange-3700-1,
 6141,29,orange-3700-1,
 2362,-1,panels+misc,
+2362b,-1,panels+misc,
 30367,-1,panels+misc,
 30663,-1,panels+misc,
 35394,-1,panels+misc,
@@ -1585,6 +1588,7 @@ flex08c19l,7,legacy-elements,unsorted
 26047,-1,plates-special,
 30043,-1,plates-special,
 30383,-1,plates-special,
+32828,-1,plates-special,
 3839a,-1,plates-special,
 3839b,-1,plates-special,
 4081b,-1,plates-special,
@@ -1949,17 +1953,14 @@ flex08c19l,7,legacy-elements,unsorted
 15068,-1,slopes-curved,
 30165,-1,slopes-curved,
 33243,-1,slopes-curved,
+37352,-1,slopes-curved,
 41747,-1,slopes-curved,
 41748,-1,slopes-curved,
-41764,-1,slopes-curved,
-41765,-1,slopes-curved,
 42022,-1,slopes-curved,
 42023,-1,slopes-curved,
 43710,-1,slopes-curved,
 43711,-1,slopes-curved,
 44126,-1,slopes-curved,
-44675,-1,slopes-curved,
-47457,-1,slopes-curved,
 50950,-1,slopes-curved,
 6081,-1,slopes-curved,
 6091,-1,slopes-curved,
@@ -1970,6 +1971,11 @@ flex08c19l,7,legacy-elements,unsorted
 88930,-1,slopes-curved,
 93273,-1,slopes-curved,
 93606,-1,slopes-curved,
+49307,-1,slopes-curved,brick-curved-1x
+79756,-1,slopes-curved,brick-curved-1x
+79757,-1,slopes-curved,brick-curved-1x
+29119,-1,slopes-curved,slope-curved-2x1-rl
+29120,-1,slopes-curved,slope-curved-2x1-rl
 2449,-1,slopes-inverted,
 3660,-1,slopes-inverted,
 3665,-1,slopes-inverted,
@@ -1979,7 +1985,10 @@ flex08c19l,7,legacy-elements,unsorted
 4854,-1,slopes-inverted,
 4855,-1,slopes-inverted,
 4871,-1,slopes-inverted,
-52501,-1,slopes-inverted,
+32802,-1,slopes-inverted,1xinverted-cutout
+52501,-1,slopes-inverted,1xinverted-cutout
+41764,-1,slopes-inverted,6x2-slope-inv-curved
+41765,-1,slopes-inverted,6x2-slope-inv-curved
 15571,-1,slopes-small,
 15672,-1,slopes-small,
 28192,-1,slopes-small,
@@ -2001,6 +2010,8 @@ flex08c19l,7,legacy-elements,unsorted
 60481,-1,slopes-small,
 61409,-1,slopes-small,
 85984,-1,slopes-small,
+22388,-1,slopes-small,slope-1x1
+35464,-1,slopes-small,slope-1x1
 11211,-1,studs-not-on-top,
 22885,-1,studs-not-on-top,
 2434,-1,studs-not-on-top,
@@ -2008,6 +2019,7 @@ flex08c19l,7,legacy-elements,unsorted
 26604,-1,studs-not-on-top,
 30414,-1,studs-not-on-top,
 32952,-1,studs-not-on-top,
+36840,-1,studs-not-on-top,
 4070,-1,studs-not-on-top,
 4070a,-1,studs-not-on-top,
 41682,-1,studs-not-on-top,
