@@ -1976,6 +1976,9 @@ flex08c19l,7,legacy-elements,unsorted
 49307,-1,slopes-curved,brick-curved-1x
 79756,-1,slopes-curved,brick-curved-1x
 79757,-1,slopes-curved,brick-curved-1x
+70681,-1,slopes-curved,brick-curved-inv-cutout
+70681,-1,slopes-curved,brick-curved-inv-cutout
+78666,-1,slopes-curved,brick-curved-inv-cutout
 29119,-1,slopes-curved,slope-curved-2x1-rl
 29120,-1,slopes-curved,slope-curved-2x1-rl
 2449,-1,slopes-inverted,
@@ -1986,6 +1989,7 @@ flex08c19l,7,legacy-elements,unsorted
 4854,-1,slopes-inverted,
 4855,-1,slopes-inverted,
 4871,-1,slopes-inverted,
+60219,-1,slopes-inverted,
 32802,-1,slopes-inverted,1xinverted-cutout
 52501,-1,slopes-inverted,1xinverted-cutout
 41764,-1,slopes-inverted,6x2-slope-inv-curved
