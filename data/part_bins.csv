@@ -1246,7 +1246,6 @@ flex08c19l,7,legacy-elements,unsorted
 3794b,73,medium-blue-3700-1,
 54200,73,medium-blue-3700-1,
 11458,-1,misc-1,
-15208,-1,misc-1,
 15706,-1,misc-1,
 18677,-1,misc-1,
 2444,-1,misc-1,
@@ -1314,6 +1313,9 @@ flex08c19l,7,legacy-elements,unsorted
 88289,-1,misc-1,projectiles-launchers
 14226c11,-1,misc-1,string
 14226c41,-1,misc-1,string
+15070,-1,misc-1,teeth-misc
+15208,-1,misc-1,teeth-misc
+15209,-1,misc-1,teeth-misc
 3475b,-1,misc-1,transportation-air-jets
 4229,-1,misc-1,transportation-air-jets
 4746,-1,misc-1,transportation-air-jets
@@ -1979,7 +1981,6 @@ flex08c19l,7,legacy-elements,unsorted
 2449,-1,slopes-inverted,
 3660,-1,slopes-inverted,
 3665,-1,slopes-inverted,
-3676,-1,slopes-inverted,
 3747b,-1,slopes-inverted,
 4287a,-1,slopes-inverted,
 4854,-1,slopes-inverted,
@@ -1989,6 +1990,12 @@ flex08c19l,7,legacy-elements,unsorted
 52501,-1,slopes-inverted,1xinverted-cutout
 41764,-1,slopes-inverted,6x2-slope-inv-curved
 41765,-1,slopes-inverted,6x2-slope-inv-curved
+2341,-1,slopes-inverted,slope-small-inv-misc
+3676,-1,slopes-inverted,slope-small-inv-misc
+13547,-1,slopes-inverted,small-slopes-curved-inv
+1750,-1,slopes-inverted,small-slopes-curved-inv
+24201,-1,slopes-inverted,small-slopes-curved-inv
+32803,-1,slopes-inverted,small-slopes-curved-inv
 15571,-1,slopes-small,
 15672,-1,slopes-small,
 28192,-1,slopes-small,
@@ -2000,7 +2007,6 @@ flex08c19l,7,legacy-elements,unsorted
 3046a,-1,slopes-small,
 3049d,-1,slopes-small,
 3299,-1,slopes-small,
-3300,-1,slopes-small,
 3678b,-1,slopes-small,
 4161,-1,slopes-small,
 4286,-1,slopes-small,
@@ -2012,6 +2018,8 @@ flex08c19l,7,legacy-elements,unsorted
 85984,-1,slopes-small,
 22388,-1,slopes-small,slope-1x1
 35464,-1,slopes-small,slope-1x1
+3300,-1,slopes-small,slope-2x2-peak
+3688,-1,slopes-small,slope-2x2-peak
 11211,-1,studs-not-on-top,
 22885,-1,studs-not-on-top,
 2434,-1,studs-not-on-top,
