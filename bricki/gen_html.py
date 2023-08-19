@@ -148,7 +148,7 @@ gen_bins(path + "bins.html", helpers.query(
       left join colors on colors.id = my_parts.color_id
       group by canonical_part_num, my_parts.color_id
       having sum(quantity) > 0
-      order by bins.sort_style is null, bins.sort_style == 'category' asc, bins.sort_style, COALESCE(element_bins.bin_id, part_bins.bin_id), COALESCE(element_bins.section_id, part_bins.section_id), parts.name asc
+      order by bins.sort_style is null, bins.sort_style == 'category' asc, bins.sort_style, COALESCE(element_bins.bin_id, part_bins.bin_id), COALESCE(element_bins.section_id, part_bins.section_id), parts.name asc, sum(quantity) desc
       """
     ))
 
