@@ -2031,7 +2031,6 @@ flex08c19l,7,legacy-elements,unsorted
 26604,-1,studs-not-on-top,
 30414,-1,studs-not-on-top,
 32952,-1,studs-not-on-top,
-36840,-1,studs-not-on-top,
 4070,-1,studs-not-on-top,
 4070a,-1,studs-not-on-top,
 41682,-1,studs-not-on-top,
@@ -2050,6 +2049,9 @@ flex08c19l,7,legacy-elements,unsorted
 3937,-1,studs-not-on-top,3937
 3938,-1,studs-not-on-top,3937
 6134,-1,studs-not-on-top,3937
+36840,-1,studs-not-on-top,bracket-1x
+73825,-1,studs-not-on-top,bracket-1x
+79389,-1,studs-not-on-top,bracket-1x
 2431,19,tan-3700-1,
 3004,19,tan-3700-1,
 3005,19,tan-3700-1,
@@ -2373,6 +2375,8 @@ flex08c19l,7,legacy-elements,unsorted
 2684c01a,15,train,monorail-base
 2686c01,0,train,monorail-base
 2687,0,train,monorail-base
+29085c01,-1,train,train-buffer
+64415c01,-1,train,train-buffer
 2871b,0,train,train-motor
 28740,0,train,train-motor
 70358,0,train,train-motor
