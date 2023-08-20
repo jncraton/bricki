@@ -186,6 +186,7 @@
 3666,1,blue-3730-1,
 3710,1,blue-3730-1,
 3795,1,blue-3730-1,
+96874,-1,brick-separators,
 3003,-1,bricks-2x2,
 3002,-1,bricks-2x3,
 3001,-1,bricks-2x4,
@@ -1447,6 +1448,7 @@ flex08c19l,7,legacy-elements,unsorted
 3680,-1,panels+misc,3680
 11215,-1,panels+misc,medium-brackets
 73562,-1,panels+misc,medium-brackets
+22667,-1,plants,plants
 2417,-1,plants,plants
 2423,-1,plants,plants
 24855,-1,plants,plants
@@ -1455,6 +1457,7 @@ flex08c19l,7,legacy-elements,unsorted
 30176,-1,plants,plants
 32606,-1,plants,plants
 32607,-1,plants,plants
+33051,-1,plants,plants
 33183,-1,plants,plants
 33291,-1,plants,plants
 3741,-1,plants,plants
