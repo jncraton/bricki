@@ -2147,6 +2147,7 @@ flex08c19l,7,legacy-elements,unsorted
 60485,-1,technic-1,technic-less-common-axle-colors
 6587,-1,technic-1,technic-less-common-axle-colors
 87083,-1,technic-1,technic-less-common-axle-colors
+99008,19,technic-1,technic-less-common-axle-colors
 62462,-1,technic-1,technic-pin-connector-round
 75535,-1,technic-1,technic-pin-connector-round
 11214,-1,technic-1,technic-pins-less-common-colors
@@ -2294,7 +2295,6 @@ flex08c19l,7,legacy-elements,unsorted
 59426,72,technic-axles,
 60485,71,technic-axles,
 87083,72,technic-axles,
-99008,19,technic-axles,
 32005a,0,technic-beams,
 32009,0,technic-beams,
 32140,0,technic-beams,
