@@ -1487,7 +1487,6 @@ flex08c19l,7,legacy-elements,unsorted
 3742,-1,plants,plants
 4728,-1,plants,plants
 55236,-1,plants,plants
-3031,0,plate-elements,
 18674,-1,plates-angled,
 2419,-1,plates-angled,
 24299,-1,plates-angled,
@@ -1509,6 +1508,7 @@ flex08c19l,7,legacy-elements,unsorted
 54383,-1,plates-angled,
 54384,-1,plates-angled,
 60474,-1,plates-angled,
+3031,0,plates-elements,
 3035,2,plates-elements,
 3036,2,plates-elements,
 3036,70,plates-elements,
