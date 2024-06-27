@@ -57,6 +57,25 @@ where from_set_num is null
 group by canonical_part_num, colors.id
 order by colors.name, parts.name;
 
+.output dumps/nonsetparts-unsorted.csv
+select colors.name, parts.name, sum(quantity), part_transactions.part_num, part_transactions.color_id, canonical_part_num
+from part_transactions
+left outer join parts on
+  parts.part_num = part_transactions.part_num
+left outer join colors on
+  colors.id = part_transactions.color_id
+left outer join canonical_parts on
+  canonical_parts.part_num = part_transactions.part_num
+left join part_bins as element_bins on
+  canonical_parts.canonical_part_num=element_bins.part_num and part_transactions.color_id=element_bins.color_id
+left join part_bins on 
+  canonical_parts.canonical_part_num=part_bins.part_num and part_bins.color_id=-1
+where from_set_num is null and
+      part_bins.bin_id is null and
+      element_bins.bin_id is null
+group by canonical_part_num, colors.id
+order by colors.name, parts.name;
+
 .output dumps/parts.csv
 select colors.name, parts.name, sum(quantity), my_parts.part_num, color_id, canonical_part_num
 from my_parts
