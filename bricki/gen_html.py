@@ -205,6 +205,7 @@ def make_part_page(part):
         part_page.write(part_template.replace("{{ part }}", f"""
             <h1>{part[1]} {part[0]}</h1>
             <img src="images/{part[1]}.png">
+            <li><a href="https://rebrickable.com/parts/{part[1]}">Rebrickable</a>
             <h2>Storage</h2>
             <ul>
             <li><b>{sum([e[2] for e in elements])}</b> total
