@@ -1217,7 +1217,6 @@ flex08c19l,7,legacy-elements,unsorted
 2445,71,light-bluish-gray-3700-3,
 2465,71,light-bluish-gray-3700-3,
 3008,71,light-bluish-gray-3700-3,
-3008,71,light-bluish-gray-3700-3,
 3030,71,light-bluish-gray-3700-3,
 3034,71,light-bluish-gray-3700-3,
 3036,71,light-bluish-gray-3700-3,
@@ -1402,7 +1401,7 @@ flex08c19l,7,legacy-elements,unsorted
 1038224a,-1,misc-2,wheel-covers
 1038224b,-1,misc-2,wheel-covers
 18978,-1,misc-2,wheel-covers
-18978b,-1,misc-2,wheel-covers
+18978a,-1,misc-2,wheel-covers
 18978b,-1,misc-2,wheel-covers
 24308a,-1,misc-2,wheel-covers
 24308b,-1,misc-2,wheel-covers
@@ -1515,7 +1514,6 @@ flex08c19l,7,legacy-elements,unsorted
 2682,288,plant-elements,
 32606,5,plant-elements,
 32606,4,plant-elements,
-32606,5,plant-elements,
 32607,2,plant-elements,
 32607,10,plant-elements,
 32607,27,plant-elements,
@@ -2519,8 +2517,6 @@ flex08c19l,7,legacy-elements,unsorted
 13971,-1,wheels,wheel
 18976,-1,wheels,wheel
 18977,0,wheels,wheel
-18978a,-1,wheels,wheel
-18978b,-1,wheels,wheel
 2346,0,wheels,wheel
 24869,-1,wheels,wheel
 2496,-1,wheels,wheel
