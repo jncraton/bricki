@@ -2325,9 +2325,10 @@ flex08c19l,7,legacy-elements,unsorted
 85545,-1,technic-2,pulleys
 85546,-1,technic-2,pulleys
 98585,-1,technic-2,pulleys
-32474,-1,technic-2,technic-ball-joint
-50923,-1,technic-2,technic-ball-joint
-67695,-1,technic-2,technic-ball-joint
+32474,-1,technic-2,technic-ball-joint-bars
+50923,-1,technic-2,technic-ball-joint-bars
+67695,-1,technic-2,technic-ball-joint-bars
+85940,-1,technic-2,technic-ball-joint-bars
 11478,-1,technic-2,technic-beam-thin
 32017,-1,technic-2,technic-beam-thin
 32063,-1,technic-2,technic-beam-thin
@@ -2337,6 +2338,8 @@ flex08c19l,7,legacy-elements,unsorted
 32056,-1,technic-2,technic-beam-thin-angled
 32249,-1,technic-2,technic-beam-thin-angled
 32250,-1,technic-2,technic-beam-thin-angled
+33299b,-1,technic-2,technic-beam-thin-angled
+46189,-1,technic-2,technic-beam-thin-angled
 30553,-1,technic-2,technic-click-hinge
 53923,-1,technic-2,technic-click-hinge
 57360,-1,technic-2,technic-click-hinge
