@@ -29,7 +29,7 @@ jobs:
         run: |
             pip install -r requirements.txt
       - name: Generate site
-        run: make
+        run: make www
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Upload artifact
