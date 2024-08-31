@@ -1623,9 +1623,6 @@ flex08c19l,7,legacy-elements,unsorted
 32607,27,plant-elements,
 33183,10,plant-elements,
 40379,70,plant-elements,
-3741,-1,plants,plants
-39262,-1,plants,plants
-4728,-1,plants,plants
 30093,-1,plants-containers,
 32607,-1,plants-containers,
 3470,-1,plants-containers,
@@ -1664,8 +1661,11 @@ flex08c19l,7,legacy-elements,unsorted
 32606,-1,plants-containers,plants
 33051,-1,plants-containers,plants
 33183,-1,plants-containers,plants
+3741,-1,plants-containers,plants
 37695,-1,plants-containers,plants
+39262,-1,plants-containers,plants
 4727,-1,plants-containers,plants
+4728,-1,plants-containers,plants
 49577,-1,plants-containers,plants
 98262,-1,plants-containers,plants
 18674,-1,plates-angled,
