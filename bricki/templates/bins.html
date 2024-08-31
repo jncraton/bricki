@@ -3,6 +3,9 @@
   <head>
     <meta charset="utf-8" />
     <style>
+      nav {
+        position: fixed;
+      }
       h1 {
         font-size: 16px;
         flex-basis: 100%;
@@ -42,8 +45,10 @@
   </head>
 
   <body>
+    <nav>
     <input id="filter" placeholder="Filter..." />
     <input id="captions" type=checkbox /><label for=captions>Captions</label>
+    </nav>
 
     <section>{{ figures }}</section>
 
