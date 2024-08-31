@@ -48,6 +48,8 @@
 
     <script>
       const filter = query => {
+        document.querySelectorAll('section').forEach(el => el.style.display = 'none')
+
         document.querySelectorAll('figure').forEach(fig => {
           if (!query) {
             fig.style.display = 'inline-block'
@@ -64,6 +66,10 @@
             .every(kw => keywords.includes(kw))
 
           fig.style.display = match ? 'inline-block' : 'none'
+
+          if (match) {
+            fig.parentNode.style.display = 'flex'
+          }
         })
       }
 
