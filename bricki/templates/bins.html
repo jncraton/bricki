@@ -64,19 +64,15 @@
         document.querySelectorAll('section').forEach(el => (el.style.display = 'none'))
 
         document.querySelectorAll('figure').forEach(fig => {
-          if (!query) {
-            fig.style.display = 'inline-block'
-            return
-          }
-
           let keywords = fig.querySelector('img').title.toLowerCase().split(" ")
 
           let match = queryKeywords.every(kw => keywords.includes(kw))
 
-          fig.style.display = match ? 'inline-block' : 'none'
-
-          if (match) {
+          if (match || !query) {
             fig.parentNode.style.display = 'flex'
+            fig.style.display = 'inline-block'
+          } else {
+            fig.style.display = 'none'
           }
         })
       }
