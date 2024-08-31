@@ -58,13 +58,29 @@
     <section>{{ figures }}</section>
 
     <script>
+      const splitKeywords = q => {
+        q = q.toLowerCase()
+
+        // Combine color modifiers
+        ;['light', 'medium', 'dark', 'bright', 'sand', 'olive', 'trans-neon', 'yellowish'].forEach(word => {
+          q = q.replace(word + " ", word)
+        })
+
+        // Remove words that distinguish legacy colors
+        ;['bluish', 'reddish'].forEach(word => {
+          q = q.replace(word + " ", "")
+        })
+
+        return q.split(" ")
+      }
+
       const filter = () => {
-        let queryKeywords = query.value.toLowerCase().split(/ +/)
+        let queryKeywords = splitKeywords(query.value)
 
         document.querySelectorAll('section').forEach(el => (el.style.display = 'none'))
 
         document.querySelectorAll('figure').forEach(fig => {
-          let keywords = fig.querySelector('img').title.toLowerCase().split(" ")
+          let keywords = splitKeywords(fig.querySelector('img').title)
 
           let match = queryKeywords.every(kw => keywords.includes(kw))
 
