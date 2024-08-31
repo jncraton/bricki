@@ -59,6 +59,8 @@
 
     <script>
       const filter = query => {
+        let queryKeywords = query.toLowerCase().split(/ +/)
+
         document.querySelectorAll('section').forEach(el => (el.style.display = 'none'))
 
         document.querySelectorAll('figure').forEach(fig => {
@@ -69,10 +71,7 @@
 
           let keywords = fig.querySelector('img').title.toLowerCase().split(" ")
 
-          let match = query
-            .toLowerCase()
-            .split(/ +/)
-            .every(kw => keywords.includes(kw))
+          let match = queryKeywords.every(kw => keywords.includes(kw))
 
           fig.style.display = match ? 'inline-block' : 'none'
 
