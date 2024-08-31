@@ -1409,6 +1409,10 @@ flex08c19l,7,legacy-elements,unsorted
 3479,-1,misc-2,transportains-air-tails
 44661,-1,misc-2,transportains-air-tails
 6239,-1,misc-2,transportains-air-tails
+2470,-1,misc-2,wagon-wheels
+33211,-1,misc-2,wagon-wheels
+4489b,-1,misc-2,wagon-wheels
+6118,-1,misc-2,wagon-wheels
 1038224,-1,misc-2,wheel-covers
 1038224a,-1,misc-2,wheel-covers
 1038224b,-1,misc-2,wheel-covers
@@ -1422,6 +1426,7 @@ flex08c19l,7,legacy-elements,unsorted
 72210b,-1,misc-2,wheel-covers
 14682,-1,misc-3,
 2343,-1,misc-3,
+30663,-1,misc-3,
 37762,-1,misc-3,
 3899,-1,misc-3,
 4211,-1,misc-3,
@@ -1571,7 +1576,6 @@ flex08c19l,7,legacy-elements,unsorted
 2362,-1,panels+cones+dishes,
 2362b,-1,panels+cones+dishes,
 30367,-1,panels+cones+dishes,
-30663,-1,panels+cones+dishes,
 35394,-1,panels+cones+dishes,
 3940b,-1,panels+cones+dishes,
 3942c,-1,panels+cones+dishes,
@@ -2669,7 +2673,6 @@ flex08c19l,7,legacy-elements,unsorted
 30391,0,wheels,wheel
 3139,0,wheels,wheel
 32193,-1,wheels,wheel
-33211,-1,wheels,wheel
 3464,-1,wheels,wheel
 3482,-1,wheels,wheel
 3483,0,wheels,wheel
@@ -2678,7 +2681,6 @@ flex08c19l,7,legacy-elements,unsorted
 42610,-1,wheels,wheel
 4288,-1,wheels,wheel
 44309,0,wheels,wheel
-4489b,-1,wheels,wheel
 50861,0,wheels,wheel
 50862,-1,wheels,wheel
 51011,0,wheels,wheel
@@ -2694,7 +2696,6 @@ flex08c19l,7,legacy-elements,unsorted
 56903,-1,wheels,wheel
 59895,0,wheels,wheel
 60208,-1,wheels,wheel
-6118,-1,wheels,wheel
 61254,0,wheels,wheel
 61480,0,wheels,wheel
 61481,0,wheels,wheel
