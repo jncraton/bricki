@@ -110,7 +110,7 @@ def gen_bins(filename, parts):
 
             style = f'style="background-color:#{p[8]};"'
 
-            fig += f'<figure><a href="{p[1]}.html"><img {style} src="images/{p[1]}.png" alt="{p[0]}" loading=lazy><figcaption>{p[1]}<br>{p[2]}  pcs</figcaption></a></figure>'
+            fig += f'<figure><a href="{p[1]}.html"><img {style} src="images/{p[1]}.png" alt="{p[10]} {p[0]}" loading=lazy><figcaption>{p[1]}<br>{p[2]}  pcs</figcaption></a></figure>'
 
             return fig
 
@@ -138,7 +138,8 @@ gen_bins(path + "bins.html", helpers.query(
         coalesce(element_bins.section_id, part_bins.section_id),
         part_bins.color_id,
         colors.rgb,
-        bins.sort_style
+        bins.sort_style,
+        colors.name
       from my_parts
       join canonical_parts on canonical_parts.part_num = my_parts.part_num
       join parts on parts.part_num=canonical_part_num
@@ -165,7 +166,8 @@ for s in sets:
             coalesce(element_bins.section_id, part_bins.section_id),
             my_parts.color_id,
             colors.rgb,
-            bins.sort_style
+            bins.sort_style,
+            colors.name
           from set_parts as my_parts
           join canonical_parts on canonical_parts.part_num = my_parts.part_num
           join parts on parts.part_num=canonical_part_num
