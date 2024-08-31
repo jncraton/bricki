@@ -43,6 +43,7 @@
 
   <body>
     <input id="filter" placeholder="Filter..." />
+    <input id="captions" type=checkbox /><label for=captions>Captions</label>
 
     <section>{{ figures }}</section>
 
@@ -76,6 +77,13 @@
       document.querySelector('input#filter').addEventListener('input', e => {
         filter(e.target.value)
       })
+
+      document.querySelector('input#captions').addEventListener('input', e => {
+        document.querySelectorAll('figcaption').forEach(cap => {
+          cap.style.display = captions.checked ? "block" : "none"
+        })
+      })
+      captions.dispatchEvent(new Event('input'))
     </script>
   </body>
 </html>
