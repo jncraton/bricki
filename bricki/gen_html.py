@@ -94,7 +94,7 @@ def gen_bins(filename, parts):
 
             if not p[3] in seen:
                 bin = p[3].replace('-', ' ').replace('+',', ').title().replace('Xn','xN').replace('X','x')
-                fig = f'</section><h1>{bin}</h1><section>'
+                fig = f'</section><section><h1>{bin}</h1>'
                 seen.add(p[3])
 
             if p[6] and not p[6] in sections:
