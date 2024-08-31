@@ -39,7 +39,7 @@ misc-large,part,deep
 orange-3700-1,element,3700
 panels+misc,part,shallow
 plant-elements,element,3600
-plants,type,3700
+plants-containers,part,shallow
 plates-angled,part,shallow
 plates-elements,element,3730
 plates-large,part,deep
