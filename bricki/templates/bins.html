@@ -48,7 +48,7 @@
 
   <body>
     <nav>
-      <input id="filter" placeholder="Filter..." />
+      <input id="query" placeholder="Filter..." />
       <input id="captions" type="checkbox" /><label for="captions">Captions</label>
       <input id="prints" type="checkbox" /><label for="captions">Prints</label>
       <input id="unsorted" type="checkbox" /><label for="captions">Unsorted</label>
@@ -58,8 +58,8 @@
     <section>{{ figures }}</section>
 
     <script>
-      const filter = query => {
-        let queryKeywords = query.toLowerCase().split(/ +/)
+      const filter = () => {
+        let queryKeywords = query.value.toLowerCase().split(/ +/)
 
         document.querySelectorAll('section').forEach(el => (el.style.display = 'none'))
 
@@ -68,46 +68,33 @@
 
           let match = queryKeywords.every(kw => keywords.includes(kw))
 
-          if (match || !query) {
+          if (match || !queryKeywords) {
             fig.parentNode.style.display = 'flex'
             fig.style.display = 'inline-block'
           } else {
             fig.style.display = 'none'
           }
         })
-      }
 
-      document.querySelector('input#filter').addEventListener('input', e => {
-        filter(e.target.value)
-      })
-
-      document.querySelector('input#captions').addEventListener('input', e => {
-        document.querySelectorAll('figcaption').forEach(cap => {
-          cap.style.display = captions.checked ? 'block' : 'none'
-        })
-      })
-      captions.dispatchEvent(new Event('input'))
-
-      legacy.addEventListener('input', e => {
         document.querySelector('section:nth-last-child(4)').style.display = legacy.checked
           ? 'flex'
           : 'none'
-      })
-      legacy.dispatchEvent(new Event('input'))
 
-      prints.addEventListener('input', e => {
         document.querySelector('section:nth-last-child(3)').style.display = prints.checked
           ? 'flex'
           : 'none'
-      })
-      prints.dispatchEvent(new Event('input'))
 
-      unsorted.addEventListener('input', e => {
         document.querySelector('section:nth-last-child(2)').style.display = unsorted.checked
           ? 'flex'
           : 'none'
-      })
-      unsorted.dispatchEvent(new Event('input'))
+          
+        document.querySelectorAll('figcaption').forEach(cap => {
+          cap.style.display = captions.checked ? 'block' : 'none'
+        })
+      }
+
+      document.querySelectorAll('input').forEach(i => i.addEventListener('input', filter))
+      filter()
     </script>
   </body>
 </html>
