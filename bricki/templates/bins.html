@@ -67,9 +67,7 @@
             return
           }
 
-          let caption = fig.querySelector('figcaption').innerHTML.replace('<br>', ' ')
-          let title = fig.querySelector('img').title
-          let keywords = (caption + ' ' + title).toLowerCase().split(/ +/)
+          let keywords = fig.querySelector('img').title.toLowerCase().split(/ +/)
 
           let match = query
             .toLowerCase()
