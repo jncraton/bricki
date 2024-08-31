@@ -1426,7 +1426,8 @@ flex08c19l,7,legacy-elements,unsorted
 3899,-1,misc-3,
 4211,-1,misc-3,
 6120,-1,misc-3,
-65473,-1,misc-3,
+3679,-1,misc-3,3680
+3680,-1,misc-3,3680
 44300,-1,misc-3,click-hinge-misc
 44568,-1,misc-3,click-hinge-misc
 92582,-1,misc-3,click-hinge-misc
@@ -1585,10 +1586,9 @@ flex08c19l,7,legacy-elements,unsorted
 60581,-1,panels+misc,
 6231,-1,panels+misc,
 6233,-1,panels+misc,
+65473,-1,panels+misc,
 87552,-1,panels+misc,
 91501,-1,panels+misc,
-3679,-1,panels+misc,3680
-3680,-1,panels+misc,3680
 15395,-1,panels+misc,bricks-round-cones
 17485,-1,panels+misc,bricks-round-cones
 20952,-1,panels+misc,bricks-round-cones
