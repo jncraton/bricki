@@ -85,7 +85,7 @@
 
           let match = queryKeywords.every(kw => keywords.includes(kw))
 
-          if (match || !queryKeywords) {
+          if (match || !query.value) {
             fig.parentNode.style.display = 'flex'
             fig.style.display = 'inline-block'
           } else {
