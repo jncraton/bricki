@@ -59,7 +59,7 @@
 
     <script>
       const filter = query => {
-        document.querySelectorAll('section').forEach(el => el.style.display = 'none')
+        document.querySelectorAll('section').forEach(el => (el.style.display = 'none'))
 
         document.querySelectorAll('figure').forEach(fig => {
           if (!query) {
