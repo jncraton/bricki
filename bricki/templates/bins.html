@@ -96,17 +96,23 @@
       captions.dispatchEvent(new Event('input'))
 
       legacy.addEventListener('input', e => {
-        document.querySelector("section:nth-last-child(4)").style.display = legacy.checked ? 'flex' : 'none'
+        document.querySelector('section:nth-last-child(4)').style.display = legacy.checked
+          ? 'flex'
+          : 'none'
       })
       legacy.dispatchEvent(new Event('input'))
 
       prints.addEventListener('input', e => {
-        document.querySelector("section:nth-last-child(3)").style.display = prints.checked ? 'flex' : 'none'
+        document.querySelector('section:nth-last-child(3)').style.display = prints.checked
+          ? 'flex'
+          : 'none'
       })
       prints.dispatchEvent(new Event('input'))
 
       unsorted.addEventListener('input', e => {
-        document.querySelector("section:nth-last-child(2)").style.display = unsorted.checked ? 'flex' : 'none'
+        document.querySelector('section:nth-last-child(2)').style.display = unsorted.checked
+          ? 'flex'
+          : 'none'
       })
       unsorted.dispatchEvent(new Event('input'))
     </script>
