@@ -63,16 +63,18 @@
         q = q.toLowerCase()
 
         // Combine color modifiers
-        ;['light', 'medium', 'dark', 'bright', 'sand', 'olive', 'trans-neon', 'yellowish'].forEach(word => {
-          q = q.replace(word + " ", word)
-        })
+        ;['light', 'medium', 'dark', 'bright', 'sand', 'olive', 'trans-neon', 'yellowish'].forEach(
+          word => {
+            q = q.replace(word + ' ', word)
+          },
+        )
 
         // Remove words that distinguish legacy colors
         ;['bluish', 'reddish'].forEach(word => {
-          q = q.replace(word + " ", "")
+          q = q.replace(word + ' ', '')
         })
 
-        return q.split(" ")
+        return q.split(' ')
       }
 
       const filter = () => {
@@ -104,7 +106,7 @@
         document.querySelector('section:nth-last-child(2)').style.display = unsorted.checked
           ? 'flex'
           : 'none'
-          
+
         document.querySelectorAll('figcaption').forEach(cap => {
           cap.style.display = captions.checked ? 'block' : 'none'
         })
