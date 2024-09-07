@@ -1360,6 +1360,7 @@ flex08c19l,7,legacy-elements,unsorted
 84943,-1,misc-1,projectiles-launchers
 88289,-1,misc-1,projectiles-launchers
 14226c11,-1,misc-1,string
+14226c31,-1,misc-1,string
 14226c41,-1,misc-1,string
 15070,-1,misc-1,teeth-misc
 15208,-1,misc-1,teeth-misc
@@ -2303,6 +2304,7 @@ flex08c19l,7,legacy-elements,unsorted
 6141,19,tan-3700-1,
 18654,-1,technic-1,
 25214,-1,technic-1,
+2736,-1,technic-1,
 32009,-1,technic-1,
 32013,-1,technic-1,
 32014,-1,technic-1,
@@ -2314,6 +2316,7 @@ flex08c19l,7,legacy-elements,unsorted
 32526,-1,technic-1,
 60483,-1,technic-1,
 6536,-1,technic-1,
+6628,-1,technic-1,
 6629,-1,technic-1,
 59443,-1,technic-1,technic-axle-connector
 6538b,-1,technic-1,technic-axle-connector
