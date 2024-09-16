@@ -1727,7 +1727,6 @@ flex08c19l,7,legacy-elements,unsorted
 3832,-1,plates-medium,
 4282,-1,plates-medium,
 91988,-1,plates-medium,
-11212,-1,plates-misc,
 11213,-1,plates-misc,
 11833,-1,plates-misc,
 14181,-1,plates-misc,
@@ -1775,7 +1774,6 @@ flex08c19l,7,legacy-elements,unsorted
 88646,-1,plates-misc,
 92099,-1,plates-misc,
 92107,-1,plates-misc,
-15397,-1,plates-small,
 15456,-1,plates-small,
 22890,72,plates-small,
 22890,-1,plates-small,
@@ -1800,6 +1798,9 @@ flex08c19l,7,legacy-elements,unsorted
 85861,-1,plates-small,
 86996,-1,plates-small,
 87580,-1,plates-small,
+11212,-1,plates-small,plates-3x3
+15397,-1,plates-small,plates-3x3
+77844,-1,plates-small,plates-3x3
 11476,-1,plates-special,
 12825,-1,plates-special,
 14417,72,plates-special,
