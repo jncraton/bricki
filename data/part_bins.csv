@@ -1853,6 +1853,7 @@ flex08c19l,7,legacy-elements,unsorted
 91405,-1,plates-xl,plates-xl
 92438,-1,plates-xl,plates-xl
 11203pr0005,-1,prints,
+11203pr9998,-1,prints,
 1126pr0002,-1,prints,
 11477pr0017,-1,prints,
 14769pr0004,-1,prints,
@@ -1882,6 +1883,7 @@ flex08c19l,7,legacy-elements,unsorted
 15557pr0001,-1,prints,
 17485pr0009,-1,prints,
 22385pr0104,-1,prints,
+22385pr0127,-1,prints,
 2335pr0006,-1,prints,
 2335pr0007,-1,prints,
 2335pr0026,-1,prints,
@@ -2099,6 +2101,8 @@ flex08c19l,7,legacy-elements,unsorted
 6153apr0001,-1,prints,
 6153apr0004,-1,prints,
 65633pr0011,-1,prints,
+65886pr0001,-1,prints,
+65886pr0008,-1,prints,
 66792pr0017,-1,prints,
 66792pr0044,-1,prints,
 66792pr0142,-1,prints,
