@@ -74,7 +74,7 @@
           q = q.replace(word + ' ', '')
         })
 
-        return q.split(' ')
+        return q.split(/[ ,]+/)
       }
 
       const filter = () => {
