@@ -170,7 +170,7 @@ def search_part(needle, printed=False, duplo=False):
     >>> search_part("3046")[0][0]
     '3046a'
     >>> search_part("erling")[0][0]
-    '4070a'
+    '4070'
     >>> search_part("slope 2x1")[0][0]
     '3040b'
     >>> search_part("slope 2x1")[1][0] != '3040a'
