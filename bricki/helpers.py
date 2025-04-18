@@ -26,7 +26,7 @@ def norm_part(s):
     '4444Pr0003'
     """
     s = str(s).strip().title()
-    s = re.sub("(\d+) *x *", "\\1 x ", s, flags=re.I)
+    s = re.sub(r"(\d+) *x *", "\\1 x ", s, flags=re.I)
 
     first_word = s.split(" ")[0]
 
@@ -132,7 +132,7 @@ def part_keywords(part):
     accumulator = []
 
     for kw in part.split(" "):
-        if kw == "x" or re.match("\d", kw[0]):
+        if kw == "x" or re.match(r"\d", kw[0]):
             accumulator.append(kw)
         else:
             if accumulator:
@@ -211,7 +211,7 @@ def search_part(needle, printed=False, duplo=False):
     # Handle common tiles correctly
     if needle in ["Tile 1 x 3"]:
         pass
-    elif re.match("Tile \d+[ ]*x[ ]*\d+$", needle):
+    elif re.match(r"Tile \d+[ ]*x[ ]*\d+$", needle):
         needle += " with Groove"
 
     filter = ""
@@ -278,7 +278,7 @@ def search_set(needle):
     """
     needle_like = "%%%s%%" % needle
 
-    if re.match("^\d+$", str(needle)):
+    if re.match(r"^\d+$", str(needle)):
         needle += "-1"
 
     sets = query(
