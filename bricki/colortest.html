@@ -74,7 +74,7 @@
     }
 
     const update = (el, hex) => {
-      if (!el) el = document.querySelector('img')
+      if (!el || el.type == 'input') el = document.querySelector('img')
       if (!hex) hex = rgb.value
 
       let [r, g, b] = hexToRGB(hex)
@@ -82,7 +82,7 @@
 
       hsl.value = [h, s, l]
 
-      el.style.filter = `hue-rotate(${h}deg) saturate(${s}) contrast(1.0) brightness(${l*3})`
+      el.style.filter = `hue-rotate(${h}deg) saturate(${Math.max(0, s-.2)}) contrast(1.0) brightness(${-.5+Math.pow(2.71, l*2)})`
     }
 
     document.querySelectorAll('input').forEach(el => {
