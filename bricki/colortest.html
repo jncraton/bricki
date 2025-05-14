@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -6,94 +6,90 @@
 
     <title></title>
     <style>
-    img, label {
-      display: block;
-    }
+      img,
+      label {
+        display: block;
+      }
     </style>
   </head>
 
   <body>
-    <label>RGB: <input id=rgb value=0055BF /></label>
-    <label>HSL: <input id=hsl readonly /></label>
-    <img src=colortestred.png />
-    <img src=colortestred.png alt=white />
-    <img src=colortestred.png alt=lightgray />
-    <img src=colortestred.png alt=darkgray />
-    <img src=colortestred.png alt=black />
-    <img src=colortestred.png alt=red />
-    <img src=colortestred.png alt=blue />
-    <img src=colortestred.png alt=green />
+    <label>RGB: <input id="rgb" value="0055BF" /></label>
+    <label>HSL: <input id="hsl" readonly /></label>
+    <img src="colortestred.png" />
+    <img src="colortestred.png" alt="white" />
+    <img src="colortestred.png" alt="lightgray" />
+    <img src="colortestred.png" alt="darkgray" />
+    <img src="colortestred.png" alt="black" />
+    <img src="colortestred.png" alt="red" />
+    <img src="colortestred.png" alt="blue" />
+    <img src="colortestred.png" alt="green" />
     <script>
-    //https://stackoverflow.com/a/58426404/223456
-    function RGBToHSL(r,g,b) {
-      // Find greatest and smallest channel values
-      let cmin = Math.min(r,g,b),
-          cmax = Math.max(r,g,b),
+      //https://stackoverflow.com/a/58426404/223456
+      function RGBToHSL(r, g, b) {
+        // Find greatest and smallest channel values
+        let cmin = Math.min(r, g, b),
+          cmax = Math.max(r, g, b),
           delta = cmax - cmin,
           h = 0,
           s = 0,
           l = 0
 
-      // Calculate hue
-      // No difference
-      if (delta === 0)
-        h = 0
-      // Red is max
-      else if (cmax === r)
-        h = ((g - b) / delta)
-      // Green is max
-      else if (cmax === g)
-        h = (b - r) / delta + 2
-      // Blue is max
-      else
-        h = (r - g) / delta + 4
+        // Calculate hue
+        // No difference
+        if (delta === 0) h = 0
+        // Red is max
+        else if (cmax === r) h = (g - b) / delta
+        // Green is max
+        else if (cmax === g) h = (b - r) / delta + 2
+        // Blue is max
+        else h = (r - g) / delta + 4
 
-      h = (h * 60) % 360
+        h = (h * 60) % 360
 
-      // Calculate lightness
-      l = (cmax + cmin) / 2
+        // Calculate lightness
+        l = (cmax + cmin) / 2
 
-      // Calculate saturation
-      s = delta === 0 ? 0 : delta / (1 - Math.abs(2 * l - 1))
+        // Calculate saturation
+        s = delta === 0 ? 0 : delta / (1 - Math.abs(2 * l - 1))
 
-      return [h, s, l]
-    }
+        return [h, s, l]
+      }
 
-    function hexToRGB(h) {
-      h = h.replace('#', '')
+      function hexToRGB(h) {
+        h = h.replace('#', '')
 
-      let r = parseInt(h[0] + h[1], 16)
-      let g = parseInt(h[2] + h[3], 16)
-      let b = parseInt(h[4] + h[5], 16)
+        let r = parseInt(h[0] + h[1], 16)
+        let g = parseInt(h[2] + h[3], 16)
+        let b = parseInt(h[4] + h[5], 16)
 
-      return [r/255, g/255, b/255]
-    }
+        return [r / 255, g / 255, b / 255]
+      }
 
-    const update = (el, hex) => {
-      if (!el || el.type == 'input') el = document.querySelector('img')
-      if (!hex) hex = rgb.value
+      const update = (el, hex) => {
+        if (!el || el.type == 'input') el = document.querySelector('img')
+        if (!hex) hex = rgb.value
 
-      let [r, g, b] = hexToRGB(hex)
-      let [h, s, l] = RGBToHSL(r, g, b)
+        let [r, g, b] = hexToRGB(hex)
+        let [h, s, l] = RGBToHSL(r, g, b)
 
-      hsl.value = [h, s, l]
+        hsl.value = [h, s, l]
 
-      el.style.filter = `hue-rotate(${h}deg) saturate(${Math.max(0, s-.2)}) contrast(1.0) brightness(${-.5+Math.pow(2.71, l*2)})`
-    }
+        el.style.filter = `hue-rotate(${h}deg) saturate(${Math.max(0, s - 0.2)}) contrast(1.0) brightness(${-0.5 + Math.pow(2.71, l * 2)})`
+      }
 
-    document.querySelectorAll('input').forEach(el => {
-      el.addEventListener('input', update)
-    })
+      document.querySelectorAll('input').forEach(el => {
+        el.addEventListener('input', update)
+      })
 
-    update(document.querySelector('[alt=white]'), 'ffffff')
-    update(document.querySelector('[alt=lightgray]'), 'A0A5A9')
-    update(document.querySelector('[alt=darkgray]'), '6C6E68')
-    update(document.querySelector('[alt=black]'), '05131D')
-    update(document.querySelector('[alt=red]'), 'C91A09')
-    update(document.querySelector('[alt=blue]'), '0055BF')
-    update(document.querySelector('[alt=green]'), '237841')
-    update()
-
+      update(document.querySelector('[alt=white]'), 'ffffff')
+      update(document.querySelector('[alt=lightgray]'), 'A0A5A9')
+      update(document.querySelector('[alt=darkgray]'), '6C6E68')
+      update(document.querySelector('[alt=black]'), '05131D')
+      update(document.querySelector('[alt=red]'), 'C91A09')
+      update(document.querySelector('[alt=blue]'), '0055BF')
+      update(document.querySelector('[alt=green]'), '237841')
+      update()
     </script>
   </body>
 </html>

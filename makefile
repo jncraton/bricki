@@ -54,6 +54,7 @@ clean-keep-cache:
 
 format:
 	npx prettier --write bricki/templates/*.html
+	npx prettier --write bricki/*.html
 	cp data/part_bins.csv data/~part_bins.csv
 	xsv sort --no-headers --select 3,4,1 data/part_bins.csv | uniq | sponge data/part_bins.csv
 	cp data/part_relationships.csv data/~part_relationships.csv
