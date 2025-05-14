@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title></title>
+    <style>
+    </style>
+  </head>
+
+  <body>
+    <img src=colortest.png></img>
+    <script>
+    let rot = 0;
+    setInterval(() => {
+      document.querySelector('img').style.filter = `sepia(1) hue-rotate(${rot}deg) saturate(3) contrast(0.8) brightness(1.0)`
+      rot += 1
+      rot = rot % 360
+    }, 30)
+    </script>
+  </body>
+</html>
