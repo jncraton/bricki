@@ -16,10 +16,8 @@
     <label>Rotation: <input id=rot value=0 /></label>
     <img src=colortest.png></img>
     <script>
-    //let rot = 0;
     const update = () => {
       document.querySelector('img').style.filter = `sepia(1) hue-rotate(${rot.value}deg) saturate(3) contrast(0.8) brightness(1.0)`
-      rot.value = (rot.value + 1) % 360
     }
 
     document.querySelectorAll('input').forEach(el => {
