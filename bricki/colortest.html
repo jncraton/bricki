@@ -14,7 +14,15 @@
 
   <body>
     <label>RGB: <input id=rgb value=0055BF /></label>
-    <img src=colortest.png></img>
+    <label>HSL: <input id=hsl readonly /></label>
+    <img src=colortestred.png />
+    <img src=colortestred.png alt=white />
+    <img src=colortestred.png alt=lightgray />
+    <img src=colortestred.png alt=darkgray />
+    <img src=colortestred.png alt=black />
+    <img src=colortestred.png alt=red />
+    <img src=colortestred.png alt=blue />
+    <img src=colortestred.png alt=green />
     <script>
     //https://stackoverflow.com/a/58426404/223456
     function RGBToHSL(r,g,b) {
@@ -65,21 +73,29 @@
       return [r/255, g/255, b/255]
     }
 
-    const update = () => {
-      let [r, g, b] = hexToRGB(rgb.value)
+    const update = (el, hex) => {
+      if (!el) el = document.querySelector('img')
+      if (!hex) hex = rgb.value
+
+      let [r, g, b] = hexToRGB(hex)
       let [h, s, l] = RGBToHSL(r, g, b)
 
-      // Apply rotation from sepia
-      h -= 40
-      h = h % 360
+      hsl.value = [h, s, l]
 
-      document.querySelector('img').style.filter = `sepia(1) hue-rotate(${h}deg) saturate(${s*5}) contrast(1.0) brightness(${l+.3})`
+      el.style.filter = `hue-rotate(${h}deg) saturate(${s}) contrast(1.0) brightness(${l*3})`
     }
 
     document.querySelectorAll('input').forEach(el => {
       el.addEventListener('input', update)
     })
 
+    update(document.querySelector('[alt=white]'), 'ffffff')
+    update(document.querySelector('[alt=lightgray]'), 'A0A5A9')
+    update(document.querySelector('[alt=darkgray]'), '6C6E68')
+    update(document.querySelector('[alt=black]'), '05131D')
+    update(document.querySelector('[alt=red]'), 'C91A09')
+    update(document.querySelector('[alt=blue]'), '0055BF')
+    update(document.querySelector('[alt=green]'), '237841')
     update()
 
     </script>
