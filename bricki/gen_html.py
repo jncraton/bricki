@@ -222,4 +222,4 @@ def make_part_page(part):
 
 with Pool() as p:
     print(f"Generating {len(part_pages)} part pages...")
-    p.map(make_part_page, part_pages)
+    p.imap_unordered(make_part_page, part_pages)
