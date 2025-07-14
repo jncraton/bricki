@@ -227,4 +227,6 @@ def make_part_page(part):
 
 with Pool() as p:
     print(f"Generating {len(part_pages)} part pages...")
-    p.imap_unordered(make_part_page, part_pages)
+
+    for _ in tqdm.tqdm(p.imap_unordered(make_part_page, part_pages), total=len(part_pages)):
+        pass
