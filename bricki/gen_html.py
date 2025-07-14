@@ -1,6 +1,7 @@
 import helpers
 import json
 from multiprocessing import Pool
+import tqdm
 
 path = "www/"
 
@@ -153,7 +154,7 @@ gen_bins(path + "bins.html", helpers.query(
       """
     ))
 
-for s in sets:
+def gen_set_bins(s):
     gen_bins(path + f"bins-{s[1]}.html", helpers.query(
         f"""
           select 
@@ -181,8 +182,12 @@ for s in sets:
           order by bins.sort_style is null, bins.sort_style == 'category' asc, bins.sort_style, COALESCE(element_bins.bin_id, part_bins.bin_id), COALESCE(element_bins.section_id, part_bins.section_id), parts.name asc
           """
         ))
+    
+with Pool() as p:
+    print(f"Generating {len(sets)} set bin pages...")
 
-    print(f"Bins for {s[1]} complete")
+    for _ in tqdm.tqdm(p.imap_unordered(gen_set_bins, sets), total=len(sets)):
+        pass
 
 # Part pages
 part_template = open('bricki/templates/part.html').read()
