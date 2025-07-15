@@ -53,7 +53,8 @@ my_parts = helpers.query(
     canonical_part_num,
     part_bins.bin_id,
     element_bins.bin_id,
-    part_categories.name
+    part_categories.name,
+    colors.rgb
   from my_parts
   join parts on parts.part_num=my_parts.part_num 
   join colors on colors.id=my_parts.color_id
