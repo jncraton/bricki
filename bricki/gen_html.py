@@ -67,7 +67,7 @@ my_parts = helpers.query(
   """
     )
 
-with open(path + "elements.html", "w") as out:
+with open(path + "parts/index.html", "w") as out:
     template = open('bricki/templates/elements.html').read()
 
 
@@ -127,7 +127,7 @@ def gen_bins(filename, parts):
 
         out.write(s)
 
-gen_bins(path + "bins.html", helpers.query(
+gen_bins(path + "bins/index.html", helpers.query(
     """
       select 
         replace(parts.name, " x ", "x"),
