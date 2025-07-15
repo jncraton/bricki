@@ -50,6 +50,9 @@ clean-keep-cache:
 	rm -rf bricki/__pycache__
 	rm -rf src/__pycache__
 	rm -f www/*.html
+	rm -f www/parts/*.html
+	rm -f www/sets/*.html
+	rm -f www/bins/*.html
 	rm -rf data/~*
 
 format:
