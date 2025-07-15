@@ -111,7 +111,7 @@ def gen_bins(filename, parts):
 
             style = f'style="background-color:#{p[8]};"'
 
-            fig += f'<figure><a href="{p[1]}.html"><img {style} src="../images/{p[1]}.png" alt="{p[1]}" title="{p[10]} {p[0]} {p[1]}" loading=lazy><figcaption>{p[1]}<br>{p[2]}  pcs</figcaption></a></figure>'
+            fig += f'<figure><a href="parts/{p[1]}.html"><img {style} src="../images/{p[1]}.png" alt="{p[1]}" title="{p[10]} {p[0]} {p[1]}" loading=lazy><figcaption>{p[1]}<br>{p[2]}  pcs</figcaption></a></figure>'
 
             return fig
 
