@@ -208,10 +208,10 @@ def make_part_page(part):
         group by set_transactions.set_num, set_parts.color_id
         order by colors.name, q desc""", {"part_num": part[1]})
 
-    with open(f"{path}{part[1]}.html", "w") as part_page:
+    with open(f"{path}parts/{part[1]}.html", "w") as part_page:
         part_page.write(part_template.replace("{{ part }}", f"""
             <h1>{part[1]} {part[0]}</h1>
-            <img src="images/{part[1]}.png">
+            <img src="../images/{part[1]}.png">
             <li><a href="https://rebrickable.com/parts/{part[1]}">Rebrickable</a>
             <h2>Storage</h2>
             <ul>
