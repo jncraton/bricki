@@ -24,7 +24,7 @@ with open(path + "sets.html", "w") as out:
     table = ""
 
     for s in sets:
-        table += f'<tr><td><img src="https://cdn.rebrickable.com/media/thumbs/sets/{s[1]}.jpg/180x180p.jpg" width=180 height=180 loading=lazy /></td><td>{s[0]}</td><td>{s[1]}</td><td>{s[2]}</td><td>{s[3]}</td><td><a href="bins-{s[1]}.html">parts</a></td></tr>'
+        table += f'<tr><td><img src="https://cdn.rebrickable.com/media/thumbs/sets/{s[1]}.jpg/180x180p.jpg" width=180 height=180 loading=lazy /></td><td>{s[0]}</td><td>{s[1]}</td><td>{s[2]}</td><td>{s[3]}</td><td><a href="sets/{s[1]}.html">parts</a></td></tr>'
 
     s = template.replace("{{ sets }}", table)
 
@@ -155,7 +155,7 @@ gen_bins(path + "bins.html", helpers.query(
     ))
 
 def gen_set_bins(s):
-    gen_bins(path + f"bins-{s[1]}.html", helpers.query(
+    gen_bins(path + f"sets/{s[1]}.html", helpers.query(
         f"""
           select 
             replace(parts.name, " x ", "x"),
