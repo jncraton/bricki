@@ -50,10 +50,7 @@
   <body>
     <nav>
       <input id="query" placeholder="Filter..." />
-      <input id="captions" type="checkbox" /><label for="captions">Captions</label>
-      <input id="prints" type="checkbox" /><label for="prints">Prints</label>
-      <input id="unsorted" type="checkbox" /><label for="unsorted">Unsorted</label>
-      <input id="legacy" type="checkbox" /><label for="legacy">Legacy</label>
+      <input id="captions" type="checkbox" checked /><label for="captions">Captions</label>
     </nav>
 
     <section>{{ figures }}</section>
@@ -94,18 +91,6 @@
             fig.style.display = 'none'
           }
         })
-
-        document.querySelector('section:nth-last-child(4)').style.display = legacy.checked
-          ? 'flex'
-          : 'none'
-
-        document.querySelector('section:nth-last-child(3)').style.display = prints.checked
-          ? 'flex'
-          : 'none'
-
-        document.querySelector('section:nth-last-child(2)').style.display = unsorted.checked
-          ? 'flex'
-          : 'none'
 
         document.querySelectorAll('figcaption').forEach(cap => {
           cap.style.display = captions.checked ? 'block' : 'none'
