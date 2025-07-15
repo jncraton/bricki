@@ -41,6 +41,13 @@ order by colors.name
 """
 )
 
+bins = helpers.query(
+"""
+select bin_id, sort_style, shape
+from bins
+"""
+)
+
 color_options = [f'<option value="{c[0]}">' for c in colors]
 
 my_parts = helpers.query(
@@ -154,6 +161,41 @@ gen_bins(path + "bins/index.html", helpers.query(
       order by bins.sort_style is null, bins.sort_style == 'category' asc, bins.sort_style, COALESCE(element_bins.bin_id, part_bins.bin_id), COALESCE(element_bins.section_id, part_bins.section_id), parts.name asc, sum(quantity) desc
       """
     ))
+
+def gen_bin_inventories(b):
+    gen_bins(path + f"bins/{b[0]}.html", helpers.query(
+        f"""
+          select 
+            replace(parts.name, " x ", "x"),
+            canonical_part_num,
+            sum(my_parts.quantity) as quantity,
+            coalesce(element_bins.bin_id, part_bins.bin_id, 'Unsorted'),
+            min(my_parts.color_id),
+            count(distinct part_bins.color_id),
+            coalesce(element_bins.section_id, part_bins.section_id),
+            my_parts.color_id,
+            colors.rgb,
+            bins.sort_style,
+            colors.name
+          from set_parts as my_parts
+          join canonical_parts on canonical_parts.part_num = my_parts.part_num
+          join parts on parts.part_num=canonical_part_num
+          left join part_bins on canonical_part_num=part_bins.part_num and part_bins.color_id=-1
+          left join part_bins as element_bins on canonical_part_num=element_bins.part_num and element_bins.color_id=my_parts.color_id
+          left join bins on coalesce(element_bins.bin_id, part_bins.bin_id) == bins.bin_id
+          left join colors on colors.id = my_parts.color_id
+          where element_bins.bin_id = '{b[0]}' or part_bins.bin_id = '{b[0]}'
+          group by canonical_part_num, my_parts.color_id
+          having sum(my_parts.quantity) > 0
+          order by bins.sort_style is null, bins.sort_style == 'category' asc, bins.sort_style, COALESCE(element_bins.bin_id, part_bins.bin_id), COALESCE(element_bins.section_id, part_bins.section_id), parts.name asc
+          """
+        ))
+
+with Pool() as p:
+    print(f"Generating {len(bins)} bin inventory pages...")
+
+    for _ in tqdm.tqdm(p.imap_unordered(gen_bin_inventories, bins), total=len(bins)):
+        pass
 
 def gen_set_bins(s):
     gen_bins(path + f"sets/{s[1]}.html", helpers.query(
