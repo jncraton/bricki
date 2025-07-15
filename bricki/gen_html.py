@@ -177,14 +177,14 @@ def gen_bin_inventories(b):
             colors.rgb,
             bins.sort_style,
             colors.name
-          from set_parts as my_parts
+          from my_parts
           join canonical_parts on canonical_parts.part_num = my_parts.part_num
           join parts on parts.part_num=canonical_part_num
           left join part_bins on canonical_part_num=part_bins.part_num and part_bins.color_id=-1
           left join part_bins as element_bins on canonical_part_num=element_bins.part_num and element_bins.color_id=my_parts.color_id
           left join bins on coalesce(element_bins.bin_id, part_bins.bin_id) == bins.bin_id
           left join colors on colors.id = my_parts.color_id
-          where element_bins.bin_id = '{b[0]}' or part_bins.bin_id = '{b[0]}'
+          where coalesce(element_bins.bin_id, part_bins.bin_id) = '{b[0]}'
           group by canonical_part_num, my_parts.color_id
           having sum(my_parts.quantity) > 0
           order by bins.sort_style is null, bins.sort_style == 'category' asc, bins.sort_style, COALESCE(element_bins.bin_id, part_bins.bin_id), COALESCE(element_bins.section_id, part_bins.section_id), parts.name asc
