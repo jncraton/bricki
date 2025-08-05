@@ -1,3 +1,4 @@
+accents-3600,element,3600
 arches,part,deep
 bars+fences,part,shallow
 black-3700-1,element,3700
@@ -75,7 +76,6 @@ tiles,part,shallow
 tracks,type,
 train,type,unknown
 transparent-3600,element,3600
-transparent-metallic-3600,element,3600
 wheels,type,3731
 white-3700-1,element,3700
 white-3730-1,element,3730
