@@ -2457,7 +2457,6 @@ flex08c19l,7,legacy-elements,unsorted
 3688,-1,slopes-small,slope-2x2-peak
 11211,-1,studs-not-on-top,
 22885,-1,studs-not-on-top,
-2434,-1,studs-not-on-top,
 2436,-1,studs-not-on-top,
 26604,-1,studs-not-on-top,
 30414,-1,studs-not-on-top,
@@ -2473,11 +2472,12 @@ flex08c19l,7,legacy-elements,unsorted
 47905,-1,studs-not-on-top,
 52107,-1,studs-not-on-top,
 87087,-1,studs-not-on-top,
-93274,-1,studs-not-on-top,
 99206,-1,studs-not-on-top,
 99207,-1,studs-not-on-top,
 99780,-1,studs-not-on-top,
 99781,-1,studs-not-on-top,
+2434,-1,studs-not-on-top,2x4-snot
+93274,-1,studs-not-on-top,2x4-snot
 3937,-1,studs-not-on-top,3937
 3938,-1,studs-not-on-top,3937
 6134,-1,studs-not-on-top,3937
