@@ -1507,8 +1507,6 @@ flex08c19l,7,legacy-elements,unsorted
 3899,-1,misc-3,
 4211,-1,misc-3,
 6120,-1,misc-3,
-3679,-1,misc-3,3680
-3680,-1,misc-3,3680
 44300,-1,misc-3,click-hinge-misc
 44568,-1,misc-3,click-hinge-misc
 68547,-1,misc-3,click-hinge-misc
@@ -1905,7 +1903,6 @@ flex08c19l,7,legacy-elements,unsorted
 79491,-1,plates-small,plates-small-round
 68568,-1,plates-small,plates-snall-round
 11476,-1,plates-special,
-12825,-1,plates-special,
 14417,72,plates-special,
 14417,-1,plates-special,
 14418,71,plates-special,
@@ -1946,6 +1943,8 @@ flex08c19l,7,legacy-elements,unsorted
 2429,-1,plates-special,2429
 2430,-1,plates-special,2429
 73983,-1,plates-special,2429
+3679,-1,plates-special,3680
+3680,-1,plates-special,3680
 30237,-1,plates-special,misc-1x2-clip
 92280,-1,plates-special,misc-1x2-clip
 69958,72,plates-xl,plates-xl
@@ -2792,6 +2791,7 @@ flex08c19l,7,legacy-elements,unsorted
 6558,1,technic-pins,
 6628,0,technic-pins,
 11203,-1,tiles,
+12825,-1,tiles,
 14719,-1,tiles,
 15535,-1,tiles,
 2412b,-1,tiles,
