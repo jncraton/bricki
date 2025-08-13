@@ -1536,6 +1536,8 @@ flex08c19l,7,legacy-elements,unsorted
 34816,-1,misc-3,handle-misc
 75937,-1,misc-3,handle-misc
 92692,-1,misc-3,handle-misc
+2397,-1,misc-3,large-bars
+6020,-1,misc-3,large-bars
 11215,-1,misc-3,medium-brackets
 73562,-1,misc-3,medium-brackets
 76766,-1,misc-3,medium-brackets
@@ -1554,7 +1556,6 @@ flex08c19l,7,legacy-elements,unsorted
 35654,-1,misc-3,misc-bars-holders
 3900,-1,misc-3,misc-bars-holders
 48723,-1,misc-3,misc-bars-holders
-6020,-1,misc-3,misc-bars-holders
 66909,-1,misc-3,misc-bars-holders
 72869,-1,misc-3,misc-bars-holders
 73117,-1,misc-3,misc-bars-holders
@@ -1914,7 +1915,6 @@ flex08c19l,7,legacy-elements,unsorted
 15712,-1,plates-special,
 18649,-1,plates-special,
 20482,-1,plates-special,
-2397,-1,plates-special,
 2540,-1,plates-special,
 2555,-1,plates-special,
 26047,-1,plates-special,
