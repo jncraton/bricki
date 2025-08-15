@@ -240,12 +240,9 @@
 6111,-1,bricks-large,bricks-large
 6112,-1,bricks-large,bricks-large
 20310,-1,bricks-special,
-2458,-1,bricks-special,
-2460,-1,bricks-special,
 2462,-1,bricks-special,
 2653,-1,bricks-special,
 2921,-1,bricks-special,
-30000,-1,bricks-special,
 30236,-1,bricks-special,
 30237,-1,bricks-special,
 30364,-1,bricks-special,
@@ -257,7 +254,6 @@
 48092,-1,bricks-special,
 60475b,-1,bricks-special,
 60583b,-1,bricks-special,
-6232,-1,bricks-special,
 6564,-1,bricks-special,
 6565,-1,bricks-special,
 85080,-1,bricks-special,
@@ -1368,11 +1364,7 @@ flex08c19l,7,legacy-elements,unsorted
 3710,73,medium-blue-3700-1,
 3794b,73,medium-blue-3700-1,
 54200,73,medium-blue-3700-1,
-11458,-1,misc-1,
 15706,-1,misc-1,
-18677,-1,misc-1,
-2444,-1,misc-1,
-2817,-1,misc-1,
 2926,-1,misc-1,
 33909,-1,misc-1,
 3956,-1,misc-1,
@@ -2665,7 +2657,14 @@ flex08c19l,7,legacy-elements,unsorted
 6573,-1,technic-2,turntable-differential
 99009,-1,technic-2,turntable-differential
 99010,-1,technic-2,turntable-differential
+11458,-1,technic-3,
+18677,-1,technic-3,
 22961,-1,technic-3,
+2444,-1,technic-3,
+2458,-1,technic-3,
+2460,-1,technic-3,
+2817,-1,technic-3,
+30000,-1,technic-3,
 32124,-1,technic-3,
 32126,-1,technic-3,
 32291,-1,technic-3,
@@ -2675,6 +2674,7 @@ flex08c19l,7,legacy-elements,unsorted
 40490,-1,technic-3,
 43857,-1,technic-3,
 61184,-1,technic-3,
+6232,-1,technic-3,
 98989,-1,technic-3,
 32525,-1,technic-3,technic-beams-11-13
 41239,-1,technic-3,technic-beams-11-13
