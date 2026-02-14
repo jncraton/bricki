@@ -20,6 +20,16 @@ create table if not exists set_transactions (
   foreign key (set_num) references sets(set_num)
 );
 
+create table if not exists minifig_transactions (
+  date timestamp default current_timestamp,
+  part_num varchar(16),
+  quantity smallint,
+  from_set_num varchar(16),
+  notes varchar(255),
+  foreign key (part_num) references parts(part_num),
+  foreign key (from_set_num) references sets(set_num)
+);
+
 create table if not exists part_transactions (
   date timestamp default current_timestamp,
   part_num varchar(16),
