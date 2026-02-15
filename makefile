@@ -81,6 +81,7 @@ autocolor: data/part_transactions.csv
 	sd ",pink," ",29," "$<" # Bright pink
 	sd ",trred," ",36," "$<"
 	sd ",trbrown," ",40," "$<"
+	sd ",trlblue," ",41," "$<"
 	sd ",tryellow," ",46," "$<"
 	sd ",trclear," ",47," "$<"
 	sd ",brown," ",70," "$<" # Reddish brown
@@ -88,6 +89,8 @@ autocolor: data/part_transactions.csv
 	sd ",dbg," ",72," "$<"
 	sd ",mdblue," ",73," "$<"
 	sd ",mdnougat," ",84," "$<"
+	sd ",trorange," ",182," "$<"
+	sd ",pearlgold," ",297," "$<"
 	sd ",dkbrown," ",308," "$<"
 	sd ",dkred," ",320," "$<"
 	sd ",sandgreen," ",378," "$<"
