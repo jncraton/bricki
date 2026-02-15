@@ -90,6 +90,8 @@ autocolor: data/part_transactions.csv
 	sd ",mdblue," ",73," "$<"
 	sd ",mdnougat," ",84," "$<"
 	sd ",trorange," ",182," "$<"
+	sd ",dkblue," ",272," "$<"
+	sd ",dkgreen," ",288," "$<"
 	sd ",pearlgold," ",297," "$<"
 	sd ",dkbrown," ",308," "$<"
 	sd ",dkred," ",320," "$<"
