@@ -66,6 +66,34 @@ format:
 	xsv sort --no-headers --select 1 data/bins.csv | sponge data/bins.csv
 	unix2dos data/*.csv
 
+autocolor: data/part_transactions.csv
+	sd ",black," ",0," "$<"
+	sd ",blue," ",1," "$<"
+	sd ",green," ",2," "$<"
+	sd ",red," ",4," "$<"
+	sd ",yellow," ",14," "$<"
+	sd ",white," ",15," "$<"
+	sd ",tan," ",19," "$<"
+	sd ",purple," ",22," "$<"
+	sd ",orange," ",25," "$<"
+	sd ",lime," ",27," "$<"
+	sd ",dktan," ",28," "$<"
+	sd ",pink," ",29," "$<" # Bright pink
+	sd ",trred," ",36," "$<"
+	sd ",trbrown," ",40," "$<"
+	sd ",tryellow," ",46," "$<"
+	sd ",trclear," ",47," "$<"
+	sd ",brown," ",70," "$<" # Reddish brown
+	sd ",lbg," ",71," "$<"
+	sd ",dbg," ",72," "$<"
+	sd ",mdblue," ",73," "$<"
+	sd ",mdnougat," ",84," "$<"
+	sd ",dkbrown," ",308," "$<"
+	sd ",dkred," ",320," "$<"
+	sd ",sandgreen," ",378," "$<"
+	sd ",sandblue," ",379," "$<"
+	sd ",dkorange," ",484," "$<"
+
 check:
 	npx jshint --extract=always bricki/templates/*.html
 	npx prettier --check bricki/templates/*.html
