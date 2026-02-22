@@ -71,6 +71,7 @@ autocolor: data/part_transactions.csv
 	sd ",blue," ",1," "$<"
 	sd ",green," ",2," "$<"
 	sd ",red," ",4," "$<"
+	sd ",brgreen," ",10," "$<"
 	sd ",yellow," ",14," "$<"
 	sd ",white," ",15," "$<"
 	sd ",tan," ",19," "$<"
@@ -79,6 +80,7 @@ autocolor: data/part_transactions.csv
 	sd ",lime," ",27," "$<"
 	sd ",dktan," ",28," "$<"
 	sd ",pink," ",29," "$<" # Bright pink
+	sd ",trgreen," ",34," "$<"
 	sd ",trred," ",36," "$<"
 	sd ",trbrown," ",40," "$<"
 	sd ",trlblue," ",41," "$<"
