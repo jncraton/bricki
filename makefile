@@ -83,6 +83,7 @@ autocolor: data/part_transactions.csv
 	sd ",pink," ",29," "$<" # Bright pink
 	sd ",trdkblue," ",33," "$<"
 	sd ",trgreen," ",34," "$<"
+	sd ",trbrgreen," ",35," "$<"
 	sd ",trred," ",36," "$<"
 	sd ",trbrown," ",40," "$<"
 	sd ",trlblue," ",41," "$<"
