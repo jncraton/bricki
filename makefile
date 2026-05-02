@@ -92,6 +92,7 @@ autocolor: data/part_transactions.csv
 	sd ",lbg," ",71," "$<"
 	sd ",dbg," ",72," "$<"
 	sd ",mdblue," ",73," "$<"
+	sd ",lnougat," ",78," "$<"
 	sd ",mdnougat," ",84," "$<"
 	sd ",flatsilver," ",179," "$<"
 	sd ",trorange," ",182," "$<"
