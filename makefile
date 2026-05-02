@@ -89,6 +89,7 @@ autocolor: data/part_transactions.csv
 	sd ",trlblue," ",41," "$<"
 	sd ",tryellow," ",46," "$<"
 	sd ",trclear," ",47," "$<"
+	sd ",trpurple," ",52," "$<"
 	sd ",brown," ",70," "$<" # Reddish brown
 	sd ",lbg," ",71," "$<"
 	sd ",dbg," ",72," "$<"
