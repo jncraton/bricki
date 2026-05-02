@@ -8,10 +8,10 @@ black-technic-bricks,element,3700
 blue-3700-1,element,3700
 blue-3730-1,element,3730
 brick-separators,part,jar
-bricks-2x2,part,
-bricks-2x3,part,
-bricks-2x4,part,
-bricks-large,type,
+bricks-2x2,part,""
+bricks-2x3,part,""
+bricks-2x4,part,""
+bricks-large,type,""
 bricks-special,part,shallow
 cars,part,shallow
 city-minifigs,type,3700
@@ -48,10 +48,10 @@ plates-angled,part,shallow
 plates-elements,element,3730
 plates-large,part,deep
 plates-medium,part,deep
-plates-misc,type,
+plates-misc,type,""
 plates-small,part,shallow
 plates-special,part,shallow
-plates-xl,part,
+plates-xl,part,""
 prints,unsorted,various
 red-3700-1,element,3700
 red-3730-1,element,3730
@@ -73,7 +73,7 @@ technic-bricks,part,shallow
 technic-gears,element,3600
 technic-pins,element,3600
 tiles,part,shallow
-tracks,type,
+tracks,type,""
 train,type,unknown
 transparent-3600,element,3600
 wheels,type,3731
