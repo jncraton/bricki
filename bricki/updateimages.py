@@ -13,15 +13,21 @@ def get_filename(part):
 
 def get_image(p, url=None): 
     if not os.path.exists(get_filename(p)):
-        for color in ['71', '7', '72', '4', '8', p[4], 0]:
+        for color in ['71', '7', '72', '4', '8', p[4]]:
             try:
                 urllib.request.urlretrieve(url or f'https://cdn.rebrickable.com/media/thumbs/parts/ldraw/{color}/{p[1]}.png/250x250p.png', get_filename(p))
                 break
             except:
                 pass
         else:
-            print(f'Error with {p[1]} {p[0]}')
-            return
+            try:
+                if p[6]:
+                    urllib.request.urlretrieve(url or f'https://cdn.rebrickable.com/media/thumbs/parts/elements/{p[6]}.jpg/250x250p.jpg', get_filename(p))
+                else:
+                    raise
+            except:
+                print(f'Error with {p[1]} {p[0]}')
+                return
 
         # Add transparency
         run(['convert',
@@ -75,13 +81,15 @@ parts = helpers.query(
         sum(quantity) as quantity,
         part_bins.bin_id,
         min(my_parts.color_id),
-        count(distinct element_bins.color_id)
+        count(distinct element_bins.color_id),
+        element_id
       from my_parts
       join canonical_parts on canonical_parts.part_num = my_parts.part_num
       join parts on parts.part_num=canonical_part_num
       join part_bins on canonical_part_num=part_bins.part_num
       join bins on part_bins.bin_id = bins.bin_id
       left join part_bins as element_bins on canonical_part_num=element_bins.part_num and element_bins.color_id=my_parts.color_id
+      left join elements on elements.color_id = 71 and elements.part_num = my_parts.part_num
       where part_bins.bin_id not null and bins.sort_style != 'unsorted'
       group by canonical_part_num
       order by part_bins.bin_id, parts.name asc
