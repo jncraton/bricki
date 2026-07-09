@@ -1533,10 +1533,10 @@ flex08c19l,7,legacy-elements,unsorted
 11215,-1,misc-3,medium-brackets
 73562,-1,misc-3,medium-brackets
 76766,-1,misc-3,medium-brackets
-27507,-1,misc-3,medium-macaroni-tiles
-79393,-1,misc-3,medium-macaroni-tiles
-66857,-1,misc-3,medium-round-tiles
-67095,-1,misc-3,medium-round-tiles
+27507,-1,tiles,medium-macaroni-tiles
+79393,-1,tiles,medium-macaroni-tiles
+66857,-1,tiles,medium-round-tiles
+67095,-1,tiles,medium-round-tiles
 59230,-1,misc-3,minifig-arms
 87568,-1,misc-3,minifig-arms
 93061,-1,misc-3,minifig-arms
