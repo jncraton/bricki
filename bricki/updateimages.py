@@ -27,6 +27,7 @@ def get_image(p, url=None):
         run(['convert',
             get_filename(p),
              '-resize', '96x96^',
+             '-white-threshold', '96%',
              '-colorspace', 'Gray',
              '-auto-gamma',
              '-level', '0.5%,100%',
