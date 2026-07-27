@@ -1365,6 +1365,12 @@ flex08c19l,7,legacy-elements,unsorted
 3710,73,medium-blue-3700-1,
 3794b,73,medium-blue-3700-1,
 54200,73,medium-blue-3700-1,
+18895,-1,misc-1,minifig-vehicles
+18896,-1,misc-1,minifig-vehicles
+36934,-1,misc-1,minifig-vehicles
+65574,-1,misc-1,minifig-vehicles
+50861,-1,misc-1,minifig-vehicles
+50862,-1,misc-1,minifig-vehicles
 15706,-1,misc-1,
 2926,-1,misc-1,
 33909,-1,misc-1,
@@ -2884,8 +2890,6 @@ flex08c19l,7,legacy-elements,unsorted
 42610,-1,wheels,wheel
 4288,-1,wheels,wheel
 44309,0,wheels,wheel
-50861,0,wheels,wheel
-50862,-1,wheels,wheel
 51011,0,wheels,wheel
 55889,-1,wheels,wheel
 55976,0,wheels,wheel
