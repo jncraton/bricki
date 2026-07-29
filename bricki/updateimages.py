@@ -90,7 +90,7 @@ parts = helpers.query(
       left join bins on part_bins.bin_id = bins.bin_id
       left join part_bins as element_bins on canonical_part_num=element_bins.part_num and element_bins.color_id=my_parts.color_id
       left join elements on elements.color_id = my_parts.color_id and elements.part_num = my_parts.part_num
-      where (part_bins.bin_id not null and bins.sort_style != 'unsorted') or (quantity >= 20 and my_parts.part_num not like '%pr%')
+      where (part_bins.bin_id not null and bins.sort_style != 'unsorted') or (quantity >= 8 and my_parts.part_num not like '%pr%')
       group by canonical_part_num
       order by part_bins.bin_id, parts.name asc
       """
