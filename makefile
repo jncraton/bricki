@@ -41,7 +41,7 @@ run: $(db)
 	python3 bricki/cli.py
 
 web: $(db)
-	FLASK_APP=bricki/web.py python3 -m flask run
+	FLASK_APP=bricki/web.py uvx flask run
 
 clean-keep-cache:
 	rm -f bricks.db
