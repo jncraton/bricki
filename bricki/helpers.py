@@ -73,6 +73,7 @@ def norm_color(s):
         ("bley", "light bluish gray"),
         ("dbley", "dark bluish gray"),
         ("bg", "light bluish gray"),
+        ("lbg", "light bluish gray"),
         ("dbg", "dark bluish gray"),
         ("dkbley", "dark bluish gray"),
         ("rb", "reddish brown"),
