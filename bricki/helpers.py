@@ -203,7 +203,7 @@ def search_part(needle, printed=False, duplo=False):
     for part_num in [needle, base_part_num, base_part_num + "a", base_part_num + "b"]:
         exact_id_part = query(
             "select part_num, name from parts where part_num like :part_num",
-            (part_num,),
+            {"part_num": part_num},
         )
 
         if exact_id_part:
