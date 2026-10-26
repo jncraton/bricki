@@ -234,7 +234,7 @@ def search_part(needle, printed=False, duplo=False):
             from parts
             join canonical_parts on canonical_parts.part_num = parts.part_num
             join parts as canonical on canonical_parts.canonical_part_num = canonical.part_num
-            where %s (parts.part_num like :needle or (%s))
+            where %s (parts.part_num like ? or (%s))
             group by canonical.part_num
             order by length(canonical.name) asc
         """ % (filter, kw_clause),
